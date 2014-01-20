@@ -1,0 +1,12 @@
+Simond Hugo, Saraïs Anthony, Karassev Marc
+
+Noyau : mini-projet Karassev-Marongiu
+
+Reconception :
+	- Abandon de la structure MVC :
+		L'utilisation de la structure MVC nous faisait perdre les intéractions entre les différentes classes issues de la conception objet naturelle et compliquait donc le programme en rajoutant des classes et en dupliquant du code.
+		Ceci était peut-être du à une mauvaise implémentation du design pattern.
+
+Statistiques : mini-projet Saraïs-Sintes
+
+IHM : mini-projet Simond
