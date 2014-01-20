@@ -1,0 +1,19 @@
+Un manager se voit soumettre un loan.
+
+  -> il accède à toutes les informations via le loan.
+
+
+Un équipement possède une liste de périodes d'indisponibilité, la courante et/ou les futures.
+
+Un manager consulte l'inventaire pour chercher un équipement.
+
+L'inventaire consulte les périodes d'indisponibilité de ses équipements.
+
+  -> il pourrait consulter une/des listes d'emprunts (HashMap ?) à la place.
+
+  -> l'inventaire doit-il être uniquement accessible aux managers ?
+
+
+Les emprunteurs possèdent une liste d'emprunts.
+
+  -> l'utilité de cette liste est limitée.
