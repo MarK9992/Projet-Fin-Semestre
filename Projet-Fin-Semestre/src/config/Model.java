@@ -1,14 +1,15 @@
 package config;
 
 /**
- * Enum for the models of equipment of the system.
+ * Enumeration for the models of equipment of the system.
  * 
- * @author Marc
+ * @author Marc Karassev
  * 
  */
 public enum Model {
+	// TODO java doc
 	IPAD3("Ipad3"), VENGEANCE2100("Vengeance2100"), XPERIAZ("XperiaZ"), UNKWOWN(
-			"Unkwown");
+			"unkwown");
 
 	private String name;
 
