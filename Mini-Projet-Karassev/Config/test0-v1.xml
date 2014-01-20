@@ -1,0 +1,26 @@
+<map>
+  <entry>
+    <model.equipment.XperiaZ>
+      <id>XperiaZ-1</id>
+      <maker>Sony</maker>
+      <unavailabalityPeriods/>
+      <type>Hardware</type>
+      <screenSize>6.4&quot;</screenSize>
+      <processor>APQ8064</processor>
+      <os>ANDROID41</os>
+    </model.equipment.XperiaZ>
+    <int>4</int>
+  </entry>
+  <entry>
+    <model.equipment.Vengeance2100>
+      <id>Vengeance-2</id>
+      <maker>Corsair</maker>
+      <unavailabalityPeriods/>
+      <type>Headphone</type>
+      <impedance>32 Ohms</impedance>
+      <frequencyResponse>20-20000 Hz</frequencyResponse>
+      <soundPressure>105 dB</soundPressure>
+    </model.equipment.Vengeance2100>
+    <int>5</int>
+  </entry>
+</map>

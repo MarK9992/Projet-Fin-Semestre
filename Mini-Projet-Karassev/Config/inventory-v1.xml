@@ -1,0 +1,125 @@
+<map>
+  <entry>
+    <config.Model>IPAD3</config.Model>
+    <list>
+      <model.equipment.Ipad3>
+        <id>Ipad3-6</id>
+        <maker>Apple</maker>
+        <unavailabalityPeriods/>
+        <type>IPAD3</type>
+        <screenSize>9.7&quot;</screenSize>
+        <processor>APPLEA5X</processor>
+        <os>IOS5</os>
+      </model.equipment.Ipad3>
+      <model.equipment.Ipad3>
+        <id>Ipad3-7</id>
+        <maker>Apple</maker>
+        <unavailabalityPeriods/>
+        <type>IPAD3</type>
+        <screenSize>9.7&quot;</screenSize>
+        <processor>APPLEA5X</processor>
+        <os>IOS5</os>
+      </model.equipment.Ipad3>
+      <model.equipment.Ipad3>
+        <id>Ipad3-8</id>
+        <maker>Apple</maker>
+        <unavailabalityPeriods/>
+        <type>IPAD3</type>
+        <screenSize>9.7&quot;</screenSize>
+        <processor>APPLEA5X</processor>
+        <os>IOS5</os>
+      </model.equipment.Ipad3>
+      <model.equipment.Ipad3>
+        <id>Ipad3-9</id>
+        <maker>Apple</maker>
+        <unavailabalityPeriods/>
+        <type>IPAD3</type>
+        <screenSize>9.7&quot;</screenSize>
+        <processor>APPLEA5X</processor>
+        <os>IOS5</os>
+      </model.equipment.Ipad3>
+    </list>
+  </entry>
+  <entry>
+    <config.Model>VENGEANCE2100</config.Model>
+    <list>
+      <model.equipment.Vengeance2100>
+        <id>Vengeance-10</id>
+        <maker>Corsair</maker>
+        <unavailabalityPeriods/>
+        <type>VENGEANCE2100</type>
+        <impedance>32 Ohms</impedance>
+        <frequencyResponse>20-20000 Hz</frequencyResponse>
+        <soundPressure>105 dB</soundPressure>
+      </model.equipment.Vengeance2100>
+      <model.equipment.Vengeance2100>
+        <id>Vengeance-11</id>
+        <maker>Corsair</maker>
+        <unavailabalityPeriods/>
+        <type>VENGEANCE2100</type>
+        <impedance>32 Ohms</impedance>
+        <frequencyResponse>20-20000 Hz</frequencyResponse>
+        <soundPressure>105 dB</soundPressure>
+      </model.equipment.Vengeance2100>
+      <model.equipment.Vengeance2100>
+        <id>Vengeance-12</id>
+        <maker>Corsair</maker>
+        <unavailabalityPeriods/>
+        <type>VENGEANCE2100</type>
+        <impedance>32 Ohms</impedance>
+        <frequencyResponse>20-20000 Hz</frequencyResponse>
+        <soundPressure>105 dB</soundPressure>
+      </model.equipment.Vengeance2100>
+    </list>
+  </entry>
+  <entry>
+    <config.Model>XPERIAZ</config.Model>
+    <list>
+      <model.equipment.XperiaZ>
+        <id>XperiaZ-1</id>
+        <maker>Sony</maker>
+        <unavailabalityPeriods/>
+        <type>XPERIAZ</type>
+        <screenSize>6.4&quot;</screenSize>
+        <processor>APQ8064</processor>
+        <os>ANDROID41</os>
+      </model.equipment.XperiaZ>
+      <model.equipment.XperiaZ>
+        <id>XperiaZ-2</id>
+        <maker>Sony</maker>
+        <unavailabalityPeriods/>
+        <type>XPERIAZ</type>
+        <screenSize>6.4&quot;</screenSize>
+        <processor>APQ8064</processor>
+        <os>ANDROID41</os>
+      </model.equipment.XperiaZ>
+      <model.equipment.XperiaZ>
+        <id>XperiaZ-3</id>
+        <maker>Sony</maker>
+        <unavailabalityPeriods/>
+        <type>XPERIAZ</type>
+        <screenSize>6.4&quot;</screenSize>
+        <processor>APQ8064</processor>
+        <os>ANDROID41</os>
+      </model.equipment.XperiaZ>
+      <model.equipment.XperiaZ>
+        <id>XperiaZ-4</id>
+        <maker>Sony</maker>
+        <unavailabalityPeriods/>
+        <type>XPERIAZ</type>
+        <screenSize>6.4&quot;</screenSize>
+        <processor>APQ8064</processor>
+        <os>ANDROID41</os>
+      </model.equipment.XperiaZ>
+      <model.equipment.XperiaZ>
+        <id>XperiaZ-5</id>
+        <maker>Sony</maker>
+        <unavailabalityPeriods/>
+        <type>XPERIAZ</type>
+        <screenSize>6.4&quot;</screenSize>
+        <processor>APQ8064</processor>
+        <os>ANDROID41</os>
+      </model.equipment.XperiaZ>
+    </list>
+  </entry>
+</map>
