@@ -1,19 +1,7 @@
 Un manager se voit soumettre un loan.
 
-  -> il accède à toutes les informations via le loan.
+Un manager consulte le management system pour chercher un équipement.
 
+Le management system possède la liste de tous les emprunts et l'inventaire de tous les équipements.
 
-Un équipement possède une liste de périodes d'indisponibilité, la courante et/ou les futures.
-
-Un manager consulte l'inventaire pour chercher un équipement.
-
-L'inventaire consulte les périodes d'indisponibilité de ses équipements.
-
-  -> il pourrait consulter une/des listes d'emprunts (HashMap ?) à la place.
-
-  -> l'inventaire doit-il être uniquement accessible aux managers ?
-
-
-Les emprunteurs possèdent une liste d'emprunts.
-
-  -> l'utilité de cette liste est limitée.
+Le management system consulte la liste des emprunts pour vérifier la disponibilité du matériel et pour tracer les emprunteurs.
