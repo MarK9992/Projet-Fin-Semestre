@@ -12,7 +12,6 @@ import config.Model;
  * 
  */
 public class Borrower extends User {
-	// TODO java doc
 	// TODO tests
 
 	// Fields

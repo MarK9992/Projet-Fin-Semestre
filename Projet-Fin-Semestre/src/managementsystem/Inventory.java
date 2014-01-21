@@ -11,7 +11,8 @@ import utils.Period;
 import config.Model;
 
 /**
- * Inventory class, allows access to all equipments of the system.
+ * Inventory class, contains references to all equipments of the system. Allows
+ * access on them.
  * 
  * @author Marc Karassev, Anaïs Marongiu
  * 

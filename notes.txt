@@ -1,13 +1,23 @@
 Simond Hugo, Saraïs Anthony, Karassev Marc
 
 Noyau : mini-projet Karassev-Marongiu
+	- packages equipement, user, config, utils
+	- classes Loan, Inventory
 
 Reconception :
 	- abandon de la structure MVC :
-		L'utilisation de la structure MVC nous faisait perdre les intéractions entre les différentes classes issues de la conception objet naturelle et compliquait donc le programme en rajoutant des classes et en dupliquant du code.
+		L'utilisation de la structure MVC nous faisait perdre les intéractions entre les différentes classes issues de la conception objet naturelle et compliquait donc le programme en rajoutant des classes et en dupliquant du code. [J'ai eu l'impression de devoir faire des concessions au MVC au détriment de la conception objet originale.]
 		Ceci était peut-être du à une mauvaise implémentation du design pattern.
-	- suppression des classes définissant un modèle précis d'équipement pour permettre l'extensibilité
-	- suppression des classes Student et Teacher ayant le même comportement, ajout d'une énumération pour le type d'emprunteur
+	- réusinage du package equipment :
+		Suppression des classes définissant un modèle précis d'équipement pour permettre l'extensibilité.
+		Modification de la génération des identifiants de façon à ce qu'ils soient conforment à l'énoncé du mini-projet d'IPA.
+	- réusinage du package user :
+		Suppression des classes Student et Teacher ayant le même comportement, ajout d'une énumération pour le type d'emprunteur.
+		Remplacement de l'attribut LoanList de la classe Borrower par une méthode de l'inventaire recherchant les emprunts correspondants à un utilisateur. Diminue la duplication en mémoire.
+	- réusinage du package config :
+		Réécriture des classes de configuration XML.
+	- réusinage de la classe Loan :
+		Remplacement des attributs model et equipmentID par une HashMap de clé les modèles voulus et de valeur les listes d'équipements correspondants pour permettre la sélection de plusieurs équipement dans un emprunt.
 
 Statistiques : mini-projet Saraïs-Sintes
 
