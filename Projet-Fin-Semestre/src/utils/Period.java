@@ -10,7 +10,6 @@ import java.util.Calendar;
  */
 public class Period {
 	// TODO manage time zone and locale
-	// TODO complete java documentation
 	// TODO tests
 
 	// Fields
@@ -25,9 +24,8 @@ public class Period {
 	 */
 	public Period() {
 		this(Calendar.getInstance(), Calendar.getInstance());
-		// TODO do the next instructions in the constructor call
-		long endTime = this.startDate.getTimeInMillis() + (24 * 60 * 60 * 1000)
-				* 7;
+		long endTime = this.endDate.getTimeInMillis()
+				+ (1000 * 60 * 60 * 24 * 7);
 		this.endDate.setTimeInMillis(endTime);
 	}
 
@@ -43,7 +41,7 @@ public class Period {
 	public Period(Calendar sd, Calendar ed) {
 		this.startDate = sd;
 		this.endDate = ed;
-		
+
 		if (this.getDuration() < 0) {
 			this.endDate = this.startDate;
 		}
@@ -51,10 +49,20 @@ public class Period {
 
 	// Getters and Setters
 
+	/**
+	 * Returns the period start date field.
+	 * 
+	 * @return the calendar object corresponding to the period start date.
+	 */
 	public Calendar getStartDate() {
 		return startDate;
 	}
 
+	/**
+	 * Returns the period end date field.
+	 * 
+	 * @return the calendar object corresponding to the period end date.
+	 */
 	public Calendar getEndDate() {
 		return endDate;
 	}
@@ -62,9 +70,9 @@ public class Period {
 	// Methods
 
 	/**
-	 * Calculates the duration in days of the period.
+	 * Calculates the period duration in days.
 	 * 
-	 * @return the duration
+	 * @return the period duration
 	 */
 	public int getDuration() {
 		long time = this.endDate.getTimeInMillis()
@@ -96,10 +104,12 @@ public class Period {
 	}
 
 	/**
-	 * Checks if p1 & p2 are overlapping.
+	 * Checks if the given periods are overlapping.
 	 * 
 	 * @param p1
+	 *            the first period
 	 * @param p2
+	 *            the second period
 	 * @return true if they are, false otherwise
 	 */
 	public static boolean overlap(Period p1, Period p2) {
@@ -111,12 +121,15 @@ public class Period {
 		return start1 > start2 && start1 < end2 || end1 > start1 && end1 < end2;
 	}
 
+	/**
+	 * Returns a string representation of the period and its fields.
+	 */
 	public String toString() {
 		return "from " + startDate.get(Calendar.DATE) + "/"
-				+ startDate.get(Calendar.MONTH) + "/"
+				+ startDate.get(Calendar.MONTH) + 1 + "/"
 				+ startDate.get(Calendar.YEAR) + " to "
 				+ endDate.get(Calendar.DATE) + "/"
-				+ endDate.get(Calendar.MONTH) + "/"
+				+ endDate.get(Calendar.MONTH) + 1 + "/"
 				+ endDate.get(Calendar.YEAR);
 	}
 }
