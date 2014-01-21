@@ -44,6 +44,7 @@ public abstract class User {
 	/**
 	 * Returns a string representation of this user and its values.
 	 */
+	@Override
 	public String toString() {
 		return "ID: " + id + ", name: " + name;
 	}

@@ -72,6 +72,7 @@ public class Loan {
 	/**
 	 * Returns a string representation of the loan and its fields.
 	 */
+	@Override
 	public String toString() {
 		return "stuff: " + stuff + "\nperiod: " + period + "\nborrower: "
 				+ borrower;

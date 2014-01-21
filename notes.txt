@@ -20,7 +20,7 @@ Reconception :
 	- réusinage de la classe Loan :
 		Remplacement des attributs model et equipmentID par une HashMap de clé les modèles voulus et de valeur les listes d'équipements correspondants pour permettre la sélection de plusieurs équipement dans un emprunt.
 	- réusinage de la classe Inventory :
-		Ajout d'un attribut HashMap ayant pour clé des modèles d'équipements et pour valeurs des emprunts afin de pallier à la disparition de l'attribut unavailabalityPeriods de la classe equipment.Equipment.
+		Ajout d'un attribut ArrayList d'emprunts afin de pallier à la disparition de l'attribut unavailabalityPeriods de la classe equipment.Equipment.
 		Ajout d'une méthode affichant les emprunts par utilisateur et de deux autres méthodes retournant si un équipement est disponible maintenant ou pendant une certaine période pour pallier à la disparition de l'attribut LoanList de la classe user.Borrower.
 
 Statistiques : mini-projet Saraïs-Sintes

@@ -89,7 +89,7 @@ public class Borrower extends User {
 	 * Returns a string representation of the instance and its values.
 	 */
 	public String toString() {
-		return super.toString() + ", type: " + type.getName();
+		return "Borrower: " + super.toString() + ", type: " + type.getName();
 	}
 
 	// Getters and setters

@@ -52,6 +52,7 @@ public abstract class Equipment {
 	/**
 	 * Returns a string representation of the equipment and its values.
 	 */
+	@Override
 	public String toString() {
 		return "ID: " + id + ", made by: " + manufacturer;
 	}

@@ -2,7 +2,7 @@ package users;
 
 import java.util.ArrayList;
 
-import managementsystem.Inventory;
+import managementsystem.ManagementSystem;
 import managementsystem.Loan;
 import equipment.Equipment;
 import utils.Period;
@@ -111,4 +111,12 @@ public class Manager extends User implements BorrowerConstants {
 	 * 
 	 * return list; }
 	 */
+
+	/**
+	 * Returns a string representation of the manager and its values.
+	 */
+	@Override
+	public String toString() {
+		return "Manager: " + super.toString();
+	}
 }
