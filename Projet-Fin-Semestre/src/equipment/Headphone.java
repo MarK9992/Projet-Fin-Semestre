@@ -8,6 +8,8 @@ import config.Model;
 /**
  * Class Headphone, defines all common properties to headphones.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

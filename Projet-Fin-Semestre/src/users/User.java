@@ -3,6 +3,8 @@ package users;
 /**
  * Super class User, defines all common properties to users.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

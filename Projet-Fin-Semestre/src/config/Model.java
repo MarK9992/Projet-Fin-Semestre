@@ -3,6 +3,8 @@ package config;
 /**
  * Enumeration of equipment models.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

@@ -10,6 +10,8 @@ import config.Processor;
 /**
  * Class Hardware, defines all common properties to hardware.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

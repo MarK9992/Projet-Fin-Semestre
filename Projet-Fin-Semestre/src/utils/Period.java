@@ -5,6 +5,8 @@ import java.util.Calendar;
 /**
  * Class which implements time periods and methods to handle it.
  * 
+ * initial code by: Marc Karassev, Anaïs Marongiu; modified by: Marc Karassev
+ * 
  * @author Marc Karassev, Anaïs Marongiu
  * 
  */

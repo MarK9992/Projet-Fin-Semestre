@@ -3,6 +3,8 @@ package config;
 /**
  * Implements constants for borrowers.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

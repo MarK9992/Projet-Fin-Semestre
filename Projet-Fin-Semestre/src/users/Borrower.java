@@ -10,6 +10,8 @@ import config.Model;
 /**
  * Borrower class, a user who can borrow equipments.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

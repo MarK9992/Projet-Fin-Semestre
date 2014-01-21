@@ -3,6 +3,8 @@ package config;
 /**
  * Enumeration for the processors of hardwares of the system.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

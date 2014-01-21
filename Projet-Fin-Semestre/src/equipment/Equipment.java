@@ -8,6 +8,8 @@ import config.Model;
 /**
  * Super class equipment, defines the common properties to all equipments.
  * 
+ * initial code by: Marc Karassev, Anaïs Marongiu; modified by: Marc Karassev
+ * 
  * @author Marc Karassev, Anaïs Marongiu
  * 
  */

@@ -15,6 +15,8 @@ import equipment.Equipment;
  * equipment borrowed as values and the models matching the following values as
  * keys. It also contains the period corresponding to the loan and the borrower.
  * 
+ * initial code by : Marc Karassev; modified by : Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */

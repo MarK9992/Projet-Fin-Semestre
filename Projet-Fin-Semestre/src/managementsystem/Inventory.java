@@ -14,6 +14,8 @@ import config.Model;
  * Inventory class, contains references to all equipments of the system. Allows
  * access on them.
  * 
+ * initial code by: Anaïs Marongiu, Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev, Anaïs Marongiu
  * 
  */

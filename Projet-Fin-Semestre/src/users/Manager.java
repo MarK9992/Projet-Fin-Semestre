@@ -12,6 +12,8 @@ import config.BorrowerConstants;
  * Manager class, a user who can manage the inventory and validate or refuse
  * loans. He also controls the state of loans.
  * 
+ * initial code by: Marc Karassev; modified by: Marc Karassev
+ * 
  * @author Marc Karassev
  * 
  */
