@@ -1,5 +1,7 @@
 package users;
 
+import java.util.HashMap;
+
 import managementsystem.Loan;
 import utils.Period;
 import config.BorrowerType;
@@ -59,17 +61,18 @@ public class Borrower extends User {
 	// Methods
 
 	/**
-	 * Asks for an equipment of specified model and period. Creates a new loan
-	 * corresponding to these standarts.
+	 * Asks for equipments of specified models and for a period. Creates a new
+	 * loan corresponding to these standards.
 	 * 
-	 * @param m
-	 *            model of the wanted equipment
+	 * @param askedStuff
+	 *            HashMap in which keys are models and values the askednumber of
+	 *            equipment of matching model
 	 * @param p
 	 *            period asked for the loan
 	 * @return the loan instance created
 	 */
-	public Loan book(Model m, Period p) {
-		Loan l = new Loan(m, p, this);
+	public Loan book(HashMap<Model, Integer> askedStuff, Period p) {
+		Loan l = new Loan(askedStuff, p, this);
 		return l;
 	}
 
