@@ -1,12 +1,10 @@
 package equipment;
 
-import java.util.ArrayList;
-
-import utils.Period;
 import config.Model;
 
 /**
- * Class Headphone, defines all common properties to headphones.
+ * Headphone class. A headphone is an equipment with an impedance, a
+ * frequencyResponse and a soundPressure.
  * 
  * initial code by: Marc Karassev; modified by: Marc Karassev
  * 
@@ -14,51 +12,106 @@ import config.Model;
  * 
  */
 public abstract class Headphone extends Equipment {
-	// TODO java documentation
-	// TODO check the use of field unavailabalityPeriods and re-factor the class
-	// if necessary
 	// TODO tests
 
-    // Fields
+	// Fields
 
-    private String impedance;
-    private String frequencyResponse;
-    private String soundPressure;
+	private String impedance;
+	private String frequencyResponse;
+	private String soundPressure;
 
-    // Constructors
+	// Constructors
 
-    public Headphone() {
-        this("HP", "unknown", new ArrayList<Period>(), 30, "20-20000", 100,
-                Model.UNKWOWN);
-    }
+	/**
+	 * Default constructor, constructs a new headphone with an ID like
+	 * "HP-number", an impedance of 30 Ohms, a frequency response of 20 to 20000
+	 * Hz, a sound pressure of 100 dB and unknown manufacturer and model.
+	 */
+	public Headphone() {
+		this("HP", "unknown", 30, "20-20000", 100, Model.UNKWOWN);
+	}
 
-    public Headphone(String id, String maker, ArrayList<Period> unavPer,
-            int imp, String resp, int pres, Model type) {
-        super(id, maker, unavPer, type);
-        impedance = imp + " Ohms";
-        frequencyResponse = resp + " Hz";
-        soundPressure = pres + " dB";
-    }
+	/**
+	 * Constructs a new headphone with an ID like "HP-number" and specified
+	 * manufacturer, impedance, frequency response, sound pressure and model.
+	 * 
+	 * @param maker
+	 *            the manufacturer of the new headphone
+	 * @param imp
+	 *            its impedance
+	 * @param resp
+	 *            its frequency response
+	 * @param pres
+	 *            its sound pressure
+	 * @param type
+	 *            its model
+	 */
+	public Headphone(String maker, int imp, String resp, int pres, Model type) {
+		this("HP", maker, imp, resp, pres, type);
+	}
 
-    // Methods
+	/**
+	 * Constructs a new headphone with the specified id, manufacturer,
+	 * impedance, frequency response, sound pressure and model.
+	 * 
+	 * @param id
+	 *            the id of the new headphone
+	 * @param maker
+	 *            its manufacturer
+	 * @param imp
+	 *            its impedance
+	 * @param resp
+	 *            its frequency response
+	 * @param pres
+	 *            its sound pressure
+	 * @param type
+	 *            its model
+	 */
+	public Headphone(String id, String maker, int imp, String resp, int pres,
+			Model type) {
+		super(id, maker, type);
+		impedance = imp + " Ohms";
+		frequencyResponse = resp + " Hz";
+		soundPressure = pres + " dB";
+	}
 
-    public String toString() {
-        return super.toString() + ", impedance: " + impedance
-                + ", frequency response: " + frequencyResponse
-                + ", sound pressure: " + soundPressure;
-    }
+	// Methods
 
-    // Getters and setters
+	/**
+	 * Returns a string representation of the headphone and its values.
+	 */
+	public String toString() {
+		return super.toString() + ", impedance: " + impedance
+				+ ", frequency response: " + frequencyResponse
+				+ ", sound pressure: " + soundPressure;
+	}
 
-    public String getImpedance() {
-        return impedance;
-    }
+	// Getters and setters
 
-    public String getFrequencyResponse() {
-        return frequencyResponse;
-    }
+	/**
+	 * Returns the headphone's impedance.
+	 * 
+	 * @return the value of the impedance field.
+	 */
+	public String getImpedance() {
+		return impedance;
+	}
 
-    public String getSoundPressure() {
-        return soundPressure;
-    }
+	/**
+	 * Returns the headphone's frequency response.
+	 * 
+	 * @return the value of the frequencyResponse field
+	 */
+	public String getFrequencyResponse() {
+		return frequencyResponse;
+	}
+
+	/**
+	 * Returns the headphone's sound pressure.
+	 * 
+	 * @return the value of the soundPressure field.
+	 */
+	public String getSoundPressure() {
+		return soundPressure;
+	}
 }

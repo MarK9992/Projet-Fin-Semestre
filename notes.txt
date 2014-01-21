@@ -1,7 +1,7 @@
 Simond Hugo, Saraïs Anthony, Karassev Marc
 
 Noyau : mini-projet Karassev-Marongiu
-	- packages equipement, user, config, utils
+	- packages equipment, user, config, utils
 	- classes Loan, Inventory
 
 Reconception :
@@ -11,6 +11,7 @@ Reconception :
 	- réusinage du package equipment :
 		Suppression des classes définissant un modèle précis d'équipement pour permettre l'extensibilité.
 		Modification de la génération des identifiants de façon à ce qu'ils soient conforment à l'énoncé du mini-projet d'IPA.
+		Suppression de l'attribut unavailabalityPeriods, remplacé par une HashMap de Loan dans l'inventaire pour ce qui est de leur utilisation. Réduit la duplication en mémoire (cette information était et est stockée de façon analogue dans les attributs de la classe Loan).
 	- réusinage du package user :
 		Suppression des classes Student et Teacher ayant le même comportement, ajout d'une énumération pour le type d'emprunteur.
 		Remplacement de l'attribut LoanList de la classe Borrower par une méthode de l'inventaire recherchant les emprunts correspondants à un utilisateur. Diminue la duplication en mémoire.
@@ -18,6 +19,9 @@ Reconception :
 		Réécriture des classes de configuration XML.
 	- réusinage de la classe Loan :
 		Remplacement des attributs model et equipmentID par une HashMap de clé les modèles voulus et de valeur les listes d'équipements correspondants pour permettre la sélection de plusieurs équipement dans un emprunt.
+	- réusinage de la classe Inventory :
+		Ajout d'un attribut HashMap ayant pour clé des modèles d'équipements et pour valeurs des emprunts afin de pallier à la disparition de l'attribut unavailabalityPeriods de la classe equipment.Equipment.
+		Ajout d'une méthode affichant les emprunts par utilisateur et de deux autres méthodes retournant si un équipement est disponible maintenant ou pendant une certaine période pour pallier à la disparition de l'attribut LoanList de la classe user.Borrower.
 
 Statistiques : mini-projet Saraïs-Sintes
 
