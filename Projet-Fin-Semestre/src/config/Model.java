@@ -1,7 +1,7 @@
 package config;
 
 /**
- * Enumeration for the models of equipment of the system.
+ * Enumeration of equipment models.
  * 
  * @author Marc Karassev
  * 
