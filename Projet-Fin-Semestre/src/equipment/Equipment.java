@@ -1,5 +1,7 @@
 package equipment;
 
+import java.io.Serializable;
+
 import config.Model;
 
 /**
@@ -12,7 +14,7 @@ import config.Model;
  * @author Marc Karassev, Anaïs Marongiu
  * 
  */
-public abstract class Equipment {
+public class Equipment{
 
 	// Fields
 
