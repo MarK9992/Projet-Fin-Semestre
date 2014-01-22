@@ -41,6 +41,7 @@ public class ManagementSystem {
 	public ManagementSystem() {
 		inventory = new HashMap<Model, ArrayList<Equipment>>();
 		loans = new ArrayList<Loan>();
+		users = new ArrayList<User>();
 		
 		StoreLoad seria = new StoreLoad();
 		try {inventory = (HashMap<Model, ArrayList<Equipment>>) seria.Input("Stock");} 
