@@ -30,7 +30,7 @@ public class Equipment{
 	 * manufacturer.
 	 */
 	public Equipment() {
-		this("unkwown", Model.UNKWOWN);
+		this("unkwown", Model.UNKNOWN);
 	}
 
 	/**

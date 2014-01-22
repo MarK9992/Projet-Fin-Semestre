@@ -29,7 +29,7 @@ public class Hardware extends Equipment {
 	 * unknown manufacturer, processor, operating system and model.
 	 */
 	public Hardware() {
-		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, Model.UNKWOWN);
+		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, Model.UNKNOWN);
 	}
 
 	/**

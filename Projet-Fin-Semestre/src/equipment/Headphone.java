@@ -28,7 +28,7 @@ public abstract class Headphone extends Equipment {
 	 * and unknown manufacturer and model.
 	 */
 	public Headphone() {
-		this("unknown", 30, "20-20000", 100, Model.UNKWOWN);
+		this("unknown", 30, "20-20000", 100, Model.UNKNOWN);
 	}
 
 	/**
