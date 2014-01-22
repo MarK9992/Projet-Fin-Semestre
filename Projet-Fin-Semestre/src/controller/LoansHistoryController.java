@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JList;
@@ -26,7 +27,7 @@ public class LoansHistoryController {
     public LoansHistoryController(String idBorrower, ManagementSystem m, LoansHistoryView v) {
         ms = m;
         view = v;
-        
+        loans = new ArrayList<Loan>();
         v.getOkButton().addActionListener(new OkListener());
         v.getLoansList().addMouseListener(new LoansListener());
         for(int i=0; i<ms.getLoans().size(); i++){

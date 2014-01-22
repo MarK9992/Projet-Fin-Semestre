@@ -9,8 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import config.Model;
-
 import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import users.Borrower;
