@@ -47,6 +47,27 @@ public class AccountController {
         }
     }
 
+    public Borrower borrowerExists(String name, BorrowerType type) {
+        for (int i = 0; i < ms.getUsers().size(); i++) {
+            if ((ms.getUsers().get(i).getName().equals(name)
+                    && ms.getUsers().get(i) instanceof Borrower && ((Borrower) ms
+                    .getUsers().get(i)).getType().equals(type))) {
+                return (Borrower) ms.getUsers().get(i);
+            }
+        }
+        return null;
+    }
+
+    public Manager managerExists(String name, BorrowerType type) {
+        for (int i = 0; i < ms.getUsers().size(); i++) {
+            if (ms.getUsers().get(i).getName().equals(name)
+                    && ms.getUsers().get(i) instanceof Manager) {
+                return (Manager) ms.getUsers().get(i);
+            }
+        }
+        return null;
+    }
+
     /**
      * The listener of the create button
      * 
@@ -62,34 +83,46 @@ public class AccountController {
                     .toString();
             User user;
             if (typeChosen.equals(view.getComboBoxValues()[2])) {
-                user = new Manager(name);
-                try {
-					ms.addUser(user);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+                user = managerExists(name, null);
+                System.out.println(user);
+                if (user == null) {
+                    user = new Manager(name);
+                    try {
+                        ms.addUser(user);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
                 AdministratorView v = new AdministratorView();
                 new AdministratorController(user.getId(), ms, v);
             } else if (typeChosen.equals(view.getComboBoxValues()[1])) {
-                user = new Borrower(name, BorrowerType.STUDENT);
-                try {
-					ms.addUser(user);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+                user = borrowerExists(name, BorrowerType.STUDENT);
+                System.out.println(user);
+                if (user == null) {
+                    user = new Borrower(name, BorrowerType.STUDENT);
+                    try {
+                        ms.addUser(user);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
                 BorrowerView v = new BorrowerView();
                 new BorrowerController(user.getId(), ms, v);
             } else {
-                user = new Borrower(name, BorrowerType.TEACHER);
-                try {
-					ms.addUser(user);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+                user = borrowerExists(name, BorrowerType.TEACHER);
+                System.out.println(user);
+                if (user == null) {
+                    user = new Borrower(name, BorrowerType.TEACHER);
+                    try {
+                        ms.addUser(user);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
                 BorrowerView v = new BorrowerView();
                 new BorrowerController(user.getId(), ms, v);
             }
-            
+
             view.dispose();
         }
     }
