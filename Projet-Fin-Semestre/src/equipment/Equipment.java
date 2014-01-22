@@ -15,7 +15,7 @@ public abstract class Equipment {
 
 	// Fields
 	
-	private static int counter = 1;
+	private static int counter = 1000;
 	private String id;
 	private String manufacturer;
 	private Model type;
@@ -41,7 +41,7 @@ public abstract class Equipment {
 	 *            the model corresponding to this equipment
 	 */
 	public Equipment(String id, String maker, Model type) {
-		this.id = id + "-" + counter;
+		this.id = type.getName().substring(0, 3).toUpperCase()+counter;
 		this.manufacturer = maker;
 		this.type = type;
 		counter++;
