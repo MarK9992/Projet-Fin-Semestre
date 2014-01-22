@@ -6,15 +6,17 @@ import java.util.Iterator;
 import java.util.Set;
 
 import equipment.Equipment;
+import users.User;
 import utils.Period;
 //import config.ConfigXML;
 import config.Model;
 
 /**
- * ManagementSystem class, contains references to all equipments of the system
- * and to all loans. Allows access on both of them by the use of search methods.
- * Fields are an ArrayList of loans and a HashMaps where keys are config.Model
- * constants and values are ArrayLists of equipment matching the model.
+ * ManagementSystem class, contains references to all equipments of the system,
+ * to all loans and to all users. Allows access on all of them by the use of
+ * search methods. Fields are an ArrayList of loans, an ArrayLists of users and
+ * a HashMaps where keys are config.Model constants and values are ArrayLists of
+ * equipment matching the model.
  * 
  * initial code by: Anaïs Marongiu, Marc Karassev; modified by: Marc Karassev
  * 
@@ -26,6 +28,7 @@ public class ManagementSystem {
 
 	private ArrayList<Loan> loans;
 	private HashMap<Model, ArrayList<Equipment>> inventory;
+	private ArrayList<User> users;
 
 	/**
 	 * Default constructor, constructs a new ManagementSystem with empty
@@ -89,6 +92,22 @@ public class ManagementSystem {
 	 */
 	public void removeEquipment(Equipment e) {
 		this.inventory.get(e.getType()).remove(e);
+	}
+	
+	public void addLoan(Loan l) {
+		loans.add(l);
+	}
+	
+	public void removeLoan(Loan l) {
+		loans.remove(l);
+	}
+	
+	public void addUser(User u) {
+		users.add(u);
+	}
+	
+	public void removeUser(User u) {
+		users.remove(u);
 	}
 
 	/**
@@ -295,5 +314,24 @@ public class ManagementSystem {
 	 */
 	public void setLoans(ArrayList<Loan> loans) {
 		this.loans = loans;
+	}
+
+	/**
+	 * Returns the management system's user list.
+	 * 
+	 * @return the value of the users field
+	 */
+	public ArrayList<User> getUsers() {
+		return users;
+	}
+
+	/**
+	 * Sets the value of the ArrayList field users with the given ArrayList.
+	 * 
+	 * @param lu
+	 *            the new users value
+	 */
+	public void setUsers(ArrayList<User> lu) {
+		users = lu;
 	}
 }
