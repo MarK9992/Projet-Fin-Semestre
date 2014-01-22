@@ -22,7 +22,7 @@ import javax.swing.SpinnerNumberModel;
  * @author Hugo
  * 
  */
-public class BorrowingView extends JDialog {
+public class CreateLoanView extends JDialog {
     private static final long serialVersionUID = 1L;
     private List<SpinnerNumberModel> numberModelList;
     private List<JSpinner> quantitiesList;
@@ -37,7 +37,7 @@ public class BorrowingView extends JDialog {
     private JLabel startDateLabel;
     private JLabel endDateLabel;
 
-    public BorrowingView() {
+    public CreateLoanView() {
         setTitle("Create loan");
         setSize(new Dimension(400, 400));
         setLocationRelativeTo(null);

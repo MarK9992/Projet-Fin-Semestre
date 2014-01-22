@@ -24,9 +24,9 @@ public class LoanTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void constructorsTest() {
-		HashMap<Model, Integer> hm = new HashMap<Model, Integer>();
-		hm.put(Model.IPAD3, 3);
-		hm.put(Model.VENGEANCE2100, 1);
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("Ipad3", 3);
+		hm.put("Vengeance2100", 1);
 		Loan l1 = new Loan();
 		Loan l2 = new Loan(hm, new Period(), new Borrower());
 

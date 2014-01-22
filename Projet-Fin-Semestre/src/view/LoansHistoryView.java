@@ -42,7 +42,7 @@ public class LoansHistoryView extends JFrame {
         centerPanel.add(scrollPane, BorderLayout.CENTER);
         add(centerPanel, BorderLayout.CENTER);
         JPanel statePanel = new JPanel(new BorderLayout());
-        statePanel.add(new JLabel("Activated : "), BorderLayout.WEST);
+        statePanel.add(new JLabel("Accepted : "), BorderLayout.WEST);
         statePanel.add(stateLabel, BorderLayout.CENTER);
         centerPanel.add(statePanel, BorderLayout.SOUTH);
 
