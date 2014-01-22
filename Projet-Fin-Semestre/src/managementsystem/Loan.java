@@ -25,7 +25,7 @@ public class Loan {
 
 	// Fields
 
-	private HashMap<Model, ArrayList<Equipment>> stuff;
+	private HashMap<String, ArrayList<Equipment>> stuff;
 	private Period period;
 	private Borrower borrower;
 	private boolean accepted;
@@ -36,7 +36,7 @@ public class Loan {
 	 * period and a default Borrower.
 	 */
 	public Loan() {
-		this(new HashMap<Model, Integer>(), new Period(), new Borrower());
+		this(new HashMap<String, Integer>(), new Period(), new Borrower());
 		accepted = false;
 	}
 
@@ -54,12 +54,12 @@ public class Loan {
 	 * @param borrower
 	 *            the borrower who asks for the loan
 	 */
-	public Loan(HashMap<Model, Integer> stuffAsked, Period p, Borrower borrower) {
-		Set<Model> keys = stuffAsked.keySet();
-		Iterator<Model> it = keys.iterator();
-		Model key;
+	public Loan(HashMap<String, Integer> stuffAsked, Period p, Borrower borrower) {
+		Set<String> keys = stuffAsked.keySet();
+		Iterator<String> it = keys.iterator();
+		String key;
 
-		stuff = new HashMap<Model, ArrayList<Equipment>>(stuffAsked.size());
+		stuff = new HashMap<String, ArrayList<Equipment>>(stuffAsked.size());
 		while (it.hasNext()) {
 			key = it.next();
 			stuff.put(key, new ArrayList<Equipment>(stuffAsked.get(key)));
@@ -87,7 +87,7 @@ public class Loan {
 	 * 
 	 * @return the HashMap stuff field
 	 */
-	public HashMap<Model, ArrayList<Equipment>> getStuff() {
+	public HashMap<String, ArrayList<Equipment>> getStuff() {
 		return stuff;
 	}
 
