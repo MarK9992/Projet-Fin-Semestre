@@ -123,10 +123,13 @@ public class SimulationController {
      * @author Hugo
      * 
      */
-    class LoansListener implements MouseListener {
+    public class LoansListener implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent arg0) {
+            if(view.getListModel().getSize() == 0){
+                return;
+            }
             JList<String> list = view.getLoansList();
             int selected = list.getSelectedIndex();
             view.getStateLabel().setText(states.get(selected));

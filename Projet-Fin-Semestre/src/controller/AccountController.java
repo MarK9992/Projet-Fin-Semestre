@@ -59,7 +59,7 @@ public class AccountController {
             String name = view.getNameField().getText();
             String typeChosen = view.getTypeComboBox().getSelectedItem()
                     .toString();
-            String[] typesAvailable = {"Teacher", "Student", "Administrator"};
+            String[] typesAvailable = {"Teacher", "Student", "Manager"};
             User user;
             if (typeChosen.equals(typesAvailable[2])) {
                 user = new Manager(name);
@@ -78,7 +78,6 @@ public class AccountController {
                 new BorrowerController(user.getId(), ms, v);
             }
             
-            // TODO save the changes
             view.dispose();
         }
     }

@@ -15,7 +15,7 @@ import config.Models;
  * @author Anthony Saraïs, Marc Karassev, Anaïs Marongiu
  * 
  */
-public abstract class Equipment implements Serializable {
+public class Equipment implements Serializable {
 
 	// Fields
 
@@ -87,7 +87,7 @@ public abstract class Equipment implements Serializable {
 	 * 
 	 * @return the value of the model field
 	 */
-	public String geModel() {
+	public String getModel() {
 		return model;
 	}
 

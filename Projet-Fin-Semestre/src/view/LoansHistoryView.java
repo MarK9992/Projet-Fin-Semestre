@@ -15,6 +15,7 @@ public class LoansHistoryView extends JFrame {
     private static final long serialVersionUID = 1L;
 
     private JLabel loansLabel;
+    private JLabel stateLabel;
     private JList<String> loansList;
     private JButton okButton;
     private DefaultListModel<String> listModel;
@@ -24,6 +25,7 @@ public class LoansHistoryView extends JFrame {
      */
     public LoansHistoryView() {
         loansLabel = new JLabel("Your loans : ");
+        stateLabel = new JLabel();
         listModel = new DefaultListModel<String>();
         okButton = new JButton("OK");
         loansList = new JList<String>(listModel);
@@ -39,6 +41,10 @@ public class LoansHistoryView extends JFrame {
         scrollPane.setViewportView(loansList);
         centerPanel.add(scrollPane, BorderLayout.CENTER);
         add(centerPanel, BorderLayout.CENTER);
+        JPanel statePanel = new JPanel(new BorderLayout());
+        statePanel.add(new JLabel("Activated : "), BorderLayout.WEST);
+        statePanel.add(stateLabel, BorderLayout.CENTER);
+        centerPanel.add(statePanel, BorderLayout.SOUTH);
 
         JPanel southPanel = new JPanel();
         southPanel.add(okButton);
@@ -59,5 +65,9 @@ public class LoansHistoryView extends JFrame {
 
     public DefaultListModel<String> getListModel() {
         return listModel;
+    }
+    
+    public JLabel getStateLabel() {
+        return stateLabel;
     }
 }

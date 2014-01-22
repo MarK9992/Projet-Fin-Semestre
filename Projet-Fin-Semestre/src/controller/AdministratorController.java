@@ -7,6 +7,7 @@ import java.util.List;
 
 import managementsystem.Loan;
 import managementsystem.ManagementSystem;
+import users.Manager;
 import view.AccountView;
 import view.AdministratorView;
 import view.AlgorithmView;
@@ -45,7 +46,7 @@ public class AdministratorController {
      *             if the borrowing can't be accepted anymore
      */
     public void accept(Loan loan) throws IllegalArgumentException {
-        //((Manager)ms.getUser(adminId)).accept(loan);
+        ((Manager)ms.getUser(adminId)).accept(loan);
     }
 
     /**
@@ -55,10 +56,10 @@ public class AdministratorController {
     public void obtainBorrowingsStrings() {
         idBorrowings.clear();
         for (int i=0; i<ms.getLoans().size(); i++) {
-            //if (!ms.getLoans().get(i).isAccepted()) {
+            if (!ms.getLoans().get(i).isAccepted()) {
                 idBorrowings.add(ms.getLoans().get(i));
                 view.getListModel().addElement(ms.getLoans().get(i).toString());
-            //}
+            }
         }
     }
     
