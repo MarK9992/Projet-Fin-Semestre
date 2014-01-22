@@ -11,7 +11,7 @@ package config;
 public enum Model {
 	// TODO java doc
 	IPAD3("Ipad3"), VENGEANCE2100("Vengeance2100"), XPERIAZ("XperiaZ"), UNKWOWN(
-			"unkwown");
+			"unknown");
 
 	private String name;
 
