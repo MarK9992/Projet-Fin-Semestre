@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -87,16 +88,17 @@ public class CreateLoanView extends JDialog {
      * 
      * @param devices
      */
-    public void fillDevicesList(List<String> devices) {
+    public void fillDevicesList(HashMap<String, Integer> devices) {
         numberModelList.clear();
         labelsList.clear();
         quantitiesList.clear();
         panelNorth = new JPanel(new GridLayout(devices.size(), 2));
-        for (int i = 0; i < devices.size(); i++) {
+        for (String s : devices.keySet()) {
             SpinnerNumberModel model = new SpinnerNumberModel();
-            JLabel label = new JLabel(devices.get(i));
+            JLabel label = new JLabel(s);
             model.setValue(1);
             model.setMinimum(1);
+            model.setMaximum(devices.get(s));
             JSpinner spinner = new JSpinner(model);
             JPanel panel = new JPanel();
             panel.add(spinner);
