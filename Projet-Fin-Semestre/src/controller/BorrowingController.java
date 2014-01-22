@@ -94,7 +94,6 @@ public class BorrowingController {
                 return;
             }
 
-            // TODO save the changes
             view.dispose();
         }
     }

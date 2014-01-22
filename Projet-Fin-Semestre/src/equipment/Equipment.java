@@ -15,7 +15,7 @@ import config.Models;
  * @author Anthony Saraïs, Marc Karassev, Anaïs Marongiu
  * 
  */
-public abstract class Equipment implements Serializable {
+public class Equipment implements Serializable {
 
 	// Fields
 

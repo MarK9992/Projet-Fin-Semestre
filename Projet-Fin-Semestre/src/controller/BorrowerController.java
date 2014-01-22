@@ -98,6 +98,9 @@ public class BorrowerController {
     public void obtainDevicesStrings() {
         models.clear();
         for (Model m : ms.getInventory().keySet()) {
+            if(ms.getInventory().get(m).size() == 0){
+                continue;
+            }
             models.add(m);
             view.getListModel().addElement(m.getName());
         }
