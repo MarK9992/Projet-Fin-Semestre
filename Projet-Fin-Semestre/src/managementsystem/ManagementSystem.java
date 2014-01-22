@@ -1,5 +1,6 @@
 package managementsystem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.Set;
 import equipment.Equipment;
 import users.User;
 import utils.Period;
+import utils.StoreLoad;
 //import config.ConfigXML;
 import config.Model;
 
@@ -33,13 +35,23 @@ public class ManagementSystem {
 
 	/**
 	 * Default constructor, constructs a new ManagementSystem with empty
-	 * ArrayLists for the loans and the inventory.
+	 * ArrayLists for the loans and the inventory. 
+	 * However if the file "stock" exist and isn't empty, load him.
 	 */
 	public ManagementSystem() {
-		loans = new ArrayList<Loan>();
 		inventory = new HashMap<Model, ArrayList<Equipment>>();
-		for (Model m : Model.values())
+		loans = new ArrayList<Loan>();
+		users = new ArrayList<User>();
+		
+		StoreLoad seria = new StoreLoad();
+		try {inventory = (HashMap<Model, ArrayList<Equipment>>) seria.Input("Stock");} 
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (IOException e) 
+		{
+			System.out.println("le fichier n'existe pas.");
+			for (Model m : Model.values())
 			inventory.put(m, new ArrayList<Equipment>());
+		}		
 	}
 
 	/*
@@ -59,6 +71,7 @@ public class ManagementSystem {
 	/**
 	 * Constructs a new ManagementSystem with the specified ArrayList for the
 	 * loans field and the specified HashMap inventory field.
+	 * However if the file "stock" exist and isn't empty, load him.
 	 * 
 	 * @param inventory
 	 *            the HashMap used to set the inventory field
@@ -69,8 +82,16 @@ public class ManagementSystem {
 			ArrayList<Loan> loans) {
 		this.inventory = inventory;
 		this.loans = loans;
-		for (Model m : Model.values())
+
+		StoreLoad seria = new StoreLoad();
+		try {inventory = (HashMap<Model, ArrayList<Equipment>>) seria.Input("Stock");} 
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (IOException e) 
+		{
+			System.out.println("le fichier n'existe pas.");
+			for (Model m : Model.values())
 			inventory.put(m, new ArrayList<Equipment>());
+		}	
 	}
 
 	// Methods
@@ -80,9 +101,12 @@ public class ManagementSystem {
 	 * 
 	 * @param e
 	 *            the equipment to add
+	 * @throws IOException 
 	 */
-	public void addEquipment(Equipment e) {
+	public void addEquipment(Equipment e) throws IOException {
 		this.inventory.get(e.getType()).add(e);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.inventory, "Stock");
 	}
 
 	/**
@@ -313,7 +337,7 @@ public class ManagementSystem {
 	 * Returns a string representation of the management system and its values.
 	 */
 	@Override
-	public String toString() {
+	public String toString() {		
 		return loans + "\n" + inventory;
 	}
 

@@ -28,15 +28,16 @@ public class Loan {
 	private HashMap<Model, ArrayList<Equipment>> stuff;
 	private Period period;
 	private Borrower borrower;
+	private boolean accepted;
 
 	// Constructors
-
-	/**
+    /**
 	 * Default constructor, constructs a loan with an empty HashMap, a default
 	 * period and a default Borrower.
 	 */
 	public Loan() {
 		this(new HashMap<Model, Integer>(), new Period(), new Borrower());
+		accepted = false;
 	}
 
 	/**
@@ -108,4 +109,12 @@ public class Loan {
 	public Borrower getBorrower() {
 		return borrower;
 	}
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
 }

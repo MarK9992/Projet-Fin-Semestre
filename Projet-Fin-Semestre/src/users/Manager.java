@@ -1,11 +1,6 @@
 package users;
 
-import java.util.ArrayList;
-
-import managementsystem.ManagementSystem;
 import managementsystem.Loan;
-import equipment.Equipment;
-import utils.Period;
 import config.BorrowerConstants;
 
 /**
@@ -51,6 +46,10 @@ public class Manager extends User implements BorrowerConstants {
 	 */
 	public Manager(String i, String n) {
 		super(i, n);
+	}
+	
+	public void accept(Loan loan){
+	    loan.setAccepted(true);
 	}
 
 	// Methods
