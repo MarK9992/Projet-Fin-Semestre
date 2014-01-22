@@ -43,7 +43,7 @@ public class ManagementSystem {
 		Iterator<String> it = Models.getModels().iterator();
 		String key;
 		StoreLoad seria = new StoreLoad();
-		
+
 		inventory = new HashMap<String, ArrayList<Equipment>>();
 		loans = new ArrayList<Loan>();
 		users = new ArrayList<User>();
@@ -51,11 +51,14 @@ public class ManagementSystem {
 		try {
 			inventory = (HashMap<String, ArrayList<Equipment>>) seria
 					.Input("Stock");
+			loans = (ArrayList<Loan>) seria.Input("Loans");
+			users = (ArrayList<User>) seria.Input("Users");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("le fichier n'existe pas.");
-			while(it.hasNext()) {
+			System.out
+					.println("le fichier Stock.data et/ou Loans.data n'existe(nt) pas. Creation ...");
+			while (it.hasNext()) {
 				key = it.next();
 				inventory.put(key, new ArrayList<Equipment>());
 			}
@@ -91,19 +94,21 @@ public class ManagementSystem {
 		Iterator<String> it = Models.getModels().iterator();
 		String key;
 		StoreLoad seria = new StoreLoad();
-		
+
 		this.inventory = inventory;
 		this.loans = loans;
-		
+
 		try {
 			inventory = (HashMap<String, ArrayList<Equipment>>) seria
 					.Input("Stock");
 			loans = (ArrayList<Loan>) seria.Input("Loans");
+			users = (ArrayList<User>) seria.Input("Users");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("le fichier Stock.data et/ou Loans.data n'existe(nt) pas. Creation ...");
-			while(it.hasNext()) {
+			System.out
+					.println("le fichier Stock.data et/ou Loans.data n'existe(nt) pas. Creation ...");
+			while (it.hasNext()) {
 				key = it.next();
 				inventory.put(key, new ArrayList<Equipment>());
 			}
@@ -140,7 +145,7 @@ public class ManagementSystem {
 	 * 
 	 * @param l
 	 *            the loan to add
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void addLoan(Loan l) throws IOException {
 		loans.add(l);
@@ -163,7 +168,7 @@ public class ManagementSystem {
 	 * 
 	 * @param u
 	 *            the user to add
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void addUser(User u) throws IOException {
 		users.add(u);
