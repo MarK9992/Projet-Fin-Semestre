@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -52,11 +53,12 @@ public class BorrowingController {
      *            , the start of the borrowing
      * @param endDate
      *            , the end of the borrowing
+     * @throws IOException 
      * @throws Exception
      *             if the start date is after the end date
      */
     public void borrow(Map<String, Integer> devices, Date startDate,
-            Date endDate) throws IllegalArgumentException {
+            Date endDate) throws IllegalArgumentException, IOException {
         Calendar start = Calendar.getInstance();
         start.setTime(startDate);
         Calendar end = Calendar.getInstance();
@@ -92,7 +94,10 @@ public class BorrowingController {
             } catch (IllegalArgumentException e1) {
                 view.errorMessage(e1.getMessage());
                 return;
-            }
+            } catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
             view.dispose();
         }

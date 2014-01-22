@@ -1,6 +1,11 @@
 package equipment;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import utils.StoreLoad;
 
 import config.Models;
 
@@ -29,8 +34,9 @@ public class Equipment implements Serializable {
 	/**
 	 * Default constructor, constructs a new equipment with unknown model and
 	 * manufacturer.
+	 * @throws IOException 
 	 */
-	public Equipment() {
+	public Equipment() throws IOException {
 		this("unkwown", "unknown");
 	}
 
@@ -41,15 +47,25 @@ public class Equipment implements Serializable {
 	 *            its manufacturer
 	 * @param type
 	 *            the model corresponding to this equipment
+	 * @throws IOException 
 	 */
-	public Equipment(String maker, String type) {
+	public Equipment(String maker, String type) throws IOException {
 		if (!Models.getModels().contains(type))
 			throw new IllegalArgumentException(
 					"Model used to construct Equipment does not belong to Models set.");
+		StoreLoad seria = new StoreLoad();
+		try {
+			counter = (Integer) seria.Input("Var");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("le fichier Var.data n'existe pas. Creation...");
+		}
 		this.id = type.substring(0, 3).toUpperCase() + counter;
 		this.manufacturer = maker;
 		this.model = type;
 		counter++;
+		seria.Output(counter, "Var");
 	}
 
 	// Methods

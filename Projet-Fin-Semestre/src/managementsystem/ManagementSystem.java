@@ -98,10 +98,11 @@ public class ManagementSystem {
 		try {
 			inventory = (HashMap<String, ArrayList<Equipment>>) seria
 					.Input("Stock");
+			loans = (ArrayList<Loan>) seria.Input("Loans");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("le fichier n'existe pas.");
+			System.out.println("le fichier Stock.data et/ou Loans.data n'existe(nt) pas. Creation ...");
 			while(it.hasNext()) {
 				key = it.next();
 				inventory.put(key, new ArrayList<Equipment>());
@@ -139,9 +140,12 @@ public class ManagementSystem {
 	 * 
 	 * @param l
 	 *            the loan to add
+	 * @throws IOException 
 	 */
-	public void addLoan(Loan l) {
+	public void addLoan(Loan l) throws IOException {
 		loans.add(l);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.loans, "Loans");
 	}
 
 	/**
@@ -159,9 +163,12 @@ public class ManagementSystem {
 	 * 
 	 * @param u
 	 *            the user to add
+	 * @throws IOException 
 	 */
-	public void addUser(User u) {
+	public void addUser(User u) throws IOException {
 		users.add(u);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.users, "Users");
 	}
 
 	/**

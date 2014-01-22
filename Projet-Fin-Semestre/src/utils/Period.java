@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Calendar;
  * @author Marc Karassev, Anaïs Marongiu
  * 
  */
-public class Period {
+public class Period implements Serializable{
 	// TODO manage time zone and locale
 	// TODO tests
 

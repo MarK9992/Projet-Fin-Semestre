@@ -2,6 +2,11 @@ package managementsystem;
 
 import java.io.IOException;
 
+import config.BorrowerType;
+
+import users.Borrower;
+import users.User;
+
 import equipment.Equipment;
 
 public class Main 
@@ -14,6 +19,13 @@ public class Main
 		
 		stock.addEquipment(stuff1);
 		stock.addEquipment(stuff2);
+		
+		Loan loan = new Loan();
+		stock.addLoan(loan);
+		
+		BorrowerType type = BorrowerType.STUDENT;
+		Borrower user = new Borrower("toto",type);
+		stock.addUser(user);
 		
 		System.out.println(stock);
 	}

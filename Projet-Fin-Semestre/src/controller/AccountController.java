@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import managementsystem.ManagementSystem;
 
@@ -62,17 +63,32 @@ public class AccountController {
             User user;
             if (typeChosen.equals(view.getComboBoxValues()[2])) {
                 user = new Manager(name);
-                ms.addUser(user);
+                try {
+					ms.addUser(user);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 AdministratorView v = new AdministratorView();
                 new AdministratorController(user.getId(), ms, v);
             } else if (typeChosen.equals(view.getComboBoxValues()[1])) {
                 user = new Borrower(name, BorrowerType.STUDENT);
-                ms.addUser(user);
+                try {
+					ms.addUser(user);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 BorrowerView v = new BorrowerView();
                 new BorrowerController(user.getId(), ms, v);
             } else {
                 user = new Borrower(name, BorrowerType.TEACHER);
-                ms.addUser(user);
+                try {
+					ms.addUser(user);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 BorrowerView v = new BorrowerView();
                 new BorrowerController(user.getId(), ms, v);
             }

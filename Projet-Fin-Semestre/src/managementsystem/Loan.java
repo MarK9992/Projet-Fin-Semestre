@@ -3,6 +3,8 @@ package managementsystem;
 import users.Borrower;
 import utils.Period;
 import config.Model;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,7 +22,7 @@ import equipment.Equipment;
  * @author Marc Karassev
  * 
  */
-public class Loan {
+public class Loan implements Serializable{
 	// TODO tests
 
 	// Fields

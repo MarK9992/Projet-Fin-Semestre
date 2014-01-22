@@ -1,5 +1,6 @@
 package users;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import managementsystem.Loan;
@@ -15,7 +16,7 @@ import config.Model;
  * @author Marc Karassev
  * 
  */
-public class Borrower extends User {
+public class Borrower extends User implements Serializable{
 	// TODO tests
 
 	// Fields
