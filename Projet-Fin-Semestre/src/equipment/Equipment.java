@@ -27,7 +27,7 @@ public abstract class Equipment {
 	 * "E-number" and unknown model and manufacturer.
 	 */
 	public Equipment() {
-		this("E", "unkwown", Model.UNKWOWN);
+		this("unkwown", Model.UNKWOWN);
 	}
 
 	/**
