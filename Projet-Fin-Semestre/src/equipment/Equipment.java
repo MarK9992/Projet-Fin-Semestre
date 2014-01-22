@@ -87,7 +87,7 @@ public class Equipment implements Serializable {
 	 * 
 	 * @return the value of the model field
 	 */
-	public String geModel() {
+	public String getModel() {
 		return model;
 	}
 
