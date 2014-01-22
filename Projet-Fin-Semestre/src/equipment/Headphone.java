@@ -28,7 +28,7 @@ public abstract class Headphone extends Equipment {
 	 * and unknown manufacturer and model.
 	 */
 	public Headphone() {
-		this("unknown", 30, "20-20000", 100, Model.UNKWOWN);
+		this("unknown", 30, "20-20000", 100, "unknown");
 	}
 
 	/**
@@ -46,7 +46,7 @@ public abstract class Headphone extends Equipment {
 	 * @param type
 	 *            its model
 	 */
-	public Headphone(String maker, int imp, String resp, int pres, Model type) {
+	public Headphone(String maker, int imp, String resp, int pres, String type) {
 		super(maker, type);
 		impedance = imp + " Ohms";
 		frequencyResponse = resp + " Hz";

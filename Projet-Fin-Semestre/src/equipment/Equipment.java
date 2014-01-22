@@ -1,25 +1,28 @@
 package equipment;
 
-import config.Model;
+import java.io.Serializable;
+
+import config.Models;
 
 /**
  * Super class equipment, defines the common properties to all equipments. An
  * equipment consists of a string ID, a manufacturer and a model. The ID is like
  * "IPAnumber" for an Ipad3 model.
  * 
- * initial code by: Marc Karassev, Anaïs Marongiu; modified by: Marc Karassev
+ * initial code by: Marc Karassev, Anaïs Marongiu; modified by: Anthony Saraïs
+ * Marc Karassev
  * 
- * @author Marc Karassev, Anaïs Marongiu
+ * @author Anthony Saraïs, Marc Karassev, Anaïs Marongiu
  * 
  */
-public abstract class Equipment {
+public abstract class Equipment implements Serializable {
 
 	// Fields
 
 	private static int counter = 1000;
 	private String id;
 	private String manufacturer;
-	private Model type;
+	private String model;
 
 	// Constructors
 
@@ -28,7 +31,7 @@ public abstract class Equipment {
 	 * manufacturer.
 	 */
 	public Equipment() {
-		this("unkwown", Model.UNKWOWN);
+		this("unkwown", "unknown");
 	}
 
 	/**
@@ -39,10 +42,13 @@ public abstract class Equipment {
 	 * @param type
 	 *            the model corresponding to this equipment
 	 */
-	public Equipment(String maker, Model type) {
-		this.id = type.getName().substring(0, 3).toUpperCase() + counter;
+	public Equipment(String maker, String type) {
+		if (!Models.getModels().contains(type))
+			throw new IllegalArgumentException(
+					"Model used to construct Equipment does not belong to Models set.");
+		this.id = type.substring(0, 3).toUpperCase() + counter;
 		this.manufacturer = maker;
-		this.type = type;
+		this.model = type;
 		counter++;
 	}
 
@@ -79,10 +85,10 @@ public abstract class Equipment {
 	/**
 	 * Returns the equipment's model.
 	 * 
-	 * @return the value of the equipment field
+	 * @return the value of the model field
 	 */
-	public Model getType() {
-		return type;
+	public String geModel() {
+		return model;
 	}
 
 	/**

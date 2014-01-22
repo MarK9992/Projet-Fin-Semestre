@@ -29,7 +29,7 @@ public class Hardware extends Equipment {
 	 * unknown manufacturer, processor, operating system and model.
 	 */
 	public Hardware() {
-		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, Model.UNKWOWN);
+		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, "unknown");
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class Hardware extends Equipment {
 	 *            its type
 	 */
 	public Hardware(String maker, double screenSize, Processor proc, OS os,
-			Model type) {
+			String type) {
 		super(maker, type);
 		this.screenSize = screenSize + "\"";
 		this.processor = proc;
