@@ -1,5 +1,7 @@
 package users;
 
+import java.io.Serializable;
+
 import managementsystem.Loan;
 import config.BorrowerConstants;
 
@@ -12,7 +14,7 @@ import config.BorrowerConstants;
  * @author Marc Karassev
  * 
  */
-public class Manager extends User implements BorrowerConstants {
+public class Manager extends User implements BorrowerConstants, Serializable {
 	// TODO extensibility
 	// TODO tests
 

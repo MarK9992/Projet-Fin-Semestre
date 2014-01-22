@@ -33,7 +33,7 @@ public class AccountView extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        nameLabel = new JLabel("Name : ");
+        nameLabel = new JLabel("First_name name : ");
         nameField = new JTextField();
         typeComboBox = new JComboBox<String>(comboBoxValues);
         createButton = new JButton("OK");

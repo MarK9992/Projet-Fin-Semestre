@@ -66,7 +66,6 @@ public class AccountController {
                 try {
 					ms.addUser(user);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
                 AdministratorView v = new AdministratorView();
@@ -76,7 +75,6 @@ public class AccountController {
                 try {
 					ms.addUser(user);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
                 BorrowerView v = new BorrowerView();
@@ -86,7 +84,6 @@ public class AccountController {
                 try {
 					ms.addUser(user);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
                 BorrowerView v = new BorrowerView();
