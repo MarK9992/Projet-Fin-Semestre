@@ -13,16 +13,16 @@ import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import users.Borrower;
 import utils.Period;
-import view.BorrowingView;
+import view.CreateLoanView;
 
-public class BorrowingController {
+public class CreateLoanController {
     private String idBorrower;
     private ManagementSystem ms;
-    private BorrowingView view;
+    private CreateLoanView view;
     private List<String> models;
 
-    public BorrowingController(String idBorrower, List<String> models,
-            ManagementSystem m, BorrowingView v) {
+    public CreateLoanController(String idBorrower, List<String> models,
+            ManagementSystem m, CreateLoanView v) {
         this.idBorrower = idBorrower;
         this.models = models;
         ms = m;

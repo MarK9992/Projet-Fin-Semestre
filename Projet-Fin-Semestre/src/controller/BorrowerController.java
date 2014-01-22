@@ -8,7 +8,7 @@ import java.util.List;
 import managementsystem.ManagementSystem;
 import view.AccountView;
 import view.BorrowerView;
-import view.BorrowingView;
+import view.CreateLoanView;
 import view.LoansHistoryView;
 
 public class BorrowerController {
@@ -68,8 +68,8 @@ public class BorrowerController {
             }
             if (selected.isEmpty())
                 return;
-            BorrowingView v = new BorrowingView();
-            new BorrowingController(idBorrower, selected, ms, v);
+            CreateLoanView v = new CreateLoanView();
+            new CreateLoanController(idBorrower, selected, ms, v);
         }
     }
     
