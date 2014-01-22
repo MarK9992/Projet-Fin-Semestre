@@ -24,6 +24,7 @@ public class AccountView extends JFrame {
     private JComboBox<String> typeComboBox;
     private JButton createButton;
     private JButton cancelButton;
+    private final String[] comboBoxValues = {"Teacher", "Student", "Manager"};
 
     public AccountView() {
         setTitle("Create Account / Sign in");
@@ -34,7 +35,6 @@ public class AccountView extends JFrame {
 
         nameLabel = new JLabel("Name : ");
         nameField = new JTextField();
-        String[] comboBoxValues = {"Teacher", "Student", "Administrator"};
         typeComboBox = new JComboBox<String>(comboBoxValues);
         createButton = new JButton("OK");
         cancelButton = new JButton("Cancel");
@@ -84,4 +84,9 @@ public class AccountView extends JFrame {
     public JButton getCancelButton() {
         return cancelButton;
     }
+    
+    public String[] getComboBoxValues() {
+        return comboBoxValues;
+    }
+
 }

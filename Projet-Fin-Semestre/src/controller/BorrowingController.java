@@ -21,9 +21,9 @@ public class BorrowingController {
     private String idBorrower;
     private ManagementSystem ms;
     private BorrowingView view;
-    private List<Model> models;
+    private List<String> models;
 
-    public BorrowingController(String idBorrower, List<Model> models,
+    public BorrowingController(String idBorrower, List<String> models,
             ManagementSystem m, BorrowingView v) {
         this.idBorrower = idBorrower;
         this.models = models;
@@ -37,7 +37,7 @@ public class BorrowingController {
         // Fulfillment of the list
         LinkedList<String> labels = new LinkedList<String>();
         for (int i = 0; i < models.size(); i++) {
-            labels.add(models.get(i).getName());
+            labels.add(models.get(i));
         }
 
         v.fillDevicesList(labels);
@@ -55,7 +55,7 @@ public class BorrowingController {
      * @throws Exception
      *             if the start date is after the end date
      */
-    public void borrow(Map<Model, Integer> devices, Date startDate,
+    public void borrow(Map<String, Integer> devices, Date startDate,
             Date endDate) throws IllegalArgumentException {
         Calendar start = Calendar.getInstance();
         start.setTime(startDate);
@@ -63,7 +63,7 @@ public class BorrowingController {
         end.setTime(endDate);
         Period p = new Period(start, end);
         Borrower b = (Borrower)ms.getUser(idBorrower);
-        Loan l = new Loan((HashMap<Model, Integer>)devices, p, b);
+        Loan l = new Loan((HashMap<String, Integer>)devices, p, b);
         ms.addLoan(l);
     }
 
@@ -81,7 +81,7 @@ public class BorrowingController {
             Date startDate = view.getDateModelStart().getDate();
             Date endDate = view.getDateModelEnd().getDate();
 
-            Map<Model, Integer> devices = new HashMap<Model, Integer>();
+            Map<String, Integer> devices = new HashMap<String, Integer>();
             for (int i = 0; i < models.size(); i++) {
                 devices.put(models.get(i), (Integer) view
                         .getNumberModelList().get(i).getValue());

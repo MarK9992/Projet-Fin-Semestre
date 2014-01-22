@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 
-import config.Model;
-
 import managementsystem.ManagementSystem;
 import view.AccountView;
 import view.BorrowerView;

@@ -59,14 +59,13 @@ public class AccountController {
             String name = view.getNameField().getText();
             String typeChosen = view.getTypeComboBox().getSelectedItem()
                     .toString();
-            String[] typesAvailable = {"Teacher", "Student", "Manager"};
             User user;
-            if (typeChosen.equals(typesAvailable[2])) {
+            if (typeChosen.equals(view.getComboBoxValues()[2])) {
                 user = new Manager(name);
                 ms.addUser(user);
                 AdministratorView v = new AdministratorView();
                 new AdministratorController(user.getId(), ms, v);
-            } else if (typeChosen.equals(typesAvailable[1])) {
+            } else if (typeChosen.equals(view.getComboBoxValues()[1])) {
                 user = new Borrower(name, BorrowerType.STUDENT);
                 ms.addUser(user);
                 BorrowerView v = new BorrowerView();
