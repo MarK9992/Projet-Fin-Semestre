@@ -40,7 +40,7 @@ public abstract class Equipment {
 	 * @param type
 	 *            the model corresponding to this equipment
 	 */
-	public Equipment(String id, String maker, Model type) {
+	public Equipment(String maker, Model type) {
 		this.id = type.getName().substring(0, 3).toUpperCase()+counter;
 		this.manufacturer = maker;
 		this.type = type;
