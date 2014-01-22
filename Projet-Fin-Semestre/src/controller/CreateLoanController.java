@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,9 +33,9 @@ public class CreateLoanController {
         v.getBorrowButton().addActionListener(new BorrowListener());
 
         // Fulfillment of the list
-        LinkedList<String> labels = new LinkedList<String>();
+        HashMap<String, Integer> labels = new HashMap<String, Integer>();
         for (int i = 0; i < models.size(); i++) {
-            labels.add(models.get(i));
+            labels.put(models.get(i),ms.getInventory().get(models.get(i)).size());
         }
 
         v.fillDevicesList(labels);
@@ -93,9 +92,9 @@ public class CreateLoanController {
                 view.errorMessage(e1.getMessage());
                 return;
             } catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
 
             view.dispose();
         }
