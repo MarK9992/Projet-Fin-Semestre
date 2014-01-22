@@ -18,9 +18,10 @@ import config.Model;
  * a HashMaps where keys are config.Model constants and values are ArrayLists of
  * equipment matching the model.
  * 
- * initial code by: Anaïs Marongiu, Marc Karassev; modified by: Marc Karassev
+ * initial code by: Anaïs Marongiu, Marc Karassev; modified by: Marc Karassev,
+ * Hugo Simond
  * 
- * @author Marc Karassev, Anaïs Marongiu
+ * @author Marc Karassev, Hugo Simond, Anaïs Marongiu
  * 
  */
 public class ManagementSystem {

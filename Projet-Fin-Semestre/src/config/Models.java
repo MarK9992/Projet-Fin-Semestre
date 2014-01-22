@@ -3,21 +3,23 @@ package config;
 import java.util.HashSet;
 
 /**
- * Enumeration of equipment models.
- * 
- * initial code by: Marc Karassev; modified by: Marc Karassev
+ * Singleton for the set of models available in the management system.
  * 
  * @author Marc Karassev
  * 
  */
 public class Models extends HashSet<String> {
 	
-	public static Models models = new Models();
+	private static Models models = new Models();
 
 	private Models() {
 		add("Ipad3");
 		add("Vengeance2100");
 		add("XperiaZ");
 		add("unknown");
+	}
+	
+	public static Models getModels() {
+		return models;
 	}
 }

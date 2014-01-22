@@ -23,39 +23,18 @@ public abstract class Headphone extends Equipment {
 	// Constructors
 
 	/**
-	 * Default constructor, constructs a new headphone with an ID like
-	 * "HP-number", an impedance of 30 Ohms, a frequency response of 20 to 20000
-	 * Hz, a sound pressure of 100 dB and unknown manufacturer and model.
+	 * Default constructor, constructs a new headphone with an impedance of 30
+	 * Ohms, a frequency response of 20 to 20000 Hz, a sound pressure of 100 dB
+	 * and unknown manufacturer and model.
 	 */
 	public Headphone() {
-		this("HP", "unknown", 30, "20-20000", 100, Model.UNKWOWN);
+		this("unknown", 30, "20-20000", 100, Model.UNKWOWN);
 	}
 
 	/**
-	 * Constructs a new headphone with an ID like "HP-number" and specified
-	 * manufacturer, impedance, frequency response, sound pressure and model.
+	 * Constructs a new headphone with the specified manufacturer, impedance,
+	 * frequency response, sound pressure and model.
 	 * 
-	 * @param maker
-	 *            the manufacturer of the new headphone
-	 * @param imp
-	 *            its impedance
-	 * @param resp
-	 *            its frequency response
-	 * @param pres
-	 *            its sound pressure
-	 * @param type
-	 *            its model
-	 */
-	public Headphone(String maker, int imp, String resp, int pres, Model type) {
-		this("HP", maker, imp, resp, pres, type);
-	}
-
-	/**
-	 * Constructs a new headphone with the specified id, manufacturer,
-	 * impedance, frequency response, sound pressure and model.
-	 * 
-	 * @param id
-	 *            the id of the new headphone
 	 * @param maker
 	 *            its manufacturer
 	 * @param imp
@@ -67,9 +46,8 @@ public abstract class Headphone extends Equipment {
 	 * @param type
 	 *            its model
 	 */
-	public Headphone(String id, String maker, int imp, String resp, int pres,
-			Model type) {
-		super(id, maker, type);
+	public Headphone(String maker, int imp, String resp, int pres, Model type) {
+		super(maker, type);
 		impedance = imp + " Ohms";
 		frequencyResponse = resp + " Hz";
 		soundPressure = pres + " dB";

@@ -25,40 +25,17 @@ public class Hardware extends Equipment {
 	// Constructors
 
 	/**
-	 * Default constructor, constructs a new hardware with an ID like
-	 * "HW-number", a 10" screen and unknown manufacturer, processor, operating
-	 * system and model.
+	 * Default constructor, constructs a new hardware with a 10" screen and
+	 * unknown manufacturer, processor, operating system and model.
 	 */
 	public Hardware() {
-		this("HW", "unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, Model.UNKWOWN);
+		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, Model.UNKWOWN);
 	}
 
 	/**
-	 * Constructs a new hardware with an ID like "HW-number" and the specified
-	 * manufacturer, screen size, processor, operating system and model.
+	 * Constructs a new hardware with the manufacturer, screen sire, processor,
+	 * operating system and model.
 	 * 
-	 * @param maker
-	 *            the manufacturer of the new hardware
-	 * @param screenSize
-	 *            its screen size
-	 * @param proc
-	 *            its processor
-	 * @param os
-	 *            its operating system
-	 * @param type
-	 *            its model
-	 */
-	public Hardware(String maker, double screenSize, Processor proc, OS os,
-			Model type) {
-		this("HW", maker, screenSize, proc, os, type);
-	}
-
-	/**
-	 * Constructs a new hardware with the specified id, manufacturer, screen
-	 * sire, processor, operating system and model.
-	 * 
-	 * @param id
-	 *            the id of the new hardware
 	 * @param maker
 	 *            its maker
 	 * @param screenSize
@@ -70,9 +47,9 @@ public class Hardware extends Equipment {
 	 * @param type
 	 *            its type
 	 */
-	public Hardware(String id, String maker, double screenSize, Processor proc,
-			OS os, Model type) {
-		super(id, maker, type);
+	public Hardware(String maker, double screenSize, Processor proc, OS os,
+			Model type) {
+		super(maker, type);
 		this.screenSize = screenSize + "\"";
 		this.processor = proc;
 		this.os = os;
@@ -102,6 +79,7 @@ public class Hardware extends Equipment {
 
 	/**
 	 * Returns the hardware's processor.
+	 * 
 	 * @return the value of the processor field
 	 */
 	public Processor getProcessor() {
@@ -110,6 +88,7 @@ public class Hardware extends Equipment {
 
 	/**
 	 * Returns the hardware's operating system.
+	 * 
 	 * @return the value of the os field
 	 */
 	public OS getOs() {
