@@ -105,7 +105,7 @@ public class ManagementSystem {
 	}
 
 	/**
-	 * Removes a loans from the loan list.
+	 * Removes a loan from the loan list.
 	 * 
 	 * @param l
 	 *            the loan to remove
@@ -115,7 +115,7 @@ public class ManagementSystem {
 	}
 
 	/**
-	 * Adds a user to the user list.
+	 * Adds a user to the loan list.
 	 * 
 	 * @param u
 	 *            the user to add
@@ -125,7 +125,7 @@ public class ManagementSystem {
 	}
 
 	/**
-	 * Removes a user from the user list.
+	 * Removes a user from the loan list.
 	 * 
 	 * @param u
 	 *            the user to remove
@@ -259,6 +259,22 @@ public class ManagementSystem {
 		for (Equipment eq : inventory.get(m))
 			if (equipmentAvailableAt(eq, p))
 				return eq;
+		return null;
+	}
+
+	/**
+	 * Looks for the user of the specified id
+	 * 
+	 * @param id
+	 *            the user's id
+	 * @return the user if found, nuull otherwise
+	 */
+	public User getUser(String id) {
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getId().equals(id)) {
+				return users.get(i);
+			}
+		}
 		return null;
 	}
 
