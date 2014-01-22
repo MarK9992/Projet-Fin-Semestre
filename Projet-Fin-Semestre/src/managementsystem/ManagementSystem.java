@@ -77,35 +77,59 @@ public class ManagementSystem {
 	/**
 	 * Adds an equipment in the inventory.
 	 * 
-	 * @param the
-	 *            equipment to add
+	 * @param e
+	 *            the equipment to add
 	 */
 	public void addEquipment(Equipment e) {
 		this.inventory.get(e.getType()).add(e);
 	}
 
 	/**
-	 * Removes an equipment from the stock
+	 * Removes an equipment from the inventory.
 	 * 
-	 * @param the
-	 *            equipment to remove
+	 * @param e
+	 *            the equipment to remove
 	 */
 	public void removeEquipment(Equipment e) {
 		this.inventory.get(e.getType()).remove(e);
 	}
-	
+
+	/**
+	 * Adds a loan to the loan list.
+	 * 
+	 * @param l
+	 *            the loan to add
+	 */
 	public void addLoan(Loan l) {
 		loans.add(l);
 	}
-	
+
+	/**
+	 * Removes a loans from the loan list.
+	 * 
+	 * @param l
+	 *            the loan to remove
+	 */
 	public void removeLoan(Loan l) {
 		loans.remove(l);
 	}
-	
+
+	/**
+	 * Adds a user to the user list.
+	 * 
+	 * @param u
+	 *            the user to add
+	 */
 	public void addUser(User u) {
 		users.add(u);
 	}
-	
+
+	/**
+	 * Removes a user from the user list.
+	 * 
+	 * @param u
+	 *            the user to remove
+	 */
 	public void removeUser(User u) {
 		users.remove(u);
 	}
