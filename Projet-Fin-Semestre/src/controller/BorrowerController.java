@@ -18,14 +18,14 @@ public class BorrowerController {
     private String idBorrower;
     private ManagementSystem ms;
     private BorrowerView view;
-    private List<Model> models;
+    private List<String> models;
 
     public BorrowerController(String idBorrower, ManagementSystem m, BorrowerView v) {
         this.idBorrower = idBorrower;
         ms = m;
         view = v;
         view.setTitle(ms.getUser(idBorrower).getName());
-        models = new LinkedList<Model>();
+        models = new LinkedList<String>();
 
         obtainDevicesStrings();
 
@@ -59,7 +59,7 @@ public class BorrowerController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            List<Model> selected = new LinkedList<Model>();
+            List<String> selected = new LinkedList<String>();
 
             for (int i = 0; i < view.getListModel().getSize(); i++) {
                 for (int j = 0; j < view.getDevicesList().getSelectedIndices().length; j++) {
@@ -97,9 +97,9 @@ public class BorrowerController {
      */
     public void obtainDevicesStrings() {
         models.clear();
-        for (Model m : ms.getInventory().keySet()) {
-            models.add(m);
-            view.getListModel().addElement(m.getName());
+        for (String s : ms.getInventory().keySet()) {
+            models.add(s);
+            view.getListModel().addElement(s);
         }
     }
 }
