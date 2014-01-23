@@ -19,6 +19,8 @@ Reconception :
 		Réécriture des classes de configuration XML.
 	- réusinage de la classe Loan :
 		Remplacement des attributs model et equipmentID par une HashMap de clé les modèles voulus et de valeur les listes d'équipements correspondants pour permettre la sélection de plusieurs équipement dans un emprunt.
+		Ajout d'attributs définissant l'état de l'emprunt, s'il est validé, s'il a été rendu.
+		Ajout d'une méthode décrivant le statut de l'emprunt, s'il est en cours, terminé mais non rendu, ou non démarré.
 	- réusinage de la classe Inventory :
 		Ajout d'un attribut ArrayList d'emprunts afin de pallier à la disparition de l'attribut unavailabalityPeriods de la classe equipment.Equipment.
 		Ajout d'une méthode affichant les emprunts par utilisateur et de deux autres méthodes retournant si un équipement est disponible maintenant ou pendant une certaine période pour pallier à la disparition de l'attribut LoanList de la classe user.Borrower.

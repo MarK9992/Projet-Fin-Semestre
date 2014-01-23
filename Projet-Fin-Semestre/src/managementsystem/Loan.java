@@ -2,10 +2,10 @@ package managementsystem;
 
 import users.Borrower;
 import utils.Period;
-import config.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -15,14 +15,15 @@ import equipment.Equipment;
 /**
  * Loan class, contains all informations about a loan. A HashMap contains the
  * equipment borrowed as values and the models matching the following values as
- * keys. It also contains the period corresponding to the loan and the borrower.
+ * keys. It also contains the period corresponding to the loan, the borrower and
+ * booleans value in relation to the acceptance and the return of the loan.
  * 
  * initial code by : Marc Karassev; modified by : Marc Karassev
  * 
  * @author Marc Karassev
  * 
  */
-public class Loan implements Serializable{
+public class Loan implements Serializable {
 	// TODO tests
 
 	// Fields
@@ -31,15 +32,15 @@ public class Loan implements Serializable{
 	private Period period;
 	private Borrower borrower;
 	private boolean accepted;
+	private boolean givenBack;
 
 	// Constructors
-    /**
+	/**
 	 * Default constructor, constructs a loan with an empty HashMap, a default
 	 * period and a default Borrower.
 	 */
 	public Loan() {
 		this(new HashMap<String, Integer>(), new Period(), new Borrower());
-		accepted = false;
 	}
 
 	/**
@@ -68,9 +69,28 @@ public class Loan implements Serializable{
 		}
 		period = p;
 		this.borrower = borrower;
+		accepted = false;
+		givenBack = false;
 	}
 
 	// Methods
+
+	/**
+	 * Returns a description of the current status of the loan.
+	 * 
+	 * @return a string description of its status
+	 */
+	public String status() {
+		if (!accepted)
+			return "not accepted";
+		if (period.today())
+			return "ongoing";
+		if (period.daysFromNow() < 0)
+			return "not begun";
+		if (givenBack)
+			return "returned";
+		return "not returned yet";
+	}
 
 	/**
 	 * Returns a string representation of the loan and its fields.
@@ -78,7 +98,8 @@ public class Loan implements Serializable{
 	@Override
 	public String toString() {
 		return "stuff: " + stuff + "\nperiod: " + period + "\nborrower: "
-				+ borrower;
+				+ borrower + "\naccepted: " + accepted + "\ngivenBack: "
+				+ givenBack;
 	}
 
 	// Getters and setters
@@ -112,11 +133,42 @@ public class Loan implements Serializable{
 		return borrower;
 	}
 
-    public boolean isAccepted() {
-        return accepted;
-    }
+	/**
+	 * Returns the loan's acceptance. If he was approved by a manager or not.
+	 * 
+	 * @return true if yes, false otherwise
+	 */
+	public boolean isAccepted() {
+		return accepted;
+	}
 
-    public void setAccepted(boolean accepted) {
-        this.accepted = accepted;
-    }
+	/**
+	 * Sets the acceptance of the loan.
+	 * 
+	 * @param accepted
+	 *            the new value of the accepted field
+	 */
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
+	}
+
+	/**
+	 * Returns the return of the loan. If the borrower gave the borrowed stuff
+	 * back or not.
+	 * 
+	 * @return true if it is, false otherwise
+	 */
+	public boolean getGivenBack() {
+		return givenBack;
+	}
+
+	/**
+	 * Sets the return of the loan.
+	 * 
+	 * @param b
+	 *            the new value for the givenBack field
+	 */
+	public void setGivenBack(Boolean b) {
+		givenBack = b;
+	}
 }
