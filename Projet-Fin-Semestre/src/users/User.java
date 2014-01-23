@@ -1,5 +1,7 @@
 package users;
 
+import java.io.Serializable;
+
 /**
  * Super class User, defines all common properties to users.
  * 
@@ -8,7 +10,7 @@ package users;
  * @author Marc Karassev
  * 
  */
-public abstract class User {
+public abstract class User implements Serializable{
 
 	// Fields
 

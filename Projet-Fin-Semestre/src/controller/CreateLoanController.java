@@ -62,7 +62,7 @@ public class CreateLoanController {
         end.setTime(endDate);
         Period p = new Period(start, end);
         Borrower b = (Borrower)ms.getUser(idBorrower);
-        Loan l = new Loan((HashMap<String, Integer>)devices, p, b);
+        Loan l = b.book((HashMap<String, Integer>)devices, p);
         ms.addLoan(l);
     }
 
@@ -92,7 +92,6 @@ public class CreateLoanController {
                 view.errorMessage(e1.getMessage());
                 return;
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
