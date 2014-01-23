@@ -84,7 +84,6 @@ public class AccountController {
             User user;
             if (typeChosen.equals(view.getComboBoxValues()[2])) {
                 user = managerExists(name, null);
-                System.out.println(user);
                 if (user == null) {
                     user = new Manager(name);
                     try {
@@ -97,7 +96,6 @@ public class AccountController {
                 new AdministratorController(user.getId(), ms, v);
             } else if (typeChosen.equals(view.getComboBoxValues()[1])) {
                 user = borrowerExists(name, BorrowerType.STUDENT);
-                System.out.println(user);
                 if (user == null) {
                     user = new Borrower(name, BorrowerType.STUDENT);
                     try {
@@ -110,7 +108,6 @@ public class AccountController {
                 new BorrowerController(user.getId(), ms, v);
             } else {
                 user = borrowerExists(name, BorrowerType.TEACHER);
-                System.out.println(user);
                 if (user == null) {
                     user = new Borrower(name, BorrowerType.TEACHER);
                     try {
