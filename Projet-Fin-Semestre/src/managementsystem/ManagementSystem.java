@@ -396,7 +396,7 @@ public class ManagementSystem {
 	 */
 	@Override
 	public String toString() {
-		return loans + "\n" + inventory;
+		return loans + "\n" + inventory + "\n" + users;
 	}
 
 	// Getters and setters
