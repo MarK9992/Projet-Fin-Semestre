@@ -48,29 +48,7 @@ public class AdministratorController {
      *             if the borrowing can't be accepted anymore
      */
     public void accept(Loan loan) throws IllegalArgumentException {
-        boolean isAcceptable = true;
-        int nbBorrowed;
-        Loan l;
-        for (String s : loan.getStuff().keySet()) {
-            nbBorrowed = 0;
-            System.out.println(s);
-            for (int i = 0; i < ms.getLoans().size(); i++) {
-                l = ms.getLoans().get(i);
-                if (l.isAccepted() && l.getStuff().containsKey(s)
-                        && Period.overlap(l.getPeriod(), loan.getPeriod())) {
-                    nbBorrowed += l.getStuff().get(s).size();
-                }
-            }
-            System.out.println(nbBorrowed);
-            System.out.println(loan.getStuff().get(s).size());
-            if (nbBorrowed + loan.getStuff().get(s).size() > ms.getInventory()
-                    .get(s).size()) {
-                isAcceptable = false;
-            }
-        }
-        if (isAcceptable) {
-            ((Manager) ms.getUser(adminId)).accept(loan);
-        }
+        ((Manager) ms.getUser(adminId)).accept(loan);
     }
 
     /**

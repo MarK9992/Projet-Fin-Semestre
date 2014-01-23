@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JList;
 
 import view.AlgorithmView;
+import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 
 /**
@@ -29,7 +31,11 @@ public class AlgorithmController {
         v.getOkButton().addActionListener(new OkListener());
         v.getLoansList().addMouseListener(new LoansListener());
         
-        // TODO fill JList and List
+        HashMap<Loan, String> loansReasons = new HashMap<Loan, String>();
+        for(Loan l : loansReasons.keySet()){
+            v.getListModel().addElement(l.toString());
+            reasons.add(loansReasons.get(l));
+        }
     }
 
     /**
