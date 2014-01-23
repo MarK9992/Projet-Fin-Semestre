@@ -11,6 +11,7 @@ import utils.Period;
 import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import config.BorrowerConstants;
+import config.Model;
 import equipment.Equipment;
 
 /**
@@ -82,44 +83,97 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 			throw new IllegalArgumentException("null arguments");
 		Borrower bwer = l.getBorrower();
 		Period period = l.getPeriod();
-		HashMap<String, ArrayList<Equipment>> askedStuff = l.getStuff();
+		HashMap<Model, ArrayList<Equipment>> askedStuff = l.getStuff();
 		if (bwer == null || period == null || askedStuff == null
 				|| askedStuff.isEmpty())
 			throw new IllegalArgumentException("null argument fields");
-		final int LOAN_DURATION_LIMIT;
-		final int LOAN_RESERVATION_LIMIT;
-		int current_equipment_number_limit;
-		int current_equipment_duration_limit;
-		String current_model;
-		Set<String> keys = askedStuff.keySet();
-		Iterator<String> it = keys.iterator();
 
-		setBorrowerConstants(bwer, LOAN_DURATION_LIMIT, LOAN_RESERVATION_LIMIT);
-		if (period.getDuration() > LOAN_DURATION_LIMIT
-				|| period.daysFromNow() > LOAN_RESERVATION_LIMIT) {
+		if (!checkBorrower(bwer, period)) {
 			l.setAccepted(false);
 			// TODO call of a method altering the loan to satisfy these
 			// standards
-			return;
 		}
+		if (!checkModels(askedStuff, period)) {
+			l.setAccepted(false);
+			// TODO call of a method altering the loan to satisfy these
+			// standards
+		}
+		if (!checkEquipments(askedStuff, period, ms)) {
+			l.setAccepted(false);
+			// TODO call of a method altering the loan to satisfy these
+			// standards
+		}
+	}
+
+	/**
+	 * Checks if the given borrower can borrow during the given period.
+	 * 
+	 * @param b
+	 *            the borrower to check rights
+	 * @param p
+	 *            the period to verify
+	 * @return true if he can, false otherwise
+	 */
+	private boolean checkBorrower(Borrower b, Period p) {
+		int duration_limit;
+		int reservation_limit;
+
+		if (b.getType().equals("teacher")) {
+			duration_limit = TEACHER_LOAN_DURATION_LIMIT;
+			reservation_limit = TEACHER_LOAN_RESERVATION_LIMIT;
+		} else {
+			duration_limit = STUDENT_LOAN_DURATION_LIMIT;
+			reservation_limit = STUDENT_LOAN_RESERVATION_LIMIT;
+		}
+		if (p.getDuration() > duration_limit
+				|| p.daysFromNow() > reservation_limit)
+			return false;
+		return true;
+	}
+
+	/**
+	 * Checks if the given HashMap of models associated to ArrayLists of
+	 * equipments verify the models borrow constraints in relation to the given
+	 * period.
+	 * 
+	 * @param hm
+	 *            the HashMap to check
+	 * @param p
+	 *            the period to verify
+	 * @return true if the conditions are checked, false otherwise
+	 */
+	private boolean checkModels(HashMap<Model, ArrayList<Equipment>> hm,
+			Period p) {
+		Model model;
+		Set<Model> sm = hm.keySet();
+		Iterator<Model> it = sm.iterator();
 
 		while (it.hasNext()) {
-			current_model = it.next();
-			for (Equipment e : askedStuff.get(current_model))
-				setEquipmentConstants(e, current_equipment_duration_limit,
-						current_equipment_number_limit);
+			model = it.next();
+			if (p.getDuration() > model.getLoanDurationLimit()
+					|| model.getLoanQuantityLimit() > hm.get(model).size()) // ne marche pas
+				return false;
 		}
-		// Updates the stuff, the loan and the borrower
-		stuff.getUnavailabalityPeriods().add(period);
-		l.setEquipmentID(stuff.getId());
 		return true;
+	}
+
+	private boolean checkEquipments(HashMap<Model, ArrayList<Equipment>> hm, Period p, ManagementSystem ms) {
+		Model model;
+		Set<Model> sm = hm.keySet();
+		Iterator<Model> it = sm.iterator();
+		
+		while(it.hasNext()) {
+			model = it.next();
+			for(Equipment e: hm.get(model))
+				if(!ms.)
+		}
 	}
 
 	/**
 	 * Sets the given limits according to the given borrower's type.
 	 * 
 	 * @param bwer
-	 *            the borrower according the limits have to be set
+	 *            the borrower according to which the limits have to be set
 	 * @param duration_limit
 	 *            the loan duration limit
 	 * @param reservation_limit
@@ -134,11 +188,6 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 			duration_limit = STUDENT_LOAN_DURATION_LIMIT;
 			reservation_limit = STUDENT_LOAN_RESERVATION_LIMIT;
 		}
-	}
-
-	private void setEquipmentConstants(Equipment e, int duration_limit,
-			int number_limit) {
-		
 	}
 
 	/*

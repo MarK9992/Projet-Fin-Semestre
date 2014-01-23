@@ -7,7 +7,7 @@ public class Model {
 	private final int LOAN_DURATION_LIMIT;
 	private final int LOAN_QUANTITY_LIMIT;
 
-	public Model(String name, int quantity_limit, int duration_limit) {
+	Model(String name, int quantity_limit, int duration_limit) {
 		this.name = name;
 		LOAN_DURATION_LIMIT = duration_limit;
 		LOAN_QUANTITY_LIMIT = quantity_limit;
