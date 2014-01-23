@@ -22,6 +22,8 @@ Reconception :
 	- réusinage de la classe Inventory :
 		Ajout d'un attribut ArrayList d'emprunts afin de pallier à la disparition de l'attribut unavailabalityPeriods de la classe equipment.Equipment.
 		Ajout d'une méthode affichant les emprunts par utilisateur et de deux autres méthodes retournant si un équipement est disponible maintenant ou pendant une certaine période pour pallier à la disparition de l'attribut LoanList de la classe user.Borrower.
+	- réusinage de l'énum Model :
+		Transformation en un singleton, afin de permettre l'ajout de nouveaux modèles au système.
 
 Statistiques : mini-projet Saraïs-Sintes
 

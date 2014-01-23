@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import equipment.Equipment;
+import users.Borrower;
 import users.User;
 import utils.Period;
 import utils.StoreLoad;
@@ -117,6 +118,8 @@ public class ManagementSystem {
 
 	// Methods
 
+	// Add/Remove Methods
+
 	/**
 	 * Adds an equipment in the inventory.
 	 * 
@@ -186,6 +189,8 @@ public class ManagementSystem {
 		users.remove(u);
 	}
 
+	// Equipment availability methods
+
 	/**
 	 * Says if the given equipment is available now by checking if it is related
 	 * to any loan. If it is, checks if today is in the period corresponding to
@@ -221,6 +226,8 @@ public class ManagementSystem {
 					return false;
 		return true;
 	}
+
+	// Equipment search methods
 
 	/**
 	 * Looks for the equipment of the specified ID.
@@ -314,12 +321,14 @@ public class ManagementSystem {
 		return null;
 	}
 
+	// User search methods
+
 	/**
 	 * Looks for the user of the specified id
 	 * 
 	 * @param id
 	 *            the user's id
-	 * @return the user if found, nuull otherwise
+	 * @return the user if found, null otherwise
 	 */
 	public User getUser(String id) {
 		for (int i = 0; i < users.size(); i++) {
@@ -329,6 +338,27 @@ public class ManagementSystem {
 		}
 		return null;
 	}
+
+	// Loan search methods
+
+	/**
+	 * Looks for the loans of the given borrower.
+	 * 
+	 * @param b
+	 *            the borrower who made the loans looked for
+	 * @return an ArrayList of loans
+	 */
+	public ArrayList<Loan> getLoansByBorrower(Borrower b) {
+		ArrayList<Loan> loanList = new ArrayList<Loan>();
+
+		for (Loan loan : loans) {
+			if (loan.getBorrower().equals(b))
+				loanList.add(loan);
+		}
+		return loanList;
+	}
+
+	// Other methods
 
 	/**
 	 * Counts the total number of elements in the stock.
