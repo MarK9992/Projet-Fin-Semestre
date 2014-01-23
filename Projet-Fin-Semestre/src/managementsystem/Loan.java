@@ -79,6 +79,44 @@ public class Loan implements Serializable {
 	// Methods
 
 	/**
+	 * Adds an equipment to the askedStuff field.
+	 * 
+	 * @param e
+	 *            the equipment to add
+	 */
+	public void addEquipment(Equipment e) {
+		containsModel(e.getModel());
+		stuff.get(e.getModel()).add(e);
+	}
+
+	/**
+	 * Removes the given equipment from the askedStuff field.
+	 * 
+	 * @param e
+	 *            the equipment to remove
+	 */
+	public void remove(Equipment e) {
+		containsModel(e.getModel());
+		stuff.get(e.getModel()).remove(e);
+	}
+
+	/**
+	 * Method called by methods treating with an equipment of given model that
+	 * should be in the askedStuff field. Throws an IllegalArgumentException if
+	 * this model wasn't asked at the loan creation.
+	 * 
+	 * @param model
+	 *            the model to look for
+	 */
+	private void containsModel(String model) {
+		Set<String> keys = stuff.keySet();
+
+		if (!keys.contains(model))
+			throw new IllegalArgumentException(
+					"Model looked for in loan was not asked.");
+	}
+
+	/**
 	 * Returns a description of the current status of the loan.
 	 * 
 	 * @return a string description of its status
