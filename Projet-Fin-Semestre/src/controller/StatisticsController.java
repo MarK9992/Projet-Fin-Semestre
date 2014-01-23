@@ -1,7 +1,12 @@
 package controller;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+
+import utils.Statistics;
 import view.StatisticsView;
 import managementsystem.ManagementSystem;
 
@@ -18,10 +23,23 @@ public class StatisticsController {
     public StatisticsController(ManagementSystem m, StatisticsView v) {
         ms = m;
         view = v;
-        
+
         v.getOkButton().addActionListener(new OkListener());
-        
-        // TODO fill the statistics
+        Statistics stat = new Statistics(ms);
+        v.getCenterPanel().setLayout(new GridLayout(4, 1));
+        v.getCenterPanel().add(
+                new JLabel("Number of equipments : "
+                        + stat.getNumberOfEquipments()));
+        v.getCenterPanel().add(
+                new JLabel("Number of loans : " + stat.getNumberOfLoans()));
+        v.getCenterPanel().add(
+                new JLabel("Most borrowed model : "
+                        + stat.getMostBorrowedModel()));
+        if (stat.getBiggestBorrower() != null) {
+            v.getCenterPanel().add(
+                    new JLabel("Biggest borrower : "
+                            + stat.getBiggestBorrower().getName()));
+        }
     }
 
     /**

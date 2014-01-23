@@ -18,7 +18,8 @@ import javax.swing.JPanel;
 public class StatisticsView extends JFrame {
     private static final long serialVersionUID = 1L;
     private JButton okButton;
-
+    private JPanel centerPanel;
+    
     public StatisticsView() {
         okButton = new JButton("OK");
         
@@ -32,7 +33,7 @@ public class StatisticsView extends JFrame {
         JPanel southPanel = new JPanel();
         southPanel.add(okButton);
         add(southPanel, BorderLayout.SOUTH);
-        JPanel centerPanel = new JPanel(new GridLayout(5,2));
+        centerPanel = new JPanel();
         add(centerPanel, BorderLayout.CENTER);
         
         setVisible(true);
@@ -43,4 +44,9 @@ public class StatisticsView extends JFrame {
     public JButton getOkButton() {
         return okButton;
     }
+
+    public JPanel getCenterPanel() {
+        return centerPanel;
+    }
+
 }
