@@ -2,8 +2,12 @@ package users;
 
 import java.io.Serializable;
 
+import utils.Period;
+
 import managementsystem.Loan;
+import managementsystem.ManagementSystem;
 import config.BorrowerConstants;
+import equipment.Equipment;
 
 /**
  * Manager class, a user who can manage the inventory and validate or refuse
@@ -65,9 +69,10 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	 * 
 	 * @return true if it is, false otherwise
 	 */
-	public boolean checkLoan(Loan l, Inventory i) {
+	public boolean checkLoan(Loan l, ManagementSystem ms) {
 		Borrower bwer = l.getBorrower();
 		Period period = l.getPeriod();
+		// HashMap
 		Equipment stuff = i.findAvailableEquipment(l.getModel());
 		final int LOAN_DURATION_LIMIT;
 		final int LOAN_RESERVATION_LIMIT;
