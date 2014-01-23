@@ -11,7 +11,6 @@ import org.junit.Test;
 import users.Borrower;
 import utils.Period;
 
-import config.Model;
 import equipment.Equipment;
 
 /**

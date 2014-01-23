@@ -6,7 +6,6 @@ import java.util.HashMap;
 import managementsystem.Loan;
 import utils.Period;
 import config.BorrowerType;
-import config.Model;
 
 /**
  * Borrower class, a user who can borrow equipments.

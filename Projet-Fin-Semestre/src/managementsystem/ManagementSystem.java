@@ -12,7 +12,6 @@ import users.User;
 import utils.Period;
 import utils.StoreLoad;
 //import config.ConfigXML;
-import config.Model;
 import config.Models;
 
 /**
@@ -111,6 +110,7 @@ public class ManagementSystem {
 					.println("le fichier Stock.data et/ou Loans.data n'existe(nt) pas. Creation ...");
 			while (it.hasNext()) {
 				key = it.next();
+				Models.containsModel(key);
 				inventory.put(key, new ArrayList<Equipment>());
 			}
 		}
@@ -277,7 +277,8 @@ public class ManagementSystem {
 	 *            the model of equipment to look for
 	 * @return a matching equipment or null if none found.
 	 */
-	public Equipment findAvailableEquipment(Model m) {
+	public Equipment findAvailableEquipment(String m) {
+		Models.containsModel(m);
 		for (Equipment eq : inventory.get(m))
 			if (equipmentAvailableNow(eq))
 				return eq;
@@ -314,7 +315,8 @@ public class ManagementSystem {
 	 *            the period during which the equipment has to be available
 	 * @return a matching equipment or null if none found
 	 */
-	public Equipment findAvailableEquipmentAt(Model m, Period p) {
+	public Equipment findAvailableEquipmentAt(String m, Period p) {
+		Models.containsModel(m);
 		for (Equipment eq : inventory.get(m))
 			if (equipmentAvailableAt(eq, p))
 				return eq;

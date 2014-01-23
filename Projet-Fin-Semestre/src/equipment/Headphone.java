@@ -2,7 +2,6 @@ package equipment;
 
 import java.io.IOException;
 
-import config.Model;
 
 /**
  * Headphone class. A headphone is an equipment with an impedance, a

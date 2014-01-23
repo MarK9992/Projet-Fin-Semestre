@@ -49,15 +49,14 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	public Manager(String i, String n) {
 		super(i, n);
 	}
-	
-	public void accept(Loan loan){
-	    loan.setAccepted(true);
+
+	public void accept(Loan loan) {
+		loan.setAccepted(true);
 	}
 
 	// Methods
 
-	/*
-	 * TODO update in relation to the new HashMap field of class Loan. /**
+	/**
 	 * Checks if the loan is valid.
 	 * 
 	 * @param l
@@ -66,28 +65,34 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	 * 
 	 * @return true if it is, false otherwise
 	 */
-	/*
-	 * public boolean checkLoan(Loan l, Inventory i) { Borrower bwer =
-	 * l.getBorrower(); Period period = l.getPeriod(); Equipment stuff =
-	 * i.findAvailableEquipment(l.getModel()); final int LOAN_DURATION_LIMIT;
-	 * final int LOAN_RESERVATION_LIMIT;
-	 * 
-	 * // Checks if the loan is valid if (stuff == null) return false;
-	 * 
-	 * // Defines the constants to use if (bwer.getType().equals("teacher")) {
-	 * LOAN_DURATION_LIMIT = TEACHER_LOAN_DURATION_LIMIT; LOAN_RESERVATION_LIMIT
-	 * = TEACHER_LOAN_RESERVATION_LIMIT; } else { LOAN_DURATION_LIMIT =
-	 * STUDENT_LOAN_DURATION_LIMIT; LOAN_RESERVATION_LIMIT =
-	 * STUDENT_LOAN_RESERVATION_LIMIT; } if (period.getDuration() >
-	 * LOAN_DURATION_LIMIT || period.daysFromNow() > LOAN_RESERVATION_LIMIT)
-	 * return false;
-	 * 
-	 * // Updates the stuff, the loan and the borrower
-	 * stuff.getUnavailabalityPeriods().add(period);
-	 * l.setEquipmentID(stuff.getId());
-	 * 
-	 * return true; }
-	 */
+	public boolean checkLoan(Loan l, Inventory i) {
+		Borrower bwer = l.getBorrower();
+		Period period = l.getPeriod();
+		Equipment stuff = i.findAvailableEquipment(l.getModel());
+		final int LOAN_DURATION_LIMIT;
+		final int LOAN_RESERVATION_LIMIT;
+
+		// Checks if the loan is valid
+		if (stuff == null)
+			return false;
+
+		// Defines the constants to use
+		if (bwer.getType().equals("teacher")) {
+			LOAN_DURATION_LIMIT = TEACHER_LOAN_DURATION_LIMIT;
+			LOAN_RESERVATION_LIMIT = TEACHER_LOAN_RESERVATION_LIMIT;
+		} else {
+			LOAN_DURATION_LIMIT = STUDENT_LOAN_DURATION_LIMIT;
+			LOAN_RESERVATION_LIMIT = STUDENT_LOAN_RESERVATION_LIMIT;
+		}
+
+		if (period.getDuration() > LOAN_DURATION_LIMIT
+				|| period.daysFromNow() > LOAN_RESERVATION_LIMIT)
+			return false;
+		// Updates the stuff, the loan and the borrower
+		stuff.getUnavailabalityPeriods().add(period);
+		l.setEquipmentID(stuff.getId());
+		return true;
+	}
 
 	/*
 	 * TODO update in relation to the new HashMap field of Loan class /** Puts

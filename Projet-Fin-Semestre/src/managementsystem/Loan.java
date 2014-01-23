@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+import config.Models;
+
 import equipment.Equipment;
 
 /**
@@ -65,6 +67,7 @@ public class Loan implements Serializable {
 		stuff = new HashMap<String, ArrayList<Equipment>>(stuffAsked.size());
 		while (it.hasNext()) {
 			key = it.next();
+			Models.containsModel(key);
 			stuff.put(key, new ArrayList<Equipment>(stuffAsked.get(key)));
 		}
 		period = p;

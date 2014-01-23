@@ -50,10 +50,9 @@ public class Equipment implements Serializable {
 	 * @throws IOException 
 	 */
 	public Equipment(String maker, String type) throws IOException {
-		if (!Models.getModels().contains(type))
-			throw new IllegalArgumentException(
-					"Model used to construct Equipment does not belong to Models set.");
 		StoreLoad seria = new StoreLoad();
+		
+		Models.containsModel(type);
 		try {
 			counter = (Integer) seria.Input("Var");
 		} catch (ClassNotFoundException e) {

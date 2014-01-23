@@ -2,7 +2,6 @@ package equipment;
 
 import java.io.IOException;
 
-import config.Model;
 import config.OS;
 import config.Processor;
 
