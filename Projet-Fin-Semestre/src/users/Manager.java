@@ -1,10 +1,6 @@
 package users;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
 
 import utils.Period;
 
@@ -58,17 +54,11 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 		super(i, n);
 	}
 
-	// Methods
-
-	/**
-	 * Accepts the given loan by setting its accepted field to true.
-	 * 
-	 * @param loan
-	 *            the loan to accept
-	 */
 	public void accept(Loan loan) {
 		loan.setAccepted(true);
 	}
+
+	// Methods
 
 	/**
 	 * Checks if the loan is valid.
@@ -76,69 +66,37 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	 * @param l
 	 * 
 	 * @param i
+	 * 
+	 * @return true if it is, false otherwise
 	 */
-	public void checkLoan(Loan l, ManagementSystem ms) {
-		if (l == null || ms == null)
-			throw new IllegalArgumentException("null arguments");
+	public boolean checkLoan(Loan l, ManagementSystem ms) {
 		Borrower bwer = l.getBorrower();
 		Period period = l.getPeriod();
-		HashMap<String, ArrayList<Equipment>> askedStuff = l.getStuff();
-		if (bwer == null || period == null || askedStuff == null
-				|| askedStuff.isEmpty())
-			throw new IllegalArgumentException("null argument fields");
+		// HashMap
+		Equipment stuff = i.findAvailableEquipment(l.getModel());
 		final int LOAN_DURATION_LIMIT;
 		final int LOAN_RESERVATION_LIMIT;
-		int current_equipment_number_limit;
-		int current_equipment_duration_limit;
-		String current_model;
-		Set<String> keys = askedStuff.keySet();
-		Iterator<String> it = keys.iterator();
 
-		setBorrowerConstants(bwer, LOAN_DURATION_LIMIT, LOAN_RESERVATION_LIMIT);
+		// Checks if the loan is valid
+		if (stuff == null)
+			return false;
+
+		// Defines the constants to use
+		if (bwer.getType().equals("teacher")) {
+			LOAN_DURATION_LIMIT = TEACHER_LOAN_DURATION_LIMIT;
+			LOAN_RESERVATION_LIMIT = TEACHER_LOAN_RESERVATION_LIMIT;
+		} else {
+			LOAN_DURATION_LIMIT = STUDENT_LOAN_DURATION_LIMIT;
+			LOAN_RESERVATION_LIMIT = STUDENT_LOAN_RESERVATION_LIMIT;
+		}
+
 		if (period.getDuration() > LOAN_DURATION_LIMIT
-				|| period.daysFromNow() > LOAN_RESERVATION_LIMIT) {
-			l.setAccepted(false);
-			// TODO call of a method altering the loan to satisfy these
-			// standards
-			return;
-		}
-
-		while (it.hasNext()) {
-			current_model = it.next();
-			for (Equipment e : askedStuff.get(current_model))
-				setEquipmentConstants(e, current_equipment_duration_limit,
-						current_equipment_number_limit);
-		}
+				|| period.daysFromNow() > LOAN_RESERVATION_LIMIT)
+			return false;
 		// Updates the stuff, the loan and the borrower
 		stuff.getUnavailabalityPeriods().add(period);
 		l.setEquipmentID(stuff.getId());
 		return true;
-	}
-
-	/**
-	 * Sets the given limits according to the given borrower's type.
-	 * 
-	 * @param bwer
-	 *            the borrower according the limits have to be set
-	 * @param duration_limit
-	 *            the loan duration limit
-	 * @param reservation_limit
-	 *            the loan reservation limit
-	 */
-	private void setBorrowerConstants(Borrower bwer, int duration_limit,
-			int reservation_limit) {
-		if (bwer.getType().equals("teacher")) {
-			duration_limit = TEACHER_LOAN_DURATION_LIMIT;
-			reservation_limit = TEACHER_LOAN_RESERVATION_LIMIT;
-		} else {
-			duration_limit = STUDENT_LOAN_DURATION_LIMIT;
-			reservation_limit = STUDENT_LOAN_RESERVATION_LIMIT;
-		}
-	}
-
-	private void setEquipmentConstants(Equipment e, int duration_limit,
-			int number_limit) {
-		
 	}
 
 	/*

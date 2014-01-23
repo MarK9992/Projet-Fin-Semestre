@@ -1,9 +1,7 @@
 package config;
 
 /**
- * Implements constants for borrowers. LOAN_DURATION constants defines the loan
- * duration limits and LOAN_RESERVATION constants defines the number of days in
- * advance a reservation can be made. All constants are uttered in days.
+ * Implements constants for borrowers.
  * 
  * initial code by: Marc Karassev; modified by: Marc Karassev
  * 
