@@ -8,6 +8,7 @@ import java.util.List;
 import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import users.Manager;
+import utils.Period;
 import view.AccountView;
 import view.AdministratorView;
 import view.AlgorithmView;
@@ -21,7 +22,8 @@ public class AdministratorController {
     private AdministratorView view;
     private List<Loan> idBorrowings;
 
-    public AdministratorController(String adminId, ManagementSystem m, AdministratorView v) {
+    public AdministratorController(String adminId, ManagementSystem m,
+            AdministratorView v) {
         this.adminId = adminId;
         ms = m;
         view = v;
@@ -46,7 +48,29 @@ public class AdministratorController {
      *             if the borrowing can't be accepted anymore
      */
     public void accept(Loan loan) throws IllegalArgumentException {
-        ((Manager)ms.getUser(adminId)).accept(loan);
+        boolean isAcceptable = true;
+        int nbBorrowed;
+        Loan l;
+        for (String s : loan.getStuff().keySet()) {
+            nbBorrowed = 0;
+            System.out.println(s);
+            for (int i = 0; i < ms.getLoans().size(); i++) {
+                l = ms.getLoans().get(i);
+                if (l.isAccepted() && l.getStuff().containsKey(s)
+                        && Period.overlap(l.getPeriod(), loan.getPeriod())) {
+                    nbBorrowed += l.getStuff().get(s).size();
+                }
+            }
+            System.out.println(nbBorrowed);
+            System.out.println(loan.getStuff().get(s).size());
+            if (nbBorrowed + loan.getStuff().get(s).size() > ms.getInventory()
+                    .get(s).size()) {
+                isAcceptable = false;
+            }
+        }
+        if (isAcceptable) {
+            ((Manager) ms.getUser(adminId)).accept(loan);
+        }
     }
 
     /**
@@ -55,14 +79,14 @@ public class AdministratorController {
      */
     public void obtainBorrowingsStrings() {
         idBorrowings.clear();
-        for (int i=0; i<ms.getLoans().size(); i++) {
+        for (int i = 0; i < ms.getLoans().size(); i++) {
             if (!ms.getLoans().get(i).isAccepted()) {
                 idBorrowings.add(ms.getLoans().get(i));
                 view.getListModel().addElement(ms.getLoans().get(i).toString());
             }
         }
     }
-    
+
     /**
      * The listener of the use algo button
      * 
@@ -78,7 +102,7 @@ public class AdministratorController {
             new AlgorithmController(ms, newView);
         }
     }
-    
+
     /**
      * The listener of the Statistics button
      * 
@@ -94,7 +118,7 @@ public class AdministratorController {
             new StatisticsController(ms, newView);
         }
     }
-    
+
     /**
      * The listener of the Simulation button
      * 
@@ -110,7 +134,7 @@ public class AdministratorController {
             new SimulationController(ms, newView);
         }
     }
-    
+
     /**
      * The listener of the back button
      * 
@@ -144,11 +168,7 @@ public class AdministratorController {
                 for (int j = 0; j < view.getBorrowingsList()
                         .getSelectedIndices().length; j++) {
                     if (view.getBorrowingsList().getSelectedIndices()[j] == i) {
-                        try {
-                            accept(idBorrowings.get(i));
-                        } catch (IllegalArgumentException e1) {
-                            view.errorMessage(e1.getMessage());
-                        }
+                        accept(idBorrowings.get(i));
                         indexSelected.add(i);
                     }
                 }
