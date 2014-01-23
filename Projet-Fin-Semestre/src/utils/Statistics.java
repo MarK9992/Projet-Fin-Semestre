@@ -1,5 +1,6 @@
 package utils;
 
+import config.Model;
 import users.Borrower;
 import managementsystem.ManagementSystem;
 
@@ -13,8 +14,8 @@ public class Statistics {
     
     public int getNumberOfEquipments(){
         int sum = 0;
-        for(String s : ms.getInventory().keySet()){
-            sum+=ms.getInventory().get(s).size();
+        for(Model m : ms.getInventory().keySet()){
+            sum+=ms.getInventory().get(m).size();
         }
         return sum;
     }
@@ -23,20 +24,20 @@ public class Statistics {
         return ms.getLoans().size();
     }
     
-    public String getMostBorrowedModel(){
+    public Model getMostBorrowedModel(){
         int sum;
         int nbLoans = 0;
-        String mostBorrowed = null;
-        for(String s : ms.getInventory().keySet()){
+        Model mostBorrowed = null;
+        for(Model m : ms.getInventory().keySet()){
             sum=0;
             for(int i=0; i<ms.getLoans().size(); i++){
-                if(ms.getLoans().get(i).getStuff().containsKey(s)){
-                    sum+=ms.getLoans().get(i).getStuff().get(s).size();
+                if(ms.getLoans().get(i).getStuff().containsKey(m)){
+                    sum+=ms.getLoans().get(i).getStuff().get(m).size();
                 }
             }
             if(sum > nbLoans){
                 nbLoans = sum;
-                mostBorrowed = s;
+                mostBorrowed = m;
             }
         }
         return mostBorrowed;

@@ -2,6 +2,8 @@ package equipment;
 
 import java.io.IOException;
 
+import config.Model;
+import config.Models;
 
 /**
  * Headphone class. A headphone is an equipment with an impedance, a
@@ -27,10 +29,12 @@ public abstract class Headphone extends Equipment {
 	 * Default constructor, constructs a new headphone with an impedance of 30
 	 * Ohms, a frequency response of 20 to 20000 Hz, a sound pressure of 100 dB
 	 * and unknown manufacturer and model.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public Headphone() throws IOException {
-		this("unknown", 30, "20-20000", 100, "unknown");
+		this("unknown", 30, "20-20000", 100, Models.getModels()
+				.findModelByName("unknown"));
 	}
 
 	/**
@@ -47,9 +51,10 @@ public abstract class Headphone extends Equipment {
 	 *            its sound pressure
 	 * @param type
 	 *            its model
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public Headphone(String maker, int imp, String resp, int pres, String type) throws IOException {
+	public Headphone(String maker, int imp, String resp, int pres, Model type)
+			throws IOException {
 		super(maker, type);
 		impedance = imp + " Ohms";
 		frequencyResponse = resp + " Hz";

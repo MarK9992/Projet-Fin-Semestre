@@ -2,11 +2,10 @@ package equipment;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import utils.StoreLoad;
 
+import config.Model;
 import config.Models;
 
 /**
@@ -27,7 +26,7 @@ public class Equipment implements Serializable {
 	private static int counter = 1000;
 	private String id;
 	private String manufacturer;
-	private String model;
+	private Model model;
 
 	// Constructors
 
@@ -37,7 +36,8 @@ public class Equipment implements Serializable {
 	 * @throws IOException 
 	 */
 	public Equipment() throws IOException {
-		this("unkwown", "unknown");
+		
+		this("unkwown", Models.getModels().findModelByName("unknown"));
 	}
 
 	/**
@@ -45,14 +45,16 @@ public class Equipment implements Serializable {
 	 * 
 	 * @param maker
 	 *            its manufacturer
-	 * @param type
+	 * @param model
 	 *            the model corresponding to this equipment
 	 * @throws IOException 
 	 */
-	public Equipment(String maker, String type) throws IOException {
+	public Equipment(String maker, Model model) throws IOException {
 		StoreLoad seria = new StoreLoad();
 		
-		Models.containsModel(type);
+		if(!Models.getModels().contains(model))
+			throw new IllegalArgumentException(
+					"Model given does not belong to Models set.");
 		try {
 			counter = (Integer) seria.Input("Var");
 		} catch (ClassNotFoundException e) {
@@ -60,9 +62,9 @@ public class Equipment implements Serializable {
 		} catch (IOException e) {
 			System.out.println("le fichier Var.data n'existe pas. Creation...");
 		}
-		this.id = type.substring(0, 3).toUpperCase() + counter;
+		this.id = model.getName().substring(0, 3).toUpperCase() + counter;
 		this.manufacturer = maker;
-		this.model = type;
+		this.model = model;
 		counter++;
 		seria.Output(counter, "Var");
 	}
@@ -74,7 +76,7 @@ public class Equipment implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "ID: " + id + ", made by: " + manufacturer;
+		return "ID: " + id + ", made by: " + manufacturer ;
 	}
 
 	// Getters and setters
@@ -102,7 +104,7 @@ public class Equipment implements Serializable {
 	 * 
 	 * @return the value of the model field
 	 */
-	public String getModel() {
+	public Model getModel() {
 		return model;
 	}
 

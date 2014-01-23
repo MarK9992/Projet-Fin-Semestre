@@ -6,6 +6,7 @@ import java.util.HashMap;
 import managementsystem.Loan;
 import utils.Period;
 import config.BorrowerType;
+import config.Model;
 
 /**
  * Borrower class, a user who can borrow equipments.
@@ -73,7 +74,7 @@ public class Borrower extends User implements Serializable{
 	 *            period asked for the loan
 	 * @return the loan instance created
 	 */
-	public Loan book(HashMap<String, Integer> askedStuff, Period p) {
+	public Loan book(HashMap<Model, Integer> askedStuff, Period p) {
 		Loan l = new Loan(askedStuff, p, this);
 		return l;
 	}
