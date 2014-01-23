@@ -59,17 +59,11 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 		super(i, n);
 	}
 
-	// Methods
-
-	/**
-	 * Accepts the given loan by setting its accepted field to true.
-	 * 
-	 * @param loan
-	 *            the loan to accept
-	 */
 	public void accept(Loan loan) {
 		loan.setAccepted(true);
 	}
+
+	// Methods
 
 	/**
 	 * Checks if the loan is valid.
@@ -77,10 +71,10 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	 * @param l
 	 * 
 	 * @param i
+	 * 
+	 * @return true if it is, false otherwise
 	 */
-	public void checkLoan(Loan l, ManagementSystem ms) {
-		if (l == null || ms == null)
-			throw new IllegalArgumentException("null arguments");
+	public boolean checkLoan(Loan l, ManagementSystem ms) {
 		Borrower bwer = l.getBorrower();
 		Period period = l.getPeriod();
 		HashMap<Model, ArrayList<Equipment>> askedStuff = l.getStuff();
@@ -189,7 +183,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 			reservation_limit = STUDENT_LOAN_RESERVATION_LIMIT;
 		}
 	}
-
+	
 	/*
 	 * TODO update in relation to the new HashMap field of Loan class /** Puts
 	 * away a loan, updates references of the loanList, and the equipment

@@ -12,15 +12,14 @@ import users.User;
 import utils.Period;
 import utils.StoreLoad;
 //import config.ConfigXML;
-import config.Model;
 import config.Models;
 
 /**
  * ManagementSystem class, contains references to all equipments of the system,
  * to all loans and to all users. Allows access on all of them by the use of
  * search methods. Fields are an ArrayList of loans, an ArrayLists of users and
- * a HashMaps where keys are Model instances and values are ArrayLists of
- * equipment matching the model.
+ * a HashMaps where keys are strings from Models class and values are ArrayLists
+ * of equipment matching the model.
  * 
  * initial code by: Anaïs Marongiu, Marc Karassev; modified by: Marc Karassev,
  * Hugo Simond
@@ -32,7 +31,7 @@ public class ManagementSystem {
 	// TODO tests
 
 	private ArrayList<Loan> loans;
-	private HashMap<Model, ArrayList<Equipment>> inventory;
+	private HashMap<String, ArrayList<Equipment>> inventory;
 	private ArrayList<User> users;
 
 	/**
@@ -41,16 +40,16 @@ public class ManagementSystem {
 	 * exist and isn't empty, loads him.
 	 */
 	public ManagementSystem() {
-		Iterator<Model> it = Models.getModels().iterator();
-		Model key;
+		Iterator<String> it = Models.getModels().iterator();
+		String key;
 		StoreLoad seria = new StoreLoad();
 
-		inventory = new HashMap<Model, ArrayList<Equipment>>();
+		inventory = new HashMap<String, ArrayList<Equipment>>();
 		loans = new ArrayList<Loan>();
 		users = new ArrayList<User>();
 
 		try {
-			inventory = (HashMap<Model, ArrayList<Equipment>>) seria
+			inventory = (HashMap<String, ArrayList<Equipment>>) seria
 					.Input("Stock");
 			loans = (ArrayList<Loan>) seria.Input("Loans");
 			users = (ArrayList<User>) seria.Input("Users");
@@ -90,17 +89,17 @@ public class ManagementSystem {
 	 * @param loans
 	 *            the ArrayList used to set the loans field
 	 */
-	public ManagementSystem(HashMap<Model, ArrayList<Equipment>> inventory,
+	public ManagementSystem(HashMap<String, ArrayList<Equipment>> inventory,
 			ArrayList<Loan> loans) {
-		Iterator<Model> it = Models.getModels().iterator();
-		Model key;
+		Iterator<String> it = Models.getModels().iterator();
+		String key;
 		StoreLoad seria = new StoreLoad();
 
 		this.inventory = inventory;
 		this.loans = loans;
 
 		try {
-			inventory = (HashMap<Model, ArrayList<Equipment>>) seria
+			inventory = (HashMap<String, ArrayList<Equipment>>) seria
 					.Input("Stock");
 			loans = (ArrayList<Loan>) seria.Input("Loans");
 			users = (ArrayList<User>) seria.Input("Users");
@@ -238,9 +237,9 @@ public class ManagementSystem {
 	 * @return the equipment, null if not found.
 	 */
 	public Equipment findEquipmentById(String id) {
-		Set<Model> keys = this.inventory.keySet();
-		Iterator<Model> it = keys.iterator();
-		Model key;
+		Set<String> keys = this.inventory.keySet();
+		Iterator<String> it = keys.iterator();
+		String key;
 
 		// TODO search depending on IDs ?
 		while (it.hasNext()) {
@@ -258,9 +257,9 @@ public class ManagementSystem {
 	 * @return a matching equipment or null if none found.
 	 */
 	public Equipment findAvailableEquipment() {
-		Set<Model> keys = this.inventory.keySet();
-		Iterator<Model> it = keys.iterator();
-		Model key;
+		Set<String> keys = this.inventory.keySet();
+		Iterator<String> it = keys.iterator();
+		String key;
 
 		while (it.hasNext()) {
 			key = it.next();
@@ -278,7 +277,7 @@ public class ManagementSystem {
 	 *            the model of equipment to look for
 	 * @return a matching equipment or null if none found.
 	 */
-	public Equipment findAvailableEquipment(Model m) {
+	public Equipment findAvailableEquipment(String m) {
 		Models.containsModel(m);
 		for (Equipment eq : inventory.get(m))
 			if (equipmentAvailableNow(eq))
@@ -294,9 +293,9 @@ public class ManagementSystem {
 	 * @return a matching equipment or null if none found
 	 */
 	public Equipment findAvailableEquipmentAt(Period p) {
-		Set<Model> keys = this.inventory.keySet();
-		Iterator<Model> it = keys.iterator();
-		Model key;
+		Set<String> keys = this.inventory.keySet();
+		Iterator<String> it = keys.iterator();
+		String key;
 
 		while (it.hasNext()) {
 			key = it.next();
@@ -316,7 +315,7 @@ public class ManagementSystem {
 	 *            the period during which the equipment has to be available
 	 * @return a matching equipment or null if none found
 	 */
-	public Equipment findAvailableEquipmentAt(Model m, Period p) {
+	public Equipment findAvailableEquipmentAt(String m, Period p) {
 		Models.containsModel(m);
 		for (Equipment eq : inventory.get(m))
 			if (equipmentAvailableAt(eq, p))
@@ -370,9 +369,9 @@ public class ManagementSystem {
 	 */
 	public int getNumberElements() {
 		int number = 0;
-		Set<Model> keys = this.inventory.keySet();
-		Iterator<Model> it = keys.iterator();
-		Model key;
+		Set<String> keys = this.inventory.keySet();
+		Iterator<String> it = keys.iterator();
+		String key;
 
 		while (it.hasNext()) {
 			key = it.next();
@@ -409,7 +408,7 @@ public class ManagementSystem {
 	 * 
 	 * @return the value of the HashMap field inventory;
 	 */
-	public HashMap<Model, ArrayList<Equipment>> getInventory() {
+	public HashMap<String, ArrayList<Equipment>> getInventory() {
 		return inventory;
 	}
 
@@ -419,7 +418,7 @@ public class ManagementSystem {
 	 * @param inventory
 	 *            the new inventory value
 	 */
-	public void setInventory(HashMap<Model, ArrayList<Equipment>> inventory) {
+	public void setInventory(HashMap<String, ArrayList<Equipment>> inventory) {
 		this.inventory = inventory;
 	}
 

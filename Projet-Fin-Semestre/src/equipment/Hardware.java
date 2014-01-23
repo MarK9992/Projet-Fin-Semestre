@@ -2,8 +2,6 @@ package equipment;
 
 import java.io.IOException;
 
-import config.Model;
-import config.Models;
 import config.OS;
 import config.Processor;
 
@@ -30,12 +28,10 @@ public class Hardware extends Equipment {
 	/**
 	 * Default constructor, constructs a new hardware with a 10" screen and
 	 * unknown manufacturer, processor, operating system and model.
-	 * 
-	 * @throws IOException
+	 * @throws IOException 
 	 */
 	public Hardware() throws IOException {
-		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, Models.getModels()
-				.findModelByName("unknown"));
+		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, "unknown");
 	}
 
 	/**
@@ -52,11 +48,11 @@ public class Hardware extends Equipment {
 	 *            its operating system
 	 * @param type
 	 *            its type
-	 * @throws IOException
+	 * @throws IOException 
 	 */
 	public Hardware(String maker, double screenSize, Processor proc, OS os,
-			Model model) throws IOException {
-		super(maker, model);
+			String type) throws IOException {
+		super(maker, type);
 		this.screenSize = screenSize + "\"";
 		this.processor = proc;
 		this.os = os;
