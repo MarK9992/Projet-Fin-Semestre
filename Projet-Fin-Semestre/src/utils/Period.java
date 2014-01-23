@@ -11,7 +11,7 @@ import java.util.Calendar;
  * @author Marc Karassev, Anaïs Marongiu
  * 
  */
-public class Period implements Serializable{
+public class Period implements Serializable {
 	// TODO manage time zone and locale
 	// TODO tests
 
@@ -104,6 +104,18 @@ public class Period implements Serializable{
 		long today = Calendar.getInstance().getTimeInMillis();
 		return today > startDate.getTimeInMillis()
 				&& today < endDate.getTimeInMillis();
+	}
+
+	/**
+	 * Checks if the given date is in the period.
+	 * 
+	 * @param date
+	 *            the date to check
+	 * @return true if it is, false otherwise
+	 */
+	public boolean dateInPeriod(Calendar date) {
+		return startDate.getTimeInMillis() <= date.getTimeInMillis()
+				&& endDate.getTimeInMillis() > date.getTimeInMillis();
 	}
 
 	/**
