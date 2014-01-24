@@ -5,10 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 
-import managementsystem.Loan;
+import managementsystem.Ask;
 import managementsystem.ManagementSystem;
 import users.Manager;
-import utils.Period;
 import view.AccountView;
 import view.AdministratorView;
 import view.AlgorithmView;
@@ -20,7 +19,7 @@ public class AdministratorController {
     private String adminId;
     private ManagementSystem ms;
     private AdministratorView view;
-    private List<Loan> idBorrowings;
+    private List<Ask> idBorrowings;
 
     public AdministratorController(String adminId, ManagementSystem m,
             AdministratorView v) {
@@ -28,7 +27,7 @@ public class AdministratorController {
         ms = m;
         view = v;
         view.setTitle(ms.getUser(adminId).getName());
-        idBorrowings = new LinkedList<Loan>();
+        idBorrowings = new LinkedList<Ask>();
 
         obtainBorrowingsStrings();
 
@@ -47,8 +46,8 @@ public class AdministratorController {
      * @throws Exception
      *             if the borrowing can't be accepted anymore
      */
-    public void accept(Loan loan) throws IllegalArgumentException {
-        ((Manager) ms.getUser(adminId)).accept(loan);
+    public void accept(Ask ask) throws IllegalArgumentException {
+        ((Manager) ms.getUser(adminId)).accept(ask);
     }
 
     /**
@@ -57,11 +56,9 @@ public class AdministratorController {
      */
     public void obtainBorrowingsStrings() {
         idBorrowings.clear();
-        for (int i = 0; i < ms.getLoans().size(); i++) {
-            if (!ms.getLoans().get(i).isAccepted()) {
-                idBorrowings.add(ms.getLoans().get(i));
-                view.getListModel().addElement(ms.getLoans().get(i).toString());
-            }
+        for (int i = 0; i < ms.getAsks().size(); i++) {
+            idBorrowings.add(ms.getAsks().get(i));
+            view.getListModel().addElement(ms.getAsks().get(i).toString());
         }
     }
 

@@ -36,6 +36,7 @@ public class AdministratorView extends JFrame {
         validateButton = new JButton("Accept loan(s)");
         algoButton = new JButton("Use algorithm");
         simulationButton = new JButton("Simulation");
+        simulationButton.setEnabled(false);
         statisticsButton = new JButton("Statistics");
         backButton = new JButton("Back");
         borrowingsList = new JList<String>(listModel);
