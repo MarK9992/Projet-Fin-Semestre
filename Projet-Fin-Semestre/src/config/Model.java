@@ -1,6 +1,8 @@
 package config;
 
-public class Model {
+import java.io.Serializable;
+
+public class Model implements Serializable{
 	// TODO java doc
 
 	private String name;

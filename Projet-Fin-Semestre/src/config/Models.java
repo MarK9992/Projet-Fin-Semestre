@@ -1,5 +1,6 @@
 package config;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -9,7 +10,7 @@ import java.util.Iterator;
  * @author Marc Karassev
  * 
  */
-public class Models extends HashSet<Model> {
+public class Models extends HashSet<Model> implements Serializable {
 
 	private static Models models = new Models();
 
