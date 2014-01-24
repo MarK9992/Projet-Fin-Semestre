@@ -11,6 +11,7 @@ import java.util.Map;
 
 import config.Model;
 
+import managementsystem.Ask;
 import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import users.Borrower;
@@ -64,8 +65,8 @@ public class CreateLoanController {
         end.setTime(endDate);
         Period p = new Period(start, end);
         Borrower b = (Borrower)ms.getUser(idBorrower);
-        Loan l = b.book((HashMap<Model, Integer>)devices, p);
-        ms.addLoan(l);
+        Ask l = b.book((HashMap<Model, Integer>)devices, p);
+        ms.addAsks(l);
     }
 
     /**
