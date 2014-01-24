@@ -1,13 +1,14 @@
 package managementsystem;
 
 import java.util.HashMap;
+import java.io.Serializable;
 
 import users.Borrower;
 import utils.Period;
 
 import config.Model;
 
-public class Ask {
+public class Ask implements Serializable {
 
 	// Fields
 

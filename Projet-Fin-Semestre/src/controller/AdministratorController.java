@@ -20,7 +20,7 @@ public class AdministratorController {
     private String adminId;
     private ManagementSystem ms;
     private AdministratorView view;
-    private List<Ask> idBorrowings;
+    private List<Ask> asks;
 
     public AdministratorController(String adminId, ManagementSystem m,
             AdministratorView v) {
@@ -28,7 +28,7 @@ public class AdministratorController {
         ms = m;
         view = v;
         view.setTitle(ms.getUser(adminId).getName());
-        idBorrowings = new LinkedList<Ask>();
+        asks = new LinkedList<Ask>();
 
         obtainBorrowingsStrings();
 
@@ -57,9 +57,9 @@ public class AdministratorController {
      * list Adds the Ids to the LinkedList
      */
     public void obtainBorrowingsStrings() {
-        idBorrowings.clear();
+        asks.clear();
         for (int i = 0; i < ms.getAsks().size(); i++) {
-            idBorrowings.add(ms.getAsks().get(i));
+            asks.add(ms.getAsks().get(i));
             view.getListModel().addElement(ms.getAsks().get(i).toString());
         }
     }
@@ -146,7 +146,8 @@ public class AdministratorController {
                         .getSelectedIndices().length; j++) {
                     if (view.getBorrowingsList().getSelectedIndices()[j] == i) {
                         try {
-                            accept(idBorrowings.get(i));
+                            System.out.println(asks.get(i));
+                            accept(asks.get(i));
                         } catch (IllegalArgumentException e1) {
                             e1.printStackTrace();
                         } catch (IOException e1) {
