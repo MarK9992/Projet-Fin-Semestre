@@ -49,7 +49,7 @@ public class Loan implements Serializable {
 		stuff = new HashMap<Model, ArrayList<Equipment>>(stuffAsked.size());
 		while (it.hasNext()) {
 			key = it.next();
-			Models.containsModel(key);
+			ManagementSystem.getManagementSystem().getModels().containsModel(key);
 			stuff.put(key, new ArrayList<Equipment>(stuffAsked.get(key)));
 		}
 		period = ask.getPeriod();

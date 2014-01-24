@@ -9,8 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import javax.swing.JList;
 
+import users.Manager;
 import view.AlgorithmView;
-import managementsystem.Loan;
+import managementsystem.Ask;
 import managementsystem.ManagementSystem;
 
 /**
@@ -24,15 +25,15 @@ public class AlgorithmController {
     private AlgorithmView view;
     private List<String> reasons;
 
-    public AlgorithmController(ManagementSystem m, AlgorithmView v) {
+    public AlgorithmController(ManagementSystem m,Manager manager, AlgorithmView v) {
         ms = m;
         view = v;
         reasons = new ArrayList<String>();
         v.getOkButton().addActionListener(new OkListener());
         v.getLoansList().addMouseListener(new LoansListener());
         
-        HashMap<Loan, String> loansReasons = new HashMap<Loan, String>();
-        for(Loan l : loansReasons.keySet()){
+        HashMap<Ask, String> loansReasons = manager.checkAsks(ms);
+        for(Ask l : loansReasons.keySet()){
             v.getListModel().addElement(l.toString());
             reasons.add(loansReasons.get(l));
         }

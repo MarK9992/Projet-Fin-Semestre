@@ -9,9 +9,9 @@ public class TestIHM {
      * @param args
      */
     public static void main(String[] args) {
-        ManagementSystem ms = new ManagementSystem();
+        //ManagementSystem ms = new ManagementSystem();
         AccountView v = new AccountView();
-        new AccountController(ms, v);
+        new AccountController(ManagementSystem.getManagementSystem(), v);
     }
 
 }

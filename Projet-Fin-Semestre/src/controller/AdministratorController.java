@@ -49,7 +49,11 @@ public class AdministratorController {
      *             if the borrowing can't be accepted anymore
      */
     public void accept(Ask ask) throws IllegalArgumentException, IOException {
+        try{
         ((Manager) ms.getUser(adminId)).acceptAsk(ask, ms);
+        }catch(NullPointerException e){
+            System.out.println("t'es mauvais");
+        }
     }
 
     /**
@@ -76,7 +80,7 @@ public class AdministratorController {
         @Override
         public void actionPerformed(ActionEvent e) {
             AlgorithmView newView = new AlgorithmView();
-            new AlgorithmController(ms, newView);
+            new AlgorithmController(ms,(Manager)ms.getUser(adminId), newView);
         }
     }
 
@@ -146,7 +150,6 @@ public class AdministratorController {
                         .getSelectedIndices().length; j++) {
                     if (view.getBorrowingsList().getSelectedIndices()[j] == i) {
                         try {
-                            System.out.println(asks.get(i));
                             accept(asks.get(i));
                         } catch (IllegalArgumentException e1) {
                             e1.printStackTrace();

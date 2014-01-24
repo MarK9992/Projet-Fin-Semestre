@@ -31,27 +31,24 @@ import config.Models;
 public class ManagementSystem {
     // TODO tests
 
+    private static ManagementSystem managementSystem = new ManagementSystem();
+            
     private ArrayList<Loan> loans;
     private ArrayList<Ask> asks;
     private HashMap<Model, ArrayList<Equipment>> inventory;
     private ArrayList<User> users;
+    private Models models;
 
     /**
      * Default constructor, constructs a new ManagementSystem with empty
      * ArrayLists for the loans and the inventory. However if the file "stock"
      * exist and isn't empty, loads him.
      */
-    public ManagementSystem() {
-        Iterator<Model> it = Models.getModels().iterator();
-        Model key;
-        StoreLoad seria = new StoreLoad();
-
-        inventory = new HashMap<Model, ArrayList<Equipment>>();
-        loans = new ArrayList<Loan>();
-        users = new ArrayList<User>();
-        asks = new ArrayList<Ask>();
-
+    private ManagementSystem() {
         try {
+            StoreLoad seria = new StoreLoad();
+
+            models = (Models) seria.Input("Models");
             inventory = (HashMap<Model, ArrayList<Equipment>>) seria
                     .Input("Stock");
             asks = (ArrayList<Ask>) seria.Input("Asks");
@@ -62,60 +59,17 @@ public class ManagementSystem {
         } catch (IOException e) {
             System.out
                     .println("Un des fichiers est manquant. Creation ...");
+            models = new Models();
+            inventory = new HashMap<Model, ArrayList<Equipment>>();
+            loans = new ArrayList<Loan>();
+            users = new ArrayList<User>();
+            asks = new ArrayList<Ask>();
+            
+            Iterator<Model> it = models.iterator();
+            Model key;
+
             while (it.hasNext()) {
                 key = it.next();
-                inventory.put(key, new ArrayList<Equipment>());
-            }
-        }
-    }
-
-    /*
-     * /** TODO Constructor with configuration.
-     * 
-     * @param defaultConfigNameFile
-     * 
-     * @param defaultConfigVersion
-     */
-    /*
-     * public Inventory(String defaultConfigNameFile, String
-     * defaultConfigVersion) { this.inventory = (HashMap<Model,
-     * ArrayList<Equipment>>) ConfigXML.load( defaultConfigNameFile,
-     * defaultConfigVersion); }
-     */
-
-    /**
-     * Constructs a new ManagementSystem with the specified ArrayList for the
-     * loans field and the specified HashMap inventory field. However if the
-     * file "stock" exist and isn't empty, load him.
-     * 
-     * @param inventory
-     *            the HashMap used to set the inventory field
-     * @param loans
-     *            the ArrayList used to set the loans field
-     */
-    public ManagementSystem(HashMap<Model, ArrayList<Equipment>> inventory,
-            ArrayList<Loan> loans) {
-        Iterator<Model> it = Models.getModels().iterator();
-        Model key;
-        StoreLoad seria = new StoreLoad();
-
-        this.inventory = inventory;
-        this.loans = loans;
-
-        try {
-            inventory = (HashMap<Model, ArrayList<Equipment>>) seria
-                    .Input("Stock");
-            asks = (ArrayList<Ask>) seria.Input("Asks");
-            loans = (ArrayList<Loan>) seria.Input("Loans");
-            users = (ArrayList<User>) seria.Input("Users");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out
-                    .println("Un des fichiers est manquant. Creation ...");
-            while (it.hasNext()) {
-                key = it.next();
-                Models.containsModel(key);
                 inventory.put(key, new ArrayList<Equipment>());
             }
         }
@@ -204,6 +158,14 @@ public class ManagementSystem {
     }
 
     public void addAsk(Ask a) throws IOException {
+        Set<Model> s = a.getAskedStuff().keySet();
+        Iterator<Model> it = s.iterator();
+        Model m;
+        while(it.hasNext()) {
+            m = it.next();
+            models.containsModel(m);
+            System.out.println(m);
+        }
         asks.add(a);
         StoreLoad seria = new StoreLoad();
         seria.Output(this.asks, "Asks");
@@ -304,7 +266,7 @@ public class ManagementSystem {
      * @return a matching equipment or null if none found.
      */
     public Equipment findAvailableEquipment(Model m) {
-        Models.containsModel(m);
+        models.containsModel(m);
         for (Equipment eq : inventory.get(m))
             if (equipmentAvailableNow(eq))
                 return eq;
@@ -342,7 +304,7 @@ public class ManagementSystem {
      * @return a matching equipment or null if none found
      */
     public Equipment findAvailableEquipmentAt(Model m, Period p) {
-        Models.containsModel(m);
+        models.containsModel(m);
         for (Equipment eq : inventory.get(m))
             if (equipmentAvailableAt(eq, p))
                 return eq;
@@ -352,7 +314,8 @@ public class ManagementSystem {
     public ArrayList<Equipment> findNAvailableEquipmentAt(Model m, int n, Period p) {
     	ArrayList<Equipment> le = new ArrayList<Equipment>(n);
     	
-    	Models.containsModel(m);
+    	models.containsModel(m);
+    	System.out.println(inventory.get(m));
     	for(Equipment eq: inventory.get(m)) {
     		if(equipmentAvailableAt(eq, p))
     			le.add(eq);
@@ -506,5 +469,13 @@ public class ManagementSystem {
 
     public void setAsks(ArrayList<Ask> la) {
         asks = la;
+    }
+    
+    public Models getModels() {
+        return models;
+    }
+    
+    public static ManagementSystem getManagementSystem() {
+        return managementSystem;
     }
 }

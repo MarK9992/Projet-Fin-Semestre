@@ -3,6 +3,8 @@ package equipment;
 import java.io.IOException;
 import java.io.Serializable;
 
+import managementsystem.ManagementSystem;
+
 import utils.StoreLoad;
 
 import config.Model;
@@ -37,7 +39,7 @@ public class Equipment implements Serializable {
 	 */
 	public Equipment() throws IOException {
 		
-		this("unkwown", Models.getModels().findModelByName("unknown"));
+		this("unkwown", ManagementSystem.getManagementSystem().getModels().findModelByName("unknown"));
 	}
 
 	/**
@@ -52,7 +54,7 @@ public class Equipment implements Serializable {
 	public Equipment(String maker, Model model) throws IOException {
 		StoreLoad seria = new StoreLoad();
 		
-		if(!Models.getModels().contains(model))
+		if(!ManagementSystem.getManagementSystem().getModels().contains(model))
 			throw new IllegalArgumentException(
 					"Model given does not belong to Models set.");
 		try {

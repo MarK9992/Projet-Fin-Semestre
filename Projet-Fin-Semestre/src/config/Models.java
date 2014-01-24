@@ -2,16 +2,9 @@ package config;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import managementsystem.Ask;
-import managementsystem.Loan;
-import equipment.Equipment;
-
-import users.User;
 import utils.StoreLoad;
 
 /**
@@ -21,14 +14,12 @@ import utils.StoreLoad;
  * 
  */
 public class Models extends HashSet<Model> implements Serializable {
-
-	private static Models models = new Models();
-
+    
 	/**
 	 * Default constructor, constructs a new set of models with the following
 	 * models.
 	 */
-	private Models() {
+	public Models() {
 		add(new Model("Ipad3", 3, 7));
 		add(new Model("Vengeance2100", 12, 10));
 		add(new Model("XperiaZ", 1, 7));
@@ -38,13 +29,9 @@ public class Models extends HashSet<Model> implements Serializable {
 		StoreLoad seria = new StoreLoad();
 
         try {
-            models = (Models) seria
-                    .Input("Models");      
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            seria.Output(this, "Models");
         } catch (IOException e) {
-            System.out
-                    .println("Le fichier Models.data est manquant. Creation ...");
+            e.printStackTrace();
         }
 	}
 
@@ -53,9 +40,9 @@ public class Models extends HashSet<Model> implements Serializable {
 	 * 
 	 * @return the set of models
 	 */
-	public static Models getModels() {
+	/*public static Models getModels() {
 		return models;
-	}
+	}*/
 
 	/**
 	 * Adds a new model in the models set. The name given should not already
@@ -76,9 +63,8 @@ public class Models extends HashSet<Model> implements Serializable {
 		add(new Model(name, loan_duration_limit, loan_quantity_limit));
 		StoreLoad seria = new StoreLoad();
         try {
-			seria.Output(models, "Models");
+			seria.Output(this, "Models");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -93,9 +79,8 @@ public class Models extends HashSet<Model> implements Serializable {
 		remove(findModelByName(model));
 		StoreLoad seria = new StoreLoad();
         try {
-			seria.Output(models, "Models");
+			seria.Output(this, "Models");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -127,9 +112,9 @@ public class Models extends HashSet<Model> implements Serializable {
 	 * @param s
 	 *            the model to check
 	 */
-	public static void containsModel(Model m) {
-		if (!models.contains(m))
+	public void containsModel(Model m) {
+		/*if (!contains(m))
 			throw new IllegalArgumentException(
-					"Model given does not belong to Models set.");
+					"Model given does not belong to Models set.");*/
 	}
 }

@@ -102,7 +102,7 @@ public class BorrowerController {
             if(ms.getInventory().get(m).size() == 0){
                 continue;
             }
-            models.add(Models.getModels().findModelByName(m.getName()));
+            models.add(ManagementSystem.getManagementSystem().getModels().findModelByName(m.getName()));
             view.getListModel().addElement(m.getName());
         }
     }

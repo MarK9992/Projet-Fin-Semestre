@@ -27,7 +27,6 @@ import equipment.Equipment;
  * 
  */
 public class Manager extends User implements BorrowerConstants, Serializable {
-	// TODO extensibility
 	// TODO tests
 
 	// Constructors
@@ -65,11 +64,11 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	// Methods
 
 	public void addModel(Model m) {
-		Models.getModels().add(m);
+	    ManagementSystem.getManagementSystem().getModels().add(m);
 	}
 
 	public void removeModel(Model m) {
-		Models.getModels().remove(m);
+	    ManagementSystem.getManagementSystem().getModels().remove(m);
 	}
 
 	public void acceptAsk(Ask ask, ManagementSystem ms) throws IOException,
@@ -92,8 +91,9 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	public HashMap<Ask, String> checkAsks(ManagementSystem ms) {
 		HashMap<Ask, String> hm = new HashMap<Ask, String>();
 		
-		for(Ask a: ms.getAsks())
-			hm.put(a, checkAsk(a, ms));
+		for(Ask a: ms.getAsks()) {
+            hm.put(a, checkAsk(a, ms));
+		}
 		return hm;
 	}
 
@@ -101,6 +101,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 		Borrower bwer = a.getBorrower();
 		Period period = a.getPeriod();
 		HashMap<Model, Integer> askedStuff = a.getAskedStuff();
+		
 		if (bwer == null || period == null || askedStuff == null
 				|| askedStuff.isEmpty())
 			throw new IllegalArgumentException("null argument fields");

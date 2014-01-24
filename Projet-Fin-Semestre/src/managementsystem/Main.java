@@ -15,14 +15,14 @@ import equipment.Equipment;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		ManagementSystem stock = new ManagementSystem();
-		Equipment stuff1 = new Equipment("Chaise", Models.getModels()
+		ManagementSystem stock = ManagementSystem.getManagementSystem();
+		Equipment stuff1 = new Equipment("Chaise", stock.getModels()
 				.findModelByName("Chaise"));
-		Equipment stuff2 = new Equipment("Lit", Models.getModels()
+		Equipment stuff2 = new Equipment("Lit", stock.getModels()
 				.findModelByName("Lit"));
-		Equipment stuff3 = new Equipment("Tablette", Models.getModels()
+		Equipment stuff3 = new Equipment("Tablette", stock.getModels()
 				.findModelByName("Ipad3"));
-		Equipment stuff4 = new Equipment("Portable", Models.getModels()
+		Equipment stuff4 = new Equipment("Portable", stock.getModels()
 				.findModelByName("XperiaZ"));
 
 		stock.addEquipment(stuff1);
@@ -50,13 +50,13 @@ public class Main {
 			stock.addUser(tutu);
 		
 		HashMap<Model, Integer> map1 = new HashMap<Model, Integer>();
-		map1.put(Models.getModels().findModelByName("Chaise"), 2);
+		map1.put(stock.getModels().findModelByName("Chaise"), 2);
 		HashMap<Model, Integer> map2 = new HashMap<Model, Integer>();
-		map2.put(Models.getModels().findModelByName("Lit"), 3);
+		map2.put(stock.getModels().findModelByName("Lit"), 3);
 		HashMap<Model, Integer> map3 = new HashMap<Model, Integer>();
-		map3.put(Models.getModels().findModelByName("Ipad3"), 5);
+		map3.put(stock.getModels().findModelByName("Ipad3"), 5);
 		HashMap<Model, Integer> map4 = new HashMap<Model, Integer>();
-		map4.put(Models.getModels().findModelByName("XperiaZ"), 11);
+		map4.put(stock.getModels().findModelByName("XperiaZ"), 11);
 		
 		Ask ask1 = new Ask(map1,p,toto);
 		Ask ask2 = new Ask(map2,p,tata);
@@ -65,7 +65,9 @@ public class Main {
 		Ask ask5 = new Ask(map3,p,toto);
 		Ask ask6 = new Ask(map3,p,tata);
 		
-		stock.addAsk(ask1);
+		Loan loan1 = new Loan(ask1);
+		
+		stock.addLoan(loan1);
 		stock.addAsk(ask2);
 		stock.addAsk(ask3);
 		stock.addAsk(ask4);

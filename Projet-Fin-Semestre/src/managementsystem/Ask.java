@@ -32,7 +32,7 @@ public class Ask implements Serializable {
 		
 		while(it.hasNext()) {
 			model = it.next();
-			Models.containsModel(model);
+			ManagementSystem.getManagementSystem().getModels().containsModel(model);
 		}
 		askedStuff = aS;
 		period = p;

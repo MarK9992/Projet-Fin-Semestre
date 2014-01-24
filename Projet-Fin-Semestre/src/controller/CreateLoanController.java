@@ -38,7 +38,7 @@ public class CreateLoanController {
         // Fulfillment of the list
         HashMap<String, Integer> labels = new HashMap<String, Integer>();
         for (int i = 0; i < models.size(); i++) {
-            labels.put(models.get(i).getName(),Models.getModels().findModelByName(models.get(i).getName()).getLoanQuantityLimit());
+            labels.put(models.get(i).getName(),ManagementSystem.getManagementSystem().getModels().findModelByName(models.get(i).getName()).getLoanQuantityLimit());
         }
 
         v.fillDevicesList(labels);

@@ -2,6 +2,8 @@ package equipment;
 
 import java.io.IOException;
 
+import managementsystem.ManagementSystem;
+
 import config.Model;
 import config.Models;
 
@@ -33,7 +35,7 @@ public abstract class Headphone extends Equipment {
 	 * @throws IOException
 	 */
 	public Headphone() throws IOException {
-		this("unknown", 30, "20-20000", 100, Models.getModels()
+		this("unknown", 30, "20-20000", 100, ManagementSystem.getManagementSystem().getModels()
 				.findModelByName("unknown"));
 	}
 

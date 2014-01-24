@@ -2,6 +2,8 @@ package equipment;
 
 import java.io.IOException;
 
+import managementsystem.ManagementSystem;
+
 import config.Model;
 import config.Models;
 import config.OS;
@@ -34,7 +36,7 @@ public class Hardware extends Equipment {
 	 * @throws IOException
 	 */
 	public Hardware() throws IOException {
-		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, Models.getModels()
+		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, ManagementSystem.getManagementSystem().getModels()
 				.findModelByName("unknown"));
 	}
 
