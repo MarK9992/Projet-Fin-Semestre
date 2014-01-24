@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,11 +44,12 @@ public class AdministratorController {
      * 
      * @param idBorrowing
      *            the id of the borrowing to validate
+     * @throws IOException
      * @throws Exception
      *             if the borrowing can't be accepted anymore
      */
-    public void accept(Ask ask) throws IllegalArgumentException {
-        ((Manager) ms.getUser(adminId)).accept(ask);
+    public void accept(Ask ask) throws IllegalArgumentException, IOException {
+        ((Manager) ms.getUser(adminId)).acceptAsk(ask, ms);
     }
 
     /**
@@ -143,7 +145,13 @@ public class AdministratorController {
                 for (int j = 0; j < view.getBorrowingsList()
                         .getSelectedIndices().length; j++) {
                     if (view.getBorrowingsList().getSelectedIndices()[j] == i) {
-                        accept(idBorrowings.get(i));
+                        try {
+                            accept(idBorrowings.get(i));
+                        } catch (IllegalArgumentException e1) {
+                            e1.printStackTrace();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                         indexSelected.add(i);
                     }
                 }
