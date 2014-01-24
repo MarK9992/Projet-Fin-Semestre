@@ -349,6 +349,19 @@ public class ManagementSystem {
         return null;
     }
 
+    public ArrayList<Equipment> findNAvailableEquipmentAt(Model m, int n, Period p) {
+    	ArrayList<Equipment> le = new ArrayList<Equipment>(n);
+    	
+    	Models.containsModel(m);
+    	for(Equipment eq: inventory.get(m)) {
+    		if(equipmentAvailableAt(eq, p))
+    			le.add(eq);
+    		if(le.size() == n)
+    			return le;
+    	}
+    	return null;
+    }
+    
     // User search methods
 
     /**

@@ -79,6 +79,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 		Iterator<Model> it = keys.iterator();
 		Model key;
 
+		ms.addLoan(loan);
 		while (it.hasNext()) {
 			key = it.next();
 			for (int i = 0; i < ask.getAskedStuff().get(key); i++)
@@ -86,19 +87,20 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 						ask.getPeriod()));
 		}
 		ms.removeAsk(ask);
-		ms.addLoan(loan);
 	}
 
 	public HashMap<Ask, String> checkAsks(ManagementSystem ms) {
 		HashMap<Ask, String> hm = new HashMap<Ask, String>();
 		
-		for(Ask a: )
+		for(Ask a: ms.getAsks())
+			hm.put(a, checkAsk(a, ms));
+		return hm;
 	}
 
 	public String checkAsk(Ask a, ManagementSystem ms) {
 		Borrower bwer = a.getBorrower();
 		Period period = a.getPeriod();
-		HashMap<Model, ArrayList<Equipment>> askedStuff = a.getAskedStuff();
+		HashMap<Model, Integer> askedStuff = a.getAskedStuff();
 		if (bwer == null || period == null || askedStuff == null
 				|| askedStuff.isEmpty())
 			throw new IllegalArgumentException("null argument fields");
@@ -114,7 +116,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 			// standards
 		}
 		if (!checkEquipments(askedStuff, period, ms)) {
-			return "Equipment unavailable.";
+			return "Some are equipments unavailable.";
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}
@@ -158,7 +160,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	 *            the period to verify
 	 * @return true if the conditions are checked, false otherwise
 	 */
-	private boolean checkModels(HashMap<Model, ArrayList<Equipment>> hm,
+	private boolean checkModels(HashMap<Model, Integer> hm,
 			Period p) {
 		Model model;
 		Set<Model> sm = hm.keySet();
@@ -167,24 +169,24 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 		while (it.hasNext()) {
 			model = it.next();
 			if (p.getDuration() > model.getLoanDurationLimit()
-					|| model.getLoanQuantityLimit() > hm.get(model).size()) // ne
-																			// marche
-																			// pas
+					|| model.getLoanQuantityLimit() > hm.get(model))
 				return false;
 		}
 		return true;
 	}
 
-	private boolean checkEquipments(HashMap<Model, ArrayList<Equipment>> hm, Period p, ManagementSystem ms) {
+	private boolean checkEquipments(HashMap<Model, Integer> hm, Period p, ManagementSystem ms) {
 		Model model;
 		Set<Model> sm = hm.keySet();
 		Iterator<Model> it = sm.iterator();
 		
 		while(it.hasNext()) {
 			model = it.next();
-			for(Equipment e: hm.get(model))
-				if(!ms.)
+			for(int i = 0; i < hm.get(model); i++)
+				if(ms.findNAvailableEquipmentAt(model, hm.get(model), p) == null)
+					return false;
 		}
+		return true;
 	}
 
 	/**
