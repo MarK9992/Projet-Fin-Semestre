@@ -8,6 +8,7 @@ import java.util.Set;
 
 import utils.Period;
 
+import managementsystem.Ask;
 import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import config.BorrowerConstants;
@@ -58,42 +59,37 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	public Manager(String i, String n) {
 		super(i, n);
 	}
-
-	public void accept(Loan loan) {
-		loan.setAccepted(true);
-	}
-
+	
 	// Methods
 
-	/**
-	 * Checks if the loan is valid.
-	 * 
-	 * @param l
-	 * 
-	 * @param i
-	 * 
-	 * @return true if it is, false otherwise
-	 */
-	public boolean checkLoan(Loan l, ManagementSystem ms) {
-		Borrower bwer = l.getBorrower();
-		Period period = l.getPeriod();
-		HashMap<Model, ArrayList<Equipment>> askedStuff = l.getStuff();
+	public void accept(Ask ask) {
+		// TODO
+	}
+	
+	public HashMap<Ask, String> checkAsks() {
+		return;
+	}
+
+	public String checkAsk(Ask a, ManagementSystem ms) {
+		Borrower bwer = a.getBorrower();
+		Period period = a.getPeriod();
+		HashMap<Model, ArrayList<Equipment>> askedStuff = a.getAskedStuff();
 		if (bwer == null || period == null || askedStuff == null
 				|| askedStuff.isEmpty())
 			throw new IllegalArgumentException("null argument fields");
 
 		if (!checkBorrower(bwer, period)) {
-			l.setAccepted(false);
+			a.setAccepted(false);
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}
 		if (!checkModels(askedStuff, period)) {
-			l.setAccepted(false);
+			a.setAccepted(false);
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}
 		if (!checkEquipments(askedStuff, period, ms)) {
-			l.setAccepted(false);
+			a.setAccepted(false);
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}

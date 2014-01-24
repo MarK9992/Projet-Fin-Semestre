@@ -33,7 +33,6 @@ public class Loan implements Serializable {
 	private HashMap<Model, ArrayList<Equipment>> stuff;
 	private Period period;
 	private Borrower borrower;
-	private boolean accepted;
 	private boolean givenBack;
 
 	// Constructors
@@ -55,7 +54,6 @@ public class Loan implements Serializable {
 		}
 		period = ask.getPeriod();
 		borrower = ask.getBorrower();
-		accepted = false;
 		givenBack = false;
 	}
 
@@ -94,7 +92,7 @@ public class Loan implements Serializable {
 	 */
 	private void containsModel(Model model) {
 		Set<Model> keys = stuff.keySet();
-		
+
 		if (!keys.contains(model))
 			throw new IllegalArgumentException(
 					"Model looked for in loan was not asked.");
@@ -106,8 +104,6 @@ public class Loan implements Serializable {
 	 * @return a string description of its status
 	 */
 	public String status() {
-		if (!accepted)
-			return "not accepted";
 		if (period.today())
 			return "ongoing";
 		if (period.daysFromNow() < 0)
@@ -123,8 +119,7 @@ public class Loan implements Serializable {
 	@Override
 	public String toString() {
 		return "stuff: " + stuff + "\nperiod: " + period + "\nborrower: "
-				+ borrower + "\naccepted: " + accepted + "\ngivenBack: "
-				+ givenBack;
+				+ borrower + "\ngivenBack: " + givenBack;
 	}
 
 	// Getters and setters
@@ -156,25 +151,6 @@ public class Loan implements Serializable {
 	 */
 	public Borrower getBorrower() {
 		return borrower;
-	}
-
-	/**
-	 * Returns the loan's acceptance. If he was approved by a manager or not.
-	 * 
-	 * @return true if yes, false otherwise
-	 */
-	public boolean isAccepted() {
-		return accepted;
-	}
-
-	/**
-	 * Sets the acceptance of the loan.
-	 * 
-	 * @param accepted
-	 *            the new value of the accepted field
-	 */
-	public void setAccepted(boolean accepted) {
-		this.accepted = accepted;
 	}
 
 	/**
