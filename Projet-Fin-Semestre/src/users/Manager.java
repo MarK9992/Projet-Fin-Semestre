@@ -1,5 +1,6 @@
 package users;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,8 +63,19 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	
 	// Methods
 
-	public void accept(Ask ask) {
-		// TODO
+	public void acceptAsk(Ask ask, ManagementSystem ms) throws IOException {
+		Loan loan = new Loan(ask);
+		Set<Model> keys = ask.getAskedStuff().keySet();
+		Iterator<Model> it = keys.iterator();
+		Model key;
+		
+		while(it.hasNext()) {
+			key = it.next();
+			for(int i = 0; i < ask.getAskedStuff().get(key); i++)
+				loan.addEquipment(ms.findAvailableEquipmentAt(key, ask.getPeriod()));
+		}
+		ms.removeAsk(ask);
+		ms.addLoan(loan);
 	}
 	
 	public HashMap<Ask, String> checkAsks() {
