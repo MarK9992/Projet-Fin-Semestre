@@ -1,6 +1,9 @@
 package users;
 
+import java.io.IOException;
 import java.io.Serializable;
+
+import utils.StoreLoad;
 
 /**
  * Super class User, defines all common properties to users.
@@ -36,9 +39,23 @@ public abstract class User implements Serializable{
 	 *            the name of the new user
 	 */
 	public User(String i, String n) {
+		StoreLoad seria = new StoreLoad();
+		try {
+			counter = (Integer) seria.Input("CounterUser");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("le fichier Var.data n'existe pas. Creation...");
+		}
 		id = i + "-" + counter;
 		name = n;
 		counter++;
+		try {
+			seria.Output(counter, "CounterUser");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// Methods
