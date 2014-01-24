@@ -8,6 +8,9 @@ import java.util.HashSet;
 
 import org.junit.Test;
 
+import config.Model;
+import config.Models;
+
 import users.Borrower;
 import utils.Period;
 
@@ -23,12 +26,12 @@ public class LoanTest {
 
 	@Test
 	public void constructorsTest() {
-		HashMap<String, Integer> hm = new HashMap<String, Integer>();
-		hm.put("Ipad3", 3);
-		hm.put("Vengeance2100", 1);
-		HashSet<String> hs = new HashSet<String>();
-		hs.add("Ipad3");
-		hs.add("Vengeance2100");
+		HashMap<Model, Integer> hm = new HashMap<Model, Integer>();
+		hm.put(Models.getModels().findModelByName("Ipad3"), 3);
+		hm.put(Models.getModels().findModelByName("Vengeance2100"), 1);
+		HashSet<Model> hs = new HashSet<Model>();
+		hs.add(Models.getModels().findModelByName("Ipad3"));
+		hs.add(Models.getModels().findModelByName("Vengeance2100"));
 		Loan l1 = new Loan();
 		Loan l2 = new Loan(hm, new Period(), new Borrower());
 
@@ -36,9 +39,12 @@ public class LoanTest {
 		assertEquals(l1.getStuff().keySet().isEmpty(), true);
 		assertEquals(l2.getStuff().size(), 2);
 		assertEquals(l2.getStuff().keySet(), hs);
-		assertEquals(l2.getStuff().get("Vengeance2100"),
+		assertEquals(
+				l2.getStuff().get(Models.getModels().findModelByName("Ipad3")),
 				new ArrayList<Equipment>(1));
-		assertEquals(l2.getStuff().get("Ipad3"),
+		assertEquals(
+				l2.getStuff().get(
+						Models.getModels().findModelByName("Vengeance2100")),
 				new ArrayList<Equipment>(3));
 		System.out.println(l1 + "\n");
 		System.out.println(l2);

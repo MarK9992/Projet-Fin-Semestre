@@ -5,11 +5,11 @@ import utils.Period;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+import config.Model;
 import config.Models;
 
 import equipment.Equipment;
@@ -30,7 +30,7 @@ public class Loan implements Serializable {
 
 	// Fields
 
-	private HashMap<String, ArrayList<Equipment>> stuff;
+	private HashMap<Model, ArrayList<Equipment>> stuff;
 	private Period period;
 	private Borrower borrower;
 	private boolean accepted;
@@ -42,7 +42,7 @@ public class Loan implements Serializable {
 	 * period and a default Borrower.
 	 */
 	public Loan() {
-		this(new HashMap<String, Integer>(), new Period(), new Borrower());
+		this(new HashMap<Model, Integer>(), new Period(), new Borrower());
 	}
 
 	/**
@@ -59,12 +59,12 @@ public class Loan implements Serializable {
 	 * @param borrower
 	 *            the borrower who asks for the loan
 	 */
-	public Loan(HashMap<String, Integer> stuffAsked, Period p, Borrower borrower) {
-		Set<String> keys = stuffAsked.keySet();
-		Iterator<String> it = keys.iterator();
-		String key;
+	public Loan(HashMap<Model, Integer> stuffAsked, Period p, Borrower borrower) {
+		Set<Model> keys = stuffAsked.keySet();
+		Iterator<Model> it = keys.iterator();
+		Model key;
 
-		stuff = new HashMap<String, ArrayList<Equipment>>(stuffAsked.size());
+		stuff = new HashMap<Model, ArrayList<Equipment>>(stuffAsked.size());
 		while (it.hasNext()) {
 			key = it.next();
 			Models.containsModel(key);
@@ -86,6 +86,7 @@ public class Loan implements Serializable {
 	 */
 	public void addEquipment(Equipment e) {
 		containsModel(e.getModel());
+		// TODO check if more stuff is added than intended
 		stuff.get(e.getModel()).add(e);
 	}
 
@@ -108,9 +109,9 @@ public class Loan implements Serializable {
 	 * @param model
 	 *            the model to look for
 	 */
-	private void containsModel(String model) {
-		Set<String> keys = stuff.keySet();
-
+	private void containsModel(Model model) {
+		Set<Model> keys = stuff.keySet();
+		
 		if (!keys.contains(model))
 			throw new IllegalArgumentException(
 					"Model looked for in loan was not asked.");
@@ -151,7 +152,7 @@ public class Loan implements Serializable {
 	 * 
 	 * @return the HashMap stuff field
 	 */
-	public HashMap<String, ArrayList<Equipment>> getStuff() {
+	public HashMap<Model, ArrayList<Equipment>> getStuff() {
 		return stuff;
 	}
 
