@@ -44,12 +44,7 @@ public class Main {
 		stock.addUser(tata);
 		stock.addUser(titi);
 		stock.addUser(tutu);
-		/*
-		Model model1 = new Model("Chaise", 5, 8);
-		Model model2 = new Model("Tablette", 3, 8);
-		Model model3 = new Model("Portable", 9, 8);
-		Model model4 = new Model("Lit", 12, 8);
-		*/
+
 		HashMap<Model, Integer> map1 = new HashMap<Model, Integer>();
 		map1.put(Models.getModels().findModelByName("Chaise"), 2);
 		HashMap<Model, Integer> map2 = new HashMap<Model, Integer>();
