@@ -32,6 +32,7 @@ public class ManagementSystem {
 	// TODO tests
 
 	private ArrayList<Loan> loans;
+	private ArrayList<Ask> asks;
 	private HashMap<Model, ArrayList<Equipment>> inventory;
 	private ArrayList<User> users;
 
@@ -48,6 +49,7 @@ public class ManagementSystem {
 		inventory = new HashMap<Model, ArrayList<Equipment>>();
 		loans = new ArrayList<Loan>();
 		users = new ArrayList<User>();
+		asks = new ArrayList<Ask>();
 
 		try {
 			inventory = (HashMap<Model, ArrayList<Equipment>>) seria
@@ -188,6 +190,14 @@ public class ManagementSystem {
 	 */
 	public void removeUser(User u) {
 		users.remove(u);
+	}
+	
+	public void addAsk(Ask a) {
+		asks.add(a);
+	}
+	
+	public void removeAsk(Ask a) {
+		asks.remove(a);
 	}
 
 	// Equipment availability methods
@@ -459,5 +469,13 @@ public class ManagementSystem {
 	 */
 	public void setUsers(ArrayList<User> lu) {
 		users = lu;
+	}
+	
+	public ArrayList<Ask> getAsks() {
+		return asks;
+	}
+	
+	public void setAsks(ArrayList<Ask> la) {
+		asks = la;
 	}
 }
