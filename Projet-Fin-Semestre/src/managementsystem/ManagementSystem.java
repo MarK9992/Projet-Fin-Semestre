@@ -141,9 +141,12 @@ public class ManagementSystem {
 	 * 
 	 * @param e
 	 *            the equipment to remove
+	 * @throws IOException 
 	 */
-	public void removeEquipment(Equipment e) {
+	public void removeEquipment(Equipment e) throws IOException {
 		this.inventory.get(e.getModel()).remove(e);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.inventory, "Stock");
 	}
 
 	/**
@@ -164,9 +167,12 @@ public class ManagementSystem {
 	 * 
 	 * @param l
 	 *            the loan to remove
+	 * @throws IOException 
 	 */
-	public void removeLoan(Loan l) {
+	public void removeLoan(Loan l) throws IOException {
 		loans.remove(l);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.loans, "Loans");
 	}
 
 	/**
@@ -187,17 +193,24 @@ public class ManagementSystem {
 	 * 
 	 * @param u
 	 *            the user to remove
+	 * @throws IOException 
 	 */
-	public void removeUser(User u) {
+	public void removeUser(User u) throws IOException {
 		users.remove(u);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.users, "Users");
 	}
 	
-	public void addAsk(Ask a) {
+	public void addAsk(Ask a) throws IOException {
 		asks.add(a);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.asks, "Asks");
 	}
 	
-	public void removeAsk(Ask a) {
+	public void removeAsk(Ask a) throws IOException {
 		asks.remove(a);
+		StoreLoad seria = new StoreLoad();
+		seria.Output(this.asks, "Asks");
 	}
 
 	// Equipment availability methods
