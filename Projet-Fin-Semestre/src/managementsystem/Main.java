@@ -3,11 +3,9 @@ package managementsystem;
 import java.io.IOException;
 
 import config.BorrowerType;
-import config.Model;
 import config.Models;
 
 import users.Borrower;
-import users.User;
 
 import equipment.Equipment;
 

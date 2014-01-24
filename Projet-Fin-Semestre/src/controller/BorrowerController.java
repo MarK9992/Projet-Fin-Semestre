@@ -72,10 +72,6 @@ public class BorrowerController {
             if (selected.isEmpty())
                 return;
             CreateLoanView v = new CreateLoanView();
-            System.out.println(idBorrower);
-            System.out.println(selected);
-            System.out.println(ms);
-            System.out.println(v);
             new CreateLoanController(idBorrower, selected, ms, v);
         }
     }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import config.Model;
+import config.Models;
 
 import managementsystem.Ask;
 import managementsystem.ManagementSystem;
@@ -37,7 +38,7 @@ public class CreateLoanController {
         // Fulfillment of the list
         HashMap<String, Integer> labels = new HashMap<String, Integer>();
         for (int i = 0; i < models.size(); i++) {
-            labels.put(models.get(i).getName(),ms.getInventory().get(models.get(i)).size());
+            labels.put(models.get(i).getName(),Models.getModels().findModelByName(models.get(i).getName()).getLoanQuantityLimit());
         }
 
         v.fillDevicesList(labels);
