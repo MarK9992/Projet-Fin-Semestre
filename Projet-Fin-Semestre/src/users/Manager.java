@@ -14,6 +14,7 @@ import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import config.BorrowerConstants;
 import config.Model;
+import config.Models;
 import equipment.Equipment;
 
 /**
@@ -60,26 +61,38 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	public Manager(String i, String n) {
 		super(i, n);
 	}
-	
+
 	// Methods
 
-	public void acceptAsk(Ask ask, ManagementSystem ms) throws IOException {
+	public void addModel(Model m) {
+		Models.getModels().add(m);
+	}
+
+	public void removeModel(Model m) {
+		Models.getModels().remove(m);
+	}
+
+	public void acceptAsk(Ask ask, ManagementSystem ms) throws IOException,
+			NullPointerException {
 		Loan loan = new Loan(ask);
 		Set<Model> keys = ask.getAskedStuff().keySet();
 		Iterator<Model> it = keys.iterator();
 		Model key;
-		
-		while(it.hasNext()) {
+
+		while (it.hasNext()) {
 			key = it.next();
-			for(int i = 0; i < ask.getAskedStuff().get(key); i++)
-				loan.addEquipment(ms.findAvailableEquipmentAt(key, ask.getPeriod()));
+			for (int i = 0; i < ask.getAskedStuff().get(key); i++)
+				loan.addEquipment(ms.findAvailableEquipmentAt(key,
+						ask.getPeriod()));
 		}
 		ms.removeAsk(ask);
 		ms.addLoan(loan);
 	}
-	
-	public HashMap<Ask, String> checkAsks() {
-		return;
+
+	public HashMap<Ask, String> checkAsks(ManagementSystem ms) {
+		HashMap<Ask, String> hm = new HashMap<Ask, String>();
+		
+		for(Ask a: )
 	}
 
 	public String checkAsk(Ask a, ManagementSystem ms) {
@@ -91,20 +104,21 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 			throw new IllegalArgumentException("null argument fields");
 
 		if (!checkBorrower(bwer, period)) {
-			a.setAccepted(false);
+			return "Invalid borrower rights for the asked period.";
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}
 		if (!checkModels(askedStuff, period)) {
-			a.setAccepted(false);
+			return "Invalid ask for asked models.";
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}
 		if (!checkEquipments(askedStuff, period, ms)) {
-			a.setAccepted(false);
+			return "Equipment unavailable.";
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}
+		return "OK";
 	}
 
 	/**
@@ -153,7 +167,9 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 		while (it.hasNext()) {
 			model = it.next();
 			if (p.getDuration() > model.getLoanDurationLimit()
-					|| model.getLoanQuantityLimit() > hm.get(model).size()) // ne marche pas
+					|| model.getLoanQuantityLimit() > hm.get(model).size()) // ne
+																			// marche
+																			// pas
 				return false;
 		}
 		return true;
@@ -191,7 +207,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 			reservation_limit = STUDENT_LOAN_RESERVATION_LIMIT;
 		}
 	}
-	
+
 	/*
 	 * TODO update in relation to the new HashMap field of Loan class /** Puts
 	 * away a loan, updates references of the loanList, and the equipment
