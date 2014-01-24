@@ -13,11 +13,7 @@ public class Statistics {
     }
     
     public int getNumberOfEquipments(){
-        int sum = 0;
-        for(Model m : ms.getInventory().keySet()){
-            sum+=ms.getInventory().get(m).size();
-        }
-        return sum;
+        return ms.getNumberElements();
     }
     
     public int getNumberOfLoans(){
@@ -28,7 +24,7 @@ public class Statistics {
         int sum;
         int nbLoans = 0;
         Model mostBorrowed = null;
-        for(Model m : ms.getInventory().keySet()){
+        for(Model m : ms.getModels()){
             sum=0;
             for(int i=0; i<ms.getLoans().size(); i++){
                 if(ms.getLoans().get(i).getStuff().containsKey(m)){
@@ -44,21 +40,15 @@ public class Statistics {
     }
     
     public Borrower getBiggestBorrower(){
-        int sum;
         int nbLoans = 0;
         Borrower biggestBorrower = null;
         for(int i = 0; i<ms.getUsers().size(); i++){
             if(!(ms.getUsers().get(i) instanceof Borrower)){
                 continue;
             }
-            sum=0;
-            for(int j=0; j<ms.getLoans().size(); j++){
-                if(ms.getLoans().get(j).getBorrower().equals(ms.getUsers().get(i))){
-                    sum++;
-                }
-            }
-            if(sum > nbLoans){
-                nbLoans = sum;
+            int nb = ms.getLoansByBorrower((Borrower)ms.getUsers().get(i)).size();
+            if(nb > nbLoans){
+                nbLoans = nb;
                 biggestBorrower = (Borrower) ms.getUsers().get(i);
             }
         }

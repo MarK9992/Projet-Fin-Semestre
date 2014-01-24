@@ -31,7 +31,7 @@ public class StatisticsController {
                 new JLabel("Number of equipments : "
                         + stat.getNumberOfEquipments()));
         v.getCenterPanel().add(
-                new JLabel("Number of loans : " + stat.getNumberOfLoans()));
+                new JLabel("Number of accepted loans : " + stat.getNumberOfLoans()));
         v.getCenterPanel().add(
                 new JLabel("Most borrowed model : "
                         + stat.getMostBorrowedModel()));
