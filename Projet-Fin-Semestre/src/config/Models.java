@@ -39,7 +39,7 @@ public class Models extends HashSet<Model> implements Serializable {
 
         try {
             models = (Models) seria
-                    .Input("Stock");      
+                    .Input("Models");      
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
