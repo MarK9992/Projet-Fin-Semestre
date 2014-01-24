@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import config.Model;
+
 import managementsystem.Loan;
 import managementsystem.ManagementSystem;
 import users.Borrower;
@@ -19,9 +21,9 @@ public class CreateLoanController {
     private String idBorrower;
     private ManagementSystem ms;
     private CreateLoanView view;
-    private List<String> models;
+    private List<Model> models;
 
-    public CreateLoanController(String idBorrower, List<String> models,
+    public CreateLoanController(String idBorrower, List<Model> models,
             ManagementSystem m, CreateLoanView v) {
         this.idBorrower = idBorrower;
         this.models = models;
@@ -35,7 +37,7 @@ public class CreateLoanController {
         // Fulfillment of the list
         HashMap<String, Integer> labels = new HashMap<String, Integer>();
         for (int i = 0; i < models.size(); i++) {
-            labels.put(models.get(i),ms.getInventory().get(models.get(i)).size());
+            labels.put(models.get(i).getName(),ms.getInventory().get(models.get(i)).size());
         }
 
         v.fillDevicesList(labels);
@@ -54,7 +56,7 @@ public class CreateLoanController {
      * @throws Exception
      *             if the start date is after the end date
      */
-    public void borrow(Map<String, Integer> devices, Date startDate,
+    public void borrow(Map<Model, Integer> devices, Date startDate,
             Date endDate) throws IllegalArgumentException, IOException {
         Calendar start = Calendar.getInstance();
         start.setTime(startDate);
@@ -62,7 +64,7 @@ public class CreateLoanController {
         end.setTime(endDate);
         Period p = new Period(start, end);
         Borrower b = (Borrower)ms.getUser(idBorrower);
-        Loan l = b.book((HashMap<String, Integer>)devices, p);
+        Loan l = b.book((HashMap<Model, Integer>)devices, p);
         ms.addLoan(l);
     }
 
@@ -80,7 +82,7 @@ public class CreateLoanController {
             Date startDate = view.getDateModelStart().getDate();
             Date endDate = view.getDateModelEnd().getDate();
 
-            Map<String, Integer> devices = new HashMap<String, Integer>();
+            Map<Model, Integer> devices = new HashMap<Model, Integer>();
             for (int i = 0; i < models.size(); i++) {
                 devices.put(models.get(i), (Integer) view
                         .getNumberModelList().get(i).getValue());

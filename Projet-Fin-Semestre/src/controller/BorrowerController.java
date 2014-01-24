@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 
+import config.Model;
+
 import managementsystem.ManagementSystem;
 import view.AccountView;
 import view.BorrowerView;
@@ -16,14 +18,14 @@ public class BorrowerController {
     private String idBorrower;
     private ManagementSystem ms;
     private BorrowerView view;
-    private List<String> models;
+    private List<Model> models;
 
     public BorrowerController(String idBorrower, ManagementSystem m, BorrowerView v) {
         this.idBorrower = idBorrower;
         ms = m;
         view = v;
         view.setTitle(ms.getUser(idBorrower).getName());
-        models = new LinkedList<String>();
+        models = new LinkedList<Model>();
 
         obtainDevicesStrings();
 
@@ -57,7 +59,7 @@ public class BorrowerController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            List<String> selected = new LinkedList<String>();
+            List<Model> selected = new LinkedList<Model>();
 
             for (int i = 0; i < view.getListModel().getSize(); i++) {
                 for (int j = 0; j < view.getDevicesList().getSelectedIndices().length; j++) {
@@ -95,12 +97,12 @@ public class BorrowerController {
      */
     public void obtainDevicesStrings() {
         models.clear();
-        for (String s : ms.getInventory().keySet()) {
-            if(ms.getInventory().get(s).size() == 0){
+        for (Model m : ms.getInventory().keySet()) {
+            if(ms.getInventory().get(m).size() == 0){
                 continue;
             }
-            models.add(s);
-            view.getListModel().addElement(s);
+            models.add(m);
+            view.getListModel().addElement(m.getName());
         }
     }
 }
