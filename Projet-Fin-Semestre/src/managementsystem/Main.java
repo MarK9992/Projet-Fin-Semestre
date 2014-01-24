@@ -37,39 +37,41 @@ public class Main {
 		
 		Borrower toto = new Borrower("totoS", student);
 		Borrower tata = new Borrower("tataS", student);
-		Borrower titi = new Borrower("titiT", student);
-		Borrower tutu = new Borrower("tutuT", student);
+		Borrower titi = new Borrower("titiT", teacher);
+		Borrower tutu = new Borrower("tutuT", teacher);
 		
 		stock.addUser(toto);
 		stock.addUser(tata);
 		stock.addUser(titi);
 		stock.addUser(tutu);
-		
+		/*
 		Model model1 = new Model("Chaise", 5, 8);
 		Model model2 = new Model("Tablette", 3, 8);
 		Model model3 = new Model("Portable", 9, 8);
 		Model model4 = new Model("Lit", 12, 8);
-		
+		*/
 		HashMap<Model, Integer> map1 = new HashMap<Model, Integer>();
-		map1.put(model1, 2);
+		map1.put(Models.getModels().findModelByName("Chaise"), 2);
 		HashMap<Model, Integer> map2 = new HashMap<Model, Integer>();
-		map1.put(model2, 3);
+		map1.put(Models.getModels().findModelByName("Lit"), 3);
 		HashMap<Model, Integer> map3 = new HashMap<Model, Integer>();
-		map1.put(model3, 5);
+		map1.put(Models.getModels().findModelByName("Tablette"), 5);
 		HashMap<Model, Integer> map4 = new HashMap<Model, Integer>();
-		map1.put(model4, 11);
+		map1.put(Models.getModels().findModelByName("Portable"), 11);
 		
 		Ask ask1 = new Ask(map1,p,toto);
 		Ask ask2 = new Ask(map2,p,tata);
 		Ask ask3 = new Ask(map3,p,titi);
 		Ask ask4 = new Ask(map4,p,tutu);
 		Ask ask5 = new Ask(map3,p,toto);
+		Ask ask6 = new Ask(map3,p,tata);
 		
 		stock.addAsk(ask1);
 		stock.addAsk(ask2);
 		stock.addAsk(ask3);
 		stock.addAsk(ask4);
 		stock.addAsk(ask5);
+		stock.addAsk(ask6);
 
 		System.out.println(stock);
 	}
