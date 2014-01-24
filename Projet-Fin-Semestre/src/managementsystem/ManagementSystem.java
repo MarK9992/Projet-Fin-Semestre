@@ -54,13 +54,14 @@ public class ManagementSystem {
         try {
             inventory = (HashMap<Model, ArrayList<Equipment>>) seria
                     .Input("Stock");
+            asks = (ArrayList<Ask>) seria.Input("Asks");
             loans = (ArrayList<Loan>) seria.Input("Loans");
             users = (ArrayList<User>) seria.Input("Users");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             System.out
-                    .println("le fichier Stock.data et/ou Loans.data n'existe(nt) pas. Creation ...");
+                    .println("Un des fichiers est manquant. Creation ...");
             while (it.hasNext()) {
                 key = it.next();
                 inventory.put(key, new ArrayList<Equipment>());
@@ -104,13 +105,14 @@ public class ManagementSystem {
         try {
             inventory = (HashMap<Model, ArrayList<Equipment>>) seria
                     .Input("Stock");
+            asks = (ArrayList<Ask>) seria.Input("Asks");
             loans = (ArrayList<Loan>) seria.Input("Loans");
             users = (ArrayList<User>) seria.Input("Users");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             System.out
-                    .println("le fichier Stock.data et/ou Loans.data n'existe(nt) pas. Creation ...");
+                    .println("Un des fichiers est manquant. Creation ...");
             while (it.hasNext()) {
                 key = it.next();
                 Models.containsModel(key);
