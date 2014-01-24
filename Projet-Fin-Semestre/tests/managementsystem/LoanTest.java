@@ -33,7 +33,7 @@ public class LoanTest {
 		hs.add(Models.getModels().findModelByName("Ipad3"));
 		hs.add(Models.getModels().findModelByName("Vengeance2100"));
 		Loan l1 = new Loan();
-		Loan l2 = new Loan(hm, new Period(), new Borrower());
+		Loan l2 = new Loan(new Ask(hm, new Period(), new Borrower()));
 
 		assertEquals(l1.getStuff().size(), 0);
 		assertEquals(l1.getStuff().keySet().isEmpty(), true);

@@ -37,29 +37,12 @@ public class Loan implements Serializable {
 	private boolean givenBack;
 
 	// Constructors
-	/**
-	 * Default constructor, constructs a loan with an empty HashMap, a default
-	 * period and a default Borrower.
-	 */
 	public Loan() {
-		this(new HashMap<Model, Integer>(), new Period(), new Borrower());
+		this(new Ask());
 	}
 
-	/**
-	 * Constructor used to make a reservation of a model. Constructs a loan with
-	 * a HashMap where keys are identical to those of the HashMap given but
-	 * where values are ArrayLists of Equipments of size equal to the matching
-	 * integer value of the given HashMap.
-	 * 
-	 * @param stuffAsked
-	 *            HashMap where keys are the asked models and values the
-	 *            matching wanted number
-	 * @param p
-	 *            the period of the loan
-	 * @param borrower
-	 *            the borrower who asks for the loan
-	 */
-	public Loan(HashMap<Model, Integer> stuffAsked, Period p, Borrower borrower) {
+	public Loan(Ask ask) {
+		HashMap<Model, Integer> stuffAsked = ask.getAskedStuff();
 		Set<Model> keys = stuffAsked.keySet();
 		Iterator<Model> it = keys.iterator();
 		Model key;
@@ -70,8 +53,8 @@ public class Loan implements Serializable {
 			Models.containsModel(key);
 			stuff.put(key, new ArrayList<Equipment>(stuffAsked.get(key)));
 		}
-		period = p;
-		this.borrower = borrower;
+		period = ask.getPeriod();
+		borrower = ask.getBorrower();
 		accepted = false;
 		givenBack = false;
 	}
