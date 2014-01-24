@@ -1,12 +1,15 @@
 package managementsystem;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.io.Serializable;
 
 import users.Borrower;
 import utils.Period;
 
 import config.Model;
+import config.Models;
 
 public class Ask implements Serializable {
 
@@ -23,6 +26,14 @@ public class Ask implements Serializable {
 	}
 
 	public Ask(HashMap<Model, Integer> aS, Period p, Borrower b) {
+		Set<Model> keys = aS.keySet();
+		Iterator<Model> it = keys.iterator();
+		Model model;
+		
+		while(it.hasNext()) {
+			model = it.next();
+			Models.containsModel(model);
+		}
 		askedStuff = aS;
 		period = p;
 		borrower = b;
