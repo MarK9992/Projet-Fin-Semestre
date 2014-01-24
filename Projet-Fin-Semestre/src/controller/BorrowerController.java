@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import config.Model;
+import config.Models;
 
 import managementsystem.ManagementSystem;
 import view.AccountView;
@@ -71,6 +72,10 @@ public class BorrowerController {
             if (selected.isEmpty())
                 return;
             CreateLoanView v = new CreateLoanView();
+            System.out.println(idBorrower);
+            System.out.println(selected);
+            System.out.println(ms);
+            System.out.println(v);
             new CreateLoanController(idBorrower, selected, ms, v);
         }
     }
@@ -101,7 +106,7 @@ public class BorrowerController {
             if(ms.getInventory().get(m).size() == 0){
                 continue;
             }
-            models.add(m);
+            models.add(Models.getModels().findModelByName(m.getName()));
             view.getListModel().addElement(m.getName());
         }
     }
