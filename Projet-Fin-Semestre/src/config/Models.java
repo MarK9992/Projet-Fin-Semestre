@@ -1,8 +1,18 @@
 package config;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+
+import managementsystem.Ask;
+import managementsystem.Loan;
+import equipment.Equipment;
+
+import users.User;
+import utils.StoreLoad;
 
 /**
  * Singleton for the set of models available in the management system.
@@ -21,8 +31,21 @@ public class Models extends HashSet<Model> implements Serializable {
 	private Models() {
 		add(new Model("Ipad3", 3, 7));
 		add(new Model("Vengeance2100", 12, 10));
-		add(new Model("XperiaZ", 7, 14));
+		add(new Model("XperiaZ", 1, 7));
+		add(new Model("Lit", 4, 12));
+		add(new Model("Chaise", 4, 8));
 		add(new Model("unknown", 0, 0));
+		StoreLoad seria = new StoreLoad();
+
+        try {
+            models = (Models) seria
+                    .Input("Stock");      
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out
+                    .println("Le fichier Models.data est manquant. Creation ...");
+        }
 	}
 
 	/**
@@ -51,6 +74,13 @@ public class Models extends HashSet<Model> implements Serializable {
 			throw new IllegalArgumentException(
 					"name of model to add already exists");
 		add(new Model(name, loan_duration_limit, loan_quantity_limit));
+		StoreLoad seria = new StoreLoad();
+        try {
+			seria.Output(models, "Models");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -61,6 +91,13 @@ public class Models extends HashSet<Model> implements Serializable {
 	 */
 	public void removeModel(String model) {
 		remove(findModelByName(model));
+		StoreLoad seria = new StoreLoad();
+        try {
+			seria.Output(models, "Models");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
