@@ -36,8 +36,8 @@ public class Hardware extends Equipment {
 	 * @throws IOException
 	 */
 	public Hardware() throws IOException {
-		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, ManagementSystem.getManagementSystem().getModels()
-				.findModelByName("unknown"));
+		this("unknown", 10, Processor.UNKNOWN, OS.UNKNOWN, ManagementSystem
+				.getManagementSystem().getModels().findModelByName("unknown"));
 	}
 
 	/**
@@ -52,8 +52,8 @@ public class Hardware extends Equipment {
 	 *            its processor
 	 * @param os
 	 *            its operating system
-	 * @param type
-	 *            its type
+	 * @param model
+	 *            its model
 	 * @throws IOException
 	 */
 	public Hardware(String maker, double screenSize, Processor proc, OS os,

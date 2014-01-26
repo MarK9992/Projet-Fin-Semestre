@@ -16,13 +16,19 @@ import equipment.Equipment;
 
 /**
  * Loan class, contains all informations about a loan. A HashMap contains the
- * equipment borrowed as values and the models matching the following values as
- * keys. It also contains the period corresponding to the loan, the borrower and
- * booleans value in relation to the acceptance and the return of the loan.
+ * equipment borrowed as values and the models matching the values as keys. It
+ * also contains the period corresponding to the loan, the borrower and a
+ * boolean value in relation to the return of the loan.
  * 
- * initial code by : Marc Karassev; modified by : Marc Karassev
+ * A Loan is constructed with an Ask class instance. The period and borrower
+ * fields are copied and the Loan's HashMap field is filled with the same key
+ * set as the Ask's one but the values are the corresponding equipments.
  * 
- * @author Marc Karassev
+ * Should be a super class for Ask and Loan.
+ * 
+ * initial code by : Marc Karassev; modified by : Marc Karassev, Anthony Saraïs
+ * 
+ * @author Marc Karassev, Anthony Saraïs
  * 
  */
 public class Loan implements Serializable {
@@ -36,10 +42,19 @@ public class Loan implements Serializable {
 	private boolean givenBack;
 
 	// Constructors
+	/**
+	 * Default constructor, constructs a new Loan with a default ask.
+	 */
 	public Loan() {
 		this(new Ask());
 	}
 
+	/**
+	 * Constructs a new loan by using the specified ask.
+	 * 
+	 * @param ask
+	 *            the ask characterizing the loan
+	 */
 	public Loan(Ask ask) {
 		HashMap<Model, Integer> stuffAsked = ask.getAskedStuff();
 		Set<Model> keys = stuffAsked.keySet();
@@ -49,7 +64,8 @@ public class Loan implements Serializable {
 		stuff = new HashMap<Model, ArrayList<Equipment>>(stuffAsked.size());
 		while (it.hasNext()) {
 			key = it.next();
-			ManagementSystem.getManagementSystem().getModels().containsModel(key);
+			ManagementSystem.getManagementSystem().getModels()
+					.containsModel(key);
 			stuff.put(key, new ArrayList<Equipment>(stuffAsked.get(key)));
 		}
 		period = ask.getPeriod();

@@ -10,7 +10,7 @@ import utils.StoreLoad;
 /**
  * Singleton for the set of models available in the management system.
  * 
- * @author Marc Karassev
+ * @author Marc Karassev, Anthony Saraïs
  * 
  */
 public class Models extends HashSet<Model> implements Serializable {
@@ -34,15 +34,6 @@ public class Models extends HashSet<Model> implements Serializable {
             e.printStackTrace();
         }
 	}
-
-	/**
-	 * Returns the current set of models.
-	 * 
-	 * @return the set of models
-	 */
-	/*public static Models getModels() {
-		return models;
-	}*/
 
 	/**
 	 * Adds a new model in the models set. The name given should not already
@@ -113,8 +104,8 @@ public class Models extends HashSet<Model> implements Serializable {
 	 *            the model to check
 	 */
 	public void containsModel(Model m) {
-		/*if (!contains(m))
+		if (!contains(m))
 			throw new IllegalArgumentException(
-					"Model given does not belong to Models set.");*/
+					"Model given does not belong to Models set.");
 	}
 }

@@ -14,74 +14,74 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 public class BorrowerView extends JFrame {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JLabel devicesLabel;
-    private JList<String> devicesList;
-    private JButton loansButton;
-    private JButton borrowButton;
-    private JButton backButton;
+	private JLabel devicesLabel;
+	private JList<String> devicesList;
+	private JButton loansButton;
+	private JButton borrowButton;
+	private JButton backButton;
 
-    private DefaultListModel<String> listModel;
+	private DefaultListModel<String> listModel;
 
-    /**
-     * The view for the borrowers (Students and Teachers)
-     */
-    public BorrowerView() {
-        devicesLabel = new JLabel("Devices : ");
-        listModel = new DefaultListModel<String>();
-        borrowButton = new JButton("Borrow...");
-        backButton = new JButton("Back");
-        loansButton = new JButton("See loans history");
-        devicesList = new JList<String>(listModel);
-        devicesList
-                .setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+	/**
+	 * The view for the borrowers (Students and Teachers)
+	 */
+	public BorrowerView() {
+		devicesLabel = new JLabel("Devices : ");
+		listModel = new DefaultListModel<String>();
+		borrowButton = new JButton("Borrow...");
+		backButton = new JButton("Back");
+		loansButton = new JButton("See loans history");
+		devicesList = new JList<String>(listModel);
+		devicesList
+				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-        setLayout(new BorderLayout());
-        setSize(new Dimension(400, 600));
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        add(loansButton, BorderLayout.NORTH);
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.add(devicesLabel, BorderLayout.NORTH);
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(devicesList);
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
-        add(centerPanel, BorderLayout.CENTER);
+		setLayout(new BorderLayout());
+		setSize(new Dimension(400, 600));
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel southPanel = new JPanel(new GridLayout(1,2));
-        southPanel.add(borrowButton);
-        southPanel.add(backButton);
-        add(southPanel, BorderLayout.SOUTH);
+		add(loansButton, BorderLayout.NORTH);
+		JPanel centerPanel = new JPanel(new BorderLayout());
+		centerPanel.add(devicesLabel, BorderLayout.NORTH);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(devicesList);
+		centerPanel.add(scrollPane, BorderLayout.CENTER);
+		add(centerPanel, BorderLayout.CENTER);
 
-        setVisible(true);
-    }
+		JPanel southPanel = new JPanel(new GridLayout(1, 2));
+		southPanel.add(borrowButton);
+		southPanel.add(backButton);
+		add(southPanel, BorderLayout.SOUTH);
 
-    // Getters and setters
+		setVisible(true);
+	}
 
-    public JButton getLoansButton() {
-        return loansButton;
-    }
+	// Getters and setters
 
-    public JLabel getDevicesLabel() {
-        return devicesLabel;
-    }
+	public JButton getLoansButton() {
+		return loansButton;
+	}
 
-    public JList<String> getDevicesList() {
-        return devicesList;
-    }
+	public JLabel getDevicesLabel() {
+		return devicesLabel;
+	}
 
-    public JButton getBorrowButton() {
-        return borrowButton;
-    }
+	public JList<String> getDevicesList() {
+		return devicesList;
+	}
 
-    public DefaultListModel<String> getListModel() {
-        return listModel;
-    }
+	public JButton getBorrowButton() {
+		return borrowButton;
+	}
 
-    public JButton getBackButton() {
-        return backButton;
-    }
+	public DefaultListModel<String> getListModel() {
+		return listModel;
+	}
+
+	public JButton getBackButton() {
+		return backButton;
+	}
 }

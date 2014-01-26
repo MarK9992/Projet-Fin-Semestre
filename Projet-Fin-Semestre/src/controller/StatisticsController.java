@@ -17,43 +17,44 @@ import managementsystem.ManagementSystem;
  * 
  */
 public class StatisticsController {
-    private ManagementSystem ms;
-    private StatisticsView view;
+	private ManagementSystem ms;
+	private StatisticsView view;
 
-    public StatisticsController(ManagementSystem m, StatisticsView v) {
-        ms = m;
-        view = v;
+	public StatisticsController(ManagementSystem m, StatisticsView v) {
+		ms = m;
+		view = v;
 
-        v.getOkButton().addActionListener(new OkListener());
-        Statistics stat = new Statistics(ms);
-        v.getCenterPanel().setLayout(new GridLayout(4, 1));
-        v.getCenterPanel().add(
-                new JLabel("Number of equipments : "
-                        + stat.getNumberOfEquipments()));
-        v.getCenterPanel().add(
-                new JLabel("Number of accepted loans : " + stat.getNumberOfLoans()));
-        v.getCenterPanel().add(
-                new JLabel("Most borrowed model : "
-                        + stat.getMostBorrowedModel()));
-        if (stat.getBiggestBorrower() != null) {
-            v.getCenterPanel().add(
-                    new JLabel("Biggest borrower : "
-                            + stat.getBiggestBorrower().getName()));
-        }
-    }
+		v.getOkButton().addActionListener(new OkListener());
+		Statistics stat = new Statistics(ms);
+		v.getCenterPanel().setLayout(new GridLayout(4, 1));
+		v.getCenterPanel().add(
+				new JLabel("Number of equipments : "
+						+ stat.getNumberOfEquipments()));
+		v.getCenterPanel().add(
+				new JLabel("Number of accepted loans : "
+						+ stat.getNumberOfLoans()));
+		v.getCenterPanel().add(
+				new JLabel("Most borrowed model : "
+						+ stat.getMostBorrowedModel()));
+		if (stat.getBiggestBorrower() != null) {
+			v.getCenterPanel().add(
+					new JLabel("Biggest borrower : "
+							+ stat.getBiggestBorrower().getName()));
+		}
+	}
 
-    /**
-     * The listener of the ok button
-     * 
-     * @author Hugo
-     * 
-     */
+	/**
+	 * The listener of the ok button
+	 * 
+	 * @author Hugo
+	 * 
+	 */
 
-    public class OkListener implements ActionListener {
+	public class OkListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            view.dispose();
-        }
-    }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			view.dispose();
+		}
+	}
 }

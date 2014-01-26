@@ -18,75 +18,75 @@ import javax.swing.JTextField;
  */
 
 public class AccountView extends JFrame {
-    private static final long serialVersionUID = 1L;
-    private JLabel nameLabel;
-    private JTextField nameField;
-    private JComboBox<String> typeComboBox;
-    private JButton createButton;
-    private JButton cancelButton;
-    private final String[] comboBoxValues = {"Teacher", "Student", "Manager"};
+	private static final long serialVersionUID = 1L;
+	private JLabel nameLabel;
+	private JTextField nameField;
+	private JComboBox<String> typeComboBox;
+	private JButton createButton;
+	private JButton cancelButton;
+	private final String[] comboBoxValues = { "Teacher", "Student", "Manager" };
 
-    public AccountView() {
-        setTitle("Create Account / Sign in");
-        setSize(new Dimension(400, 200));
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public AccountView() {
+		setTitle("Create Account / Sign in");
+		setSize(new Dimension(400, 200));
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        nameLabel = new JLabel("First_name name : ");
-        nameField = new JTextField();
-        typeComboBox = new JComboBox<String>(comboBoxValues);
-        createButton = new JButton("OK");
-        cancelButton = new JButton("Cancel");
+		nameLabel = new JLabel("First_name name : ");
+		nameField = new JTextField();
+		typeComboBox = new JComboBox<String>(comboBoxValues);
+		createButton = new JButton("OK");
+		cancelButton = new JButton("Cancel");
 
-        GridLayout mainLayout = new GridLayout(3, 1);
-        setLayout(mainLayout);
+		GridLayout mainLayout = new GridLayout(3, 1);
+		setLayout(mainLayout);
 
-        JPanel topPanel = new JPanel();
-        GridLayout topLayout = new GridLayout(2, 2);
-        topPanel.setLayout(topLayout);
-        topPanel.add(nameLabel);
-        topPanel.add(nameField);
-        add(topPanel);
+		JPanel topPanel = new JPanel();
+		GridLayout topLayout = new GridLayout(2, 2);
+		topPanel.setLayout(topLayout);
+		topPanel.add(nameLabel);
+		topPanel.add(nameField);
+		add(topPanel);
 
-        JPanel centerPanel = new JPanel();
-        centerPanel.add(typeComboBox);
-        add(centerPanel);
+		JPanel centerPanel = new JPanel();
+		centerPanel.add(typeComboBox);
+		add(centerPanel);
 
-        JPanel botPanel = new JPanel();
-        GridLayout botLayout = new GridLayout(1, 2);
-        botPanel.setLayout(botLayout);
-        JPanel botLeftPan = new JPanel();
-        JPanel botRightPan = new JPanel();
-        botPanel.add(botLeftPan);
-        botPanel.add(botRightPan);
-        botLeftPan.add(createButton);
-        botRightPan.add(cancelButton);
-        add(botPanel);
+		JPanel botPanel = new JPanel();
+		GridLayout botLayout = new GridLayout(1, 2);
+		botPanel.setLayout(botLayout);
+		JPanel botLeftPan = new JPanel();
+		JPanel botRightPan = new JPanel();
+		botPanel.add(botLeftPan);
+		botPanel.add(botRightPan);
+		botLeftPan.add(createButton);
+		botRightPan.add(cancelButton);
+		add(botPanel);
 
-        setVisible(true);
-    }
+		setVisible(true);
+	}
 
-    // Getters and setters
+	// Getters and setters
 
-    public JTextField getNameField() {
-        return nameField;
-    }
+	public JTextField getNameField() {
+		return nameField;
+	}
 
-    public JComboBox<String> getTypeComboBox() {
-        return typeComboBox;
-    }
+	public JComboBox<String> getTypeComboBox() {
+		return typeComboBox;
+	}
 
-    public JButton getCreateButton() {
-        return createButton;
-    }
+	public JButton getCreateButton() {
+		return createButton;
+	}
 
-    public JButton getCancelButton() {
-        return cancelButton;
-    }
-    
-    public String[] getComboBoxValues() {
-        return comboBoxValues;
-    }
+	public JButton getCancelButton() {
+		return cancelButton;
+	}
+
+	public String[] getComboBoxValues() {
+		return comboBoxValues;
+	}
 
 }

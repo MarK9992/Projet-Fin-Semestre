@@ -35,11 +35,13 @@ public class Equipment implements Serializable {
 	/**
 	 * Default constructor, constructs a new equipment with unknown model and
 	 * manufacturer.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public Equipment() throws IOException {
-		
-		this("unkwown", ManagementSystem.getManagementSystem().getModels().findModelByName("unknown"));
+
+		this("unkwown", ManagementSystem.getManagementSystem().getModels()
+				.findModelByName("unknown"));
 	}
 
 	/**
@@ -49,12 +51,12 @@ public class Equipment implements Serializable {
 	 *            its manufacturer
 	 * @param model
 	 *            the model corresponding to this equipment
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public Equipment(String maker, Model model) throws IOException {
 		StoreLoad seria = new StoreLoad();
-		
-		if(!ManagementSystem.getManagementSystem().getModels().contains(model))
+
+		if (!ManagementSystem.getManagementSystem().getModels().contains(model))
 			throw new IllegalArgumentException(
 					"Model given does not belong to Models set.");
 		try {
@@ -78,7 +80,7 @@ public class Equipment implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "ID: " + id + ", made by: " + manufacturer ;
+		return "ID: " + id + ", made by: " + manufacturer;
 	}
 
 	// Getters and setters

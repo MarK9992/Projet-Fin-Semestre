@@ -17,7 +17,7 @@ import config.Model;
  * @author Marc Karassev
  * 
  */
-public class Borrower extends User implements Serializable{
+public class Borrower extends User implements Serializable {
 	// TODO tests
 
 	// Fields
@@ -66,11 +66,14 @@ public class Borrower extends User implements Serializable{
 
 	/**
 	 * Asks for equipments of specified models and for a period. Creates a new
-	 * loan corresponding to these standards.
+	 * ask corresponding to these standards.
+	 * 
+	 * The ask should be added to the management system here instead of in the
+	 * controllers.
 	 * 
 	 * @param askedStuff
-	 *            HashMap in which keys are models and values the askednumber of
-	 *            equipment of matching model
+	 *            HashMap in which keys are models and values the asked number
+	 *            of equipment of matching model
 	 * @param p
 	 *            period asked for the loan
 	 * @return the loan instance created

@@ -24,127 +24,133 @@ import managementsystem.ManagementSystem;
  * 
  */
 public class SimulationController {
-    private ManagementSystem ms;
-    private SimulationView view;
-    private List<String> states;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	private ManagementSystem ms;
+	private SimulationView view;
+	private List<String> states;
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-    public SimulationController(ManagementSystem m, SimulationView v) {
-        ms = m;
-        view = v;
-        states = new ArrayList<String>();
-        v.getOkButton().addActionListener(new OkListener());
-        v.getCurrentDay().setText(dateFormat.format(new Date()));
-        v.getPrevButton().addActionListener(new PrevListener());
-        v.getNextButton().addActionListener(new NextListener());
-        v.getLoansList().addMouseListener(new LoansListener());
-        
-        updateList();
-    }
-    
-    public void updateList(){
-        JList<String> loansList = view.getLoansList();
-        loansList.removeAll();
-        DefaultListModel<String> listModel = view.getListModel();
-        Calendar calendar = Calendar.getInstance();
-        try {
-            calendar.setTime(dateFormat.parse(view.getCurrentDay().getText()));
-        } catch (ParseException e1) {
-            e1.printStackTrace();
-        }
-        
-        // TODO fill list
-    }
+	public SimulationController(ManagementSystem m, SimulationView v) {
+		ms = m;
+		view = v;
+		states = new ArrayList<String>();
+		v.getOkButton().addActionListener(new OkListener());
+		v.getCurrentDay().setText(dateFormat.format(new Date()));
+		v.getPrevButton().addActionListener(new PrevListener());
+		v.getNextButton().addActionListener(new NextListener());
+		v.getLoansList().addMouseListener(new LoansListener());
 
-    /**
-     * The listener of the cancel button
-     * 
-     * @author Hugo
-     * 
-     */
+		updateList();
+	}
 
-    public class OkListener implements ActionListener {
+	public void updateList() {
+		JList<String> loansList = view.getLoansList();
+		loansList.removeAll();
+		DefaultListModel<String> listModel = view.getListModel();
+		Calendar calendar = Calendar.getInstance();
+		try {
+			calendar.setTime(dateFormat.parse(view.getCurrentDay().getText()));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            view.dispose();
-        }
-    }
-    
-    /**
-     * The listener of the next button
-     * 
-     * @author Hugo
-     * 
-     */
-    public class NextListener implements ActionListener {
+		// TODO fill list
+	}
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Calendar calendar = Calendar.getInstance();
-            try {
-                calendar.setTime(dateFormat.parse(view.getCurrentDay().getText()));
-            } catch (ParseException e1) {
-                e1.printStackTrace();
-            }
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-            view.getCurrentDay().setText(dateFormat.format(calendar.getTime()));
-            
-            updateList();
-        }
-    }
-    
-    /**
-     * The listener of the prev button
-     * 
-     * @author Hugo
-     * 
-     */
-    public class PrevListener implements ActionListener {
+	/**
+	 * The listener of the cancel button
+	 * 
+	 * @author Hugo
+	 * 
+	 */
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Calendar calendar = Calendar.getInstance();
-            try {
-                calendar.setTime(dateFormat.parse(view.getCurrentDay().getText()));
-            } catch (ParseException e1) {
-                e1.printStackTrace();
-            }
-            calendar.add(Calendar.DAY_OF_MONTH, -1);
-            view.getCurrentDay().setText(dateFormat.format(calendar.getTime()));
-            
-            updateList();
-        }
-    }
-    
-    /**
-     * The listener of the list
-     * 
-     * @author Hugo
-     * 
-     */
-    public class LoansListener implements MouseListener {
+	public class OkListener implements ActionListener {
 
-        @Override
-        public void mouseClicked(MouseEvent arg0) {
-            if(view.getListModel().getSize() == 0){
-                return;
-            }
-            JList<String> list = view.getLoansList();
-            int selected = list.getSelectedIndex();
-            view.getStateLabel().setText(states.get(selected));
-        }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			view.dispose();
+		}
+	}
 
-        @Override
-        public void mouseEntered(MouseEvent arg0) {}
+	/**
+	 * The listener of the next button
+	 * 
+	 * @author Hugo
+	 * 
+	 */
+	public class NextListener implements ActionListener {
 
-        @Override
-        public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Calendar calendar = Calendar.getInstance();
+			try {
+				calendar.setTime(dateFormat.parse(view.getCurrentDay()
+						.getText()));
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			view.getCurrentDay().setText(dateFormat.format(calendar.getTime()));
 
-        @Override
-        public void mousePressed(MouseEvent arg0) {}
+			updateList();
+		}
+	}
 
-        @Override
-        public void mouseReleased(MouseEvent arg0) {}
-    }
+	/**
+	 * The listener of the prev button
+	 * 
+	 * @author Hugo
+	 * 
+	 */
+	public class PrevListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Calendar calendar = Calendar.getInstance();
+			try {
+				calendar.setTime(dateFormat.parse(view.getCurrentDay()
+						.getText()));
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			calendar.add(Calendar.DAY_OF_MONTH, -1);
+			view.getCurrentDay().setText(dateFormat.format(calendar.getTime()));
+
+			updateList();
+		}
+	}
+
+	/**
+	 * The listener of the list
+	 * 
+	 * @author Hugo
+	 * 
+	 */
+	public class LoansListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			if (view.getListModel().getSize() == 0) {
+				return;
+			}
+			JList<String> list = view.getLoansList();
+			int selected = list.getSelectedIndex();
+			view.getStateLabel().setText(states.get(selected));
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+		}
+	}
 }

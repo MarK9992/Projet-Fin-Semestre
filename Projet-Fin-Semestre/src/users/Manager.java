@@ -21,9 +21,9 @@ import equipment.Equipment;
  * Manager class, a user who can manage the inventory and validate or refuse
  * loans. He also controls the state of loans.
  * 
- * initial code by: Marc Karassev; modified by: Marc Karassev
+ * initial code by: Marc Karassev; modified by: Marc Karassev, Anthony Saraïs
  * 
- * @author Marc Karassev
+ * @author Marc Karassev, Anthony Saraïs
  * 
  */
 public class Manager extends User implements BorrowerConstants, Serializable {
@@ -63,45 +63,87 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 
 	// Methods
 
+	/**
+	 * Adds a model the management system's set of models.
+	 * 
+	 * @param m
+	 *            the model to add
+	 */
 	public void addModel(Model m) {
-	    ManagementSystem.getManagementSystem().getModels().add(m);
+		ManagementSystem.getManagementSystem().getModels().add(m);
 	}
 
+	/**
+	 * Removes a model from the management system's set of models.
+	 * 
+	 * @param m
+	 *            the model to remove
+	 */
 	public void removeModel(Model m) {
-	    ManagementSystem.getManagementSystem().getModels().remove(m);
+		ManagementSystem.getManagementSystem().getModels().remove(m);
 	}
 
-	public void acceptAsk(Ask ask, ManagementSystem ms) throws IOException,
-			NullPointerException {
+	/**
+	 * Accepts an ask and creates the corresponding loan. The ask is removed
+	 * from the management system's ask list and the loan is added to its loan
+	 * list.
+	 * 
+	 * @param ask
+	 *            the ask to accept
+	 * @throws IOException
+	 * @throws NullPointerException
+	 *             when there's not enough equipment available to create the
+	 *             loan
+	 */
+	public void acceptAsk(Ask ask) throws IOException, NullPointerException {
 		Loan loan = new Loan(ask);
 		Set<Model> keys = ask.getAskedStuff().keySet();
 		Iterator<Model> it = keys.iterator();
 		Model key;
 
-		ms.addLoan(loan);
+		ManagementSystem.getManagementSystem().addLoan(loan);
 		while (it.hasNext()) {
 			key = it.next();
-			for (int i = 0; i < ask.getAskedStuff().get(key); i++)
-				loan.addEquipment(ms.findAvailableEquipmentAt(key,
-						ask.getPeriod()));
+			for (int i = 0; i < ask.getAskedStuff().get(key); i++) {
+				System.out
+						.println("test: "
+								+ ManagementSystem.getManagementSystem()
+										.findAvailableEquipmentAt(key,
+												ask.getPeriod()));
+				loan.addEquipment(ManagementSystem.getManagementSystem()
+						.findAvailableEquipmentAt(key, ask.getPeriod()));
+			}
 		}
-		ms.removeAsk(ask);
+		ManagementSystem.getManagementSystem().removeAsk(ask);
 	}
 
-	public HashMap<Ask, String> checkAsks(ManagementSystem ms) {
+	/**
+	 * Checks automatically all the asks of the management system.
+	 * 
+	 * @return an HashMap<Ask, String> where keys are the asks and value a
+	 *         string describing the result of its validity checking.
+	 */
+	public HashMap<Ask, String> checkAsks() {
 		HashMap<Ask, String> hm = new HashMap<Ask, String>();
-		
-		for(Ask a: ms.getAsks()) {
-            hm.put(a, checkAsk(a, ms));
+
+		for (Ask a : ManagementSystem.getManagementSystem().getAsks()) {
+			hm.put(a, checkAsk(a));
 		}
 		return hm;
 	}
 
-	public String checkAsk(Ask a, ManagementSystem ms) {
+	/**
+	 * Checks an ask by successively checking all error possibilities.
+	 * 
+	 * @param a
+	 *            the ask to check
+	 * @return a string description of the result of the ask validity checking
+	 */
+	public String checkAsk(Ask a) {
 		Borrower bwer = a.getBorrower();
 		Period period = a.getPeriod();
 		HashMap<Model, Integer> askedStuff = a.getAskedStuff();
-		
+
 		if (bwer == null || period == null || askedStuff == null
 				|| askedStuff.isEmpty())
 			throw new IllegalArgumentException("null argument fields");
@@ -116,7 +158,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 			// TODO call of a method altering the loan to satisfy these
 			// standards
 		}
-		if (!checkEquipments(askedStuff, period, ms)) {
+		if (!checkEquipments(askedStuff, period)) {
 			return "Some are equipments unavailable.";
 			// TODO call of a method altering the loan to satisfy these
 			// standards
@@ -161,8 +203,7 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 	 *            the period to verify
 	 * @return true if the conditions are checked, false otherwise
 	 */
-	private boolean checkModels(HashMap<Model, Integer> hm,
-			Period p) {
+	private boolean checkModels(HashMap<Model, Integer> hm, Period p) {
 		Model model;
 		Set<Model> sm = hm.keySet();
 		Iterator<Model> it = sm.iterator();
@@ -176,15 +217,26 @@ public class Manager extends User implements BorrowerConstants, Serializable {
 		return true;
 	}
 
-	private boolean checkEquipments(HashMap<Model, Integer> hm, Period p, ManagementSystem ms) {
+	/**
+	 * Checks if there is enough available equipments during the given period.
+	 * 
+	 * @param hm
+	 *            the HashMap<Model, Integer> describing the number of models
+	 *            needed
+	 * @param p
+	 *            the period to verify
+	 * @return true if there is enough available equipments, false otherwise
+	 */
+	private boolean checkEquipments(HashMap<Model, Integer> hm, Period p) {
 		Model model;
 		Set<Model> sm = hm.keySet();
 		Iterator<Model> it = sm.iterator();
-		
-		while(it.hasNext()) {
+
+		while (it.hasNext()) {
 			model = it.next();
-			for(int i = 0; i < hm.get(model); i++)
-				if(ms.findNAvailableEquipmentAt(model, hm.get(model), p) == null)
+			for (int i = 0; i < hm.get(model); i++)
+				if (ManagementSystem.getManagementSystem()
+						.findNAvailableEquipmentAt(model, hm.get(model), p) == null)
 					return false;
 		}
 		return true;

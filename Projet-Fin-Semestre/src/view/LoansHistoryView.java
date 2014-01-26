@@ -12,62 +12,62 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class LoansHistoryView extends JFrame {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JLabel loansLabel;
-    private JLabel stateLabel;
-    private JList<String> loansList;
-    private JButton okButton;
-    private DefaultListModel<String> listModel;
+	private JLabel loansLabel;
+	private JLabel stateLabel;
+	private JList<String> loansList;
+	private JButton okButton;
+	private DefaultListModel<String> listModel;
 
-    /**
-     * The view for the borrower's loans history
-     */
-    public LoansHistoryView() {
-        loansLabel = new JLabel("Your loans : ");
-        stateLabel = new JLabel();
-        listModel = new DefaultListModel<String>();
-        okButton = new JButton("OK");
-        loansList = new JList<String>(listModel);
+	/**
+	 * The view for the borrower's loans history
+	 */
+	public LoansHistoryView() {
+		loansLabel = new JLabel("Your loans : ");
+		stateLabel = new JLabel();
+		listModel = new DefaultListModel<String>();
+		okButton = new JButton("OK");
+		loansList = new JList<String>(listModel);
 
-        setLayout(new BorderLayout());
-        setSize(new Dimension(400, 600));
-        setLocationRelativeTo(null);
-        setResizable(false);
-        
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.add(loansLabel, BorderLayout.NORTH);
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(loansList);
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
-        add(centerPanel, BorderLayout.CENTER);
-        JPanel statePanel = new JPanel(new BorderLayout());
-        statePanel.add(new JLabel("Accepted : "), BorderLayout.WEST);
-        statePanel.add(stateLabel, BorderLayout.CENTER);
-        centerPanel.add(statePanel, BorderLayout.SOUTH);
+		setLayout(new BorderLayout());
+		setSize(new Dimension(400, 600));
+		setLocationRelativeTo(null);
+		setResizable(false);
 
-        JPanel southPanel = new JPanel();
-        southPanel.add(okButton);
-        add(southPanel, BorderLayout.SOUTH);
+		JPanel centerPanel = new JPanel(new BorderLayout());
+		centerPanel.add(loansLabel, BorderLayout.NORTH);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(loansList);
+		centerPanel.add(scrollPane, BorderLayout.CENTER);
+		add(centerPanel, BorderLayout.CENTER);
+		JPanel statePanel = new JPanel(new BorderLayout());
+		statePanel.add(new JLabel("Accepted : "), BorderLayout.WEST);
+		statePanel.add(stateLabel, BorderLayout.CENTER);
+		centerPanel.add(statePanel, BorderLayout.SOUTH);
 
-        setVisible(true);
-    }
+		JPanel southPanel = new JPanel();
+		southPanel.add(okButton);
+		add(southPanel, BorderLayout.SOUTH);
 
-    // Getters and setters
+		setVisible(true);
+	}
 
-    public JButton getOkButton() {
-        return okButton;
-    }
+	// Getters and setters
 
-    public JList<String> getLoansList() {
-        return loansList;
-    }
+	public JButton getOkButton() {
+		return okButton;
+	}
 
-    public DefaultListModel<String> getListModel() {
-        return listModel;
-    }
-    
-    public JLabel getStateLabel() {
-        return stateLabel;
-    }
+	public JList<String> getLoansList() {
+		return loansList;
+	}
+
+	public DefaultListModel<String> getListModel() {
+		return listModel;
+	}
+
+	public JLabel getStateLabel() {
+		return stateLabel;
+	}
 }

@@ -6,9 +6,10 @@ import java.util.Calendar;
 /**
  * Class which implements time periods and methods to handle it.
  * 
- * initial code by: Marc Karassev, Anaïs Marongiu; modified by: Marc Karassev
+ * initial code by: Marc Karassev, Anaïs Marongiu; modified by: Marc Karassev,
+ * Anthony Saraïs
  * 
- * @author Marc Karassev, Anaïs Marongiu
+ * @author Marc Karassev, Anthony Saraïs, Anaïs Marongiu
  * 
  */
 public class Period implements Serializable {

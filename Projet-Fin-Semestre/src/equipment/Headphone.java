@@ -35,8 +35,8 @@ public abstract class Headphone extends Equipment {
 	 * @throws IOException
 	 */
 	public Headphone() throws IOException {
-		this("unknown", 30, "20-20000", 100, ManagementSystem.getManagementSystem().getModels()
-				.findModelByName("unknown"));
+		this("unknown", 30, "20-20000", 100, ManagementSystem
+				.getManagementSystem().getModels().findModelByName("unknown"));
 	}
 
 	/**

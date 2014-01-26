@@ -6,14 +6,15 @@ import java.io.Serializable;
 import utils.StoreLoad;
 
 /**
- * Super class User, defines all common properties to users.
+ * Super class User, defines all common properties to users. A user has a ID and
+ * a name. A static field counter is used to ID automatic generation.
  * 
- * initial code by: Marc Karassev; modified by: Marc Karassev
+ * initial code by: Marc Karassev; modified by: Marc Karassev, Anthony Saraïs
  * 
- * @author Marc Karassev
+ * @author Marc Karassev, Anthonu Saraïs
  * 
  */
-public abstract class User implements Serializable{
+public abstract class User implements Serializable {
 
 	// Fields
 

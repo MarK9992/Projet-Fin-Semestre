@@ -1,7 +1,7 @@
 package config;
 
 /**
- * Enumeration of borrower kinds.
+ * Enumeration of borrower kinds. Has a string field to characterize it.
  * 
  * @author Marc Karassev
  * 

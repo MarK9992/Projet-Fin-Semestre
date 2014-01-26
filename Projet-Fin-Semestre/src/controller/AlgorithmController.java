@@ -21,66 +21,71 @@ import managementsystem.ManagementSystem;
  * 
  */
 public class AlgorithmController {
-    private ManagementSystem ms;
-    private AlgorithmView view;
-    private List<String> reasons;
+	private ManagementSystem ms;
+	private AlgorithmView view;
+	private List<String> reasons;
 
-    public AlgorithmController(ManagementSystem m,Manager manager, AlgorithmView v) {
-        ms = m;
-        view = v;
-        reasons = new ArrayList<String>();
-        v.getOkButton().addActionListener(new OkListener());
-        v.getLoansList().addMouseListener(new LoansListener());
-        
-        HashMap<Ask, String> loansReasons = manager.checkAsks(ms);
-        for(Ask l : loansReasons.keySet()){
-            v.getListModel().addElement(l.toString());
-            reasons.add(loansReasons.get(l));
-        }
-    }
+	public AlgorithmController(ManagementSystem m, Manager manager,
+			AlgorithmView v) {
+		ms = m;
+		view = v;
+		reasons = new ArrayList<String>();
+		v.getOkButton().addActionListener(new OkListener());
+		v.getLoansList().addMouseListener(new LoansListener());
 
-    /**
-     * The listener of the ok button
-     * 
-     * @author Hugo
-     * 
-     */
-    public class OkListener implements ActionListener {
+		HashMap<Ask, String> loansReasons = manager.checkAsks();
+		for (Ask l : loansReasons.keySet()) {
+			v.getListModel().addElement(l.toString());
+			reasons.add(loansReasons.get(l));
+		}
+	}
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            view.dispose();
-        }
-    }
-    
-    /**
-     * The listener of the list
-     * 
-     * @author Hugo
-     * 
-     */
-    public class LoansListener implements MouseListener {
+	/**
+	 * The listener of the ok button
+	 * 
+	 * @author Hugo
+	 * 
+	 */
+	public class OkListener implements ActionListener {
 
-        @Override
-        public void mouseClicked(MouseEvent arg0) {
-            if(view.getListModel().getSize() == 0){
-                return;
-            }
-            JList<String> list = view.getLoansList();
-            int selected = list.getSelectedIndex();
-            view.getReason().setText(reasons.get(selected));
-        }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			view.dispose();
+		}
+	}
 
-        @Override
-        public void mouseEntered(MouseEvent arg0) {}
+	/**
+	 * The listener of the list
+	 * 
+	 * @author Hugo
+	 * 
+	 */
+	public class LoansListener implements MouseListener {
 
-        @Override
-        public void mouseExited(MouseEvent arg0) {}
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			if (view.getListModel().getSize() == 0) {
+				return;
+			}
+			JList<String> list = view.getLoansList();
+			int selected = list.getSelectedIndex();
+			view.getReason().setText(reasons.get(selected));
+		}
 
-        @Override
-        public void mousePressed(MouseEvent arg0) {}
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+		}
 
-        @Override
-        public void mouseReleased(MouseEvent arg0) {}
-    }
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+		}
+	}
 }
