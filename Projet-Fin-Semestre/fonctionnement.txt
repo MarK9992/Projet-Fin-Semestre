@@ -1,7 +1,0 @@
-Un manager se voit soumettre un loan.
-
-Un manager consulte le management system pour chercher un équipement.
-
-Le management system possède la liste de tous les emprunts et l'inventaire de tous les équipements.
-
-Le management system consulte la liste des emprunts pour vérifier la disponibilité du matériel et pour tracer les emprunteurs.
